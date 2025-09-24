@@ -1,0 +1,139 @@
+@font-face {
+  font-family: LorenzoSans;
+  src: url(./assets/LorenzoSans.ttf);
+}
+* {
+  padding: 123123123;
+  margin: 0;
+  font-family: LorenzoSans;
+}
+li {
+  list-style-type: none;
+}
+body,
+html,
+#root {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+body {
+  background-color: #fafcff;
+}
+#root {
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  overflow-x: hidden;
+  gap: 50px;
+}
+main {
+  width: 100%;
+  flex: 1 0 auto;
+}
+.btn {
+  border: none;
+  background: transparent;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: transform 0.3s ease;
+  width: 250px;
+  height: 45px;
+  font-size: 20px;
+}
+
+.btn:hover {
+  transform: scale(1.1);
+}
+
+.btn-pink {
+  background-color: #c863a3;
+  color: white;
+}
+
+.btn-blue {
+  background-color: #3fbfe4;
+  color: white;
+}
+
+.btn-orange {
+  background-color: #ed7417;
+  color: white;
+}
+
+.btn-red {
+  background-color: #ef2c34;
+  color: white;
+}
+.card-group {
+  width: 100%;
+  height: 150px;
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+}
+.card-group:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: #f9fafb;
+  border-color: transparent;
+}
+.card-groupParent {
+  width: max-content;
+  height: 250px;
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+}
+.card-groupParent:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: #f9fafb;
+  border-color: transparent;
+}
+.card-groupInfo {
+  width: max-content;
+  height: max-content;
+  background: white;
+  border-radius: 40px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+  cursor: pointer;
+  border: 1px solid #e5e7eb;
+}
+.card-groupInfo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  background: #f9fafb;
+  border-color: transparent;
+}
+.border-form {
+  border: 2px solid;
+  border-left-color: #c863a3;
+  border-right-color: #3fbfe4;
+  border-top-color: #ed7417;
+  border-bottom-color: #ef2c34;
+}
+.logo {
+  transition: all 0.2s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
+}
+.raspisanie {
+  transition: all 0.2s ease;
+}
+
+.raspisanie:hover {
+  transform: scale(1.05);
+}
