@@ -39,7 +39,7 @@ export default function About() {
           <h2 className="font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-[40px]">
             {aboutContent.title}
           </h2>
-          <div className="rounded-lg h-full flex items-center flex-col text-justify indent-16 gap-[10px]">
+          <div className="rounded-lg h-full flex items-center flex-col text-justify indent-16 gap-[10px] info-about">
             <p>{aboutContent.description}</p>
             <ul className="flex flex-col gap-[15px] text-justify w-full">
               <li className="flex flex-col gap-[5px]">
