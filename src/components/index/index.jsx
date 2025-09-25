@@ -74,8 +74,7 @@ export default function Index() {
           </ul>
         </section>
         <section className="flex flex-col w-[30%] items-center max-h-max gap-[20px]">
-          {/* <h1 className="text-[30px] text-center ">Группы детского сада</h1> */}
-          <h1 className=" font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-center w-max text-[40px]">
+          <h1 className=" font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-center text-[40px] max-w-[300px]">
             Группы детского сада
           </h1>
           <ul className="flex flex-col gap-8 w-full groups-list">
