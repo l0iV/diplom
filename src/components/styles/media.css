@@ -122,3 +122,61 @@
     align-items: center;
   }
 }
+@media screen and (min-width: 1260px) and (max-width: 1417px) {
+  .main-parents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .border-form {
+    min-width: 700px;
+  }
+}
+@media screen and (min-width: 840px) and (max-width: 1259px) {
+  .main-parents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .important-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 160px;
+  }
+  .card-groupInfo {
+    width: max-content;
+  }
+  .border-form {
+    min-width: 700px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 839px) {
+  .main-parents {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .important-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 160px;
+    justify-content: center;
+  }
+  .card-groupInfo {
+    width: 320px;
+  }
+  .border-form {
+    min-width: 300px;
+    max-width: 800px;
+  }
+  .menu {
+    max-width: 350px;
+  }
+  .zagolovok {
+    width: 310px;
+  }
+  .border-form {
+    width: 310px;
+    max-width: max-content;
+  }
+}

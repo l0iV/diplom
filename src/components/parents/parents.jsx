@@ -11,17 +11,17 @@ export default function Parents() {
 
   return (
     <section className="flex flex-col items-center w-full gap-[30px]">
-      <div className="flex w-full gap-[30px]">
+      <div className="flex w-full gap-[30px] main-parents">
         <section className="w-[50%] flex flex-col items-center gap-[30px]">
-          <div className="max-h-max bg-gray-50 p-4 w-full">
-            <h1 className="text-2xl font-bold text-center mb-6">
+          <div className="max-h-max bg-gray-50 p-4 w-full flex flex-col items-center">
+            <h1 className="text-2xl font-bold text-center mb-6 zagolovok">
               Расписание и меню для каждой группы
             </h1>
             <div className="flex flex-col gap-[30px] items-center">
               {Groups.map((group) => (
                 <div
                   key={group.id}
-                  className="bg-white rounded-[20px] overflow-hidden shadow relative w-[500px] raspisanie"
+                  className="bg-white rounded-[20px] overflow-hidden shadow relative w-[500px] raspisanie menu"
                 >
                   <div
                     className="min-h-[50px] flex items-center justify-center cursor-pointer text-stone-50 text-[20px]"
@@ -123,13 +123,13 @@ export default function Parents() {
       </div>
       <section className="w-full flex flex-col items-center">
         <h1 className="text-[25px] font-bold mb-[20px]">Важная информация</h1>
-        <div className="grid grid-cols-3 w-[90%] gap-[20px] justify-items-center">
+        <div className="grid grid-cols-3 w-[90%] gap-[20px] justify-items-center important-info">
           {info.map((item) => (
-            <div key={item.id} className="flex justify-center card-groupInfo">
+            <div key={item.id} className="flex justify-center ">
               <img
                 src={item.image}
                 alt={`Информация ${item.id}`}
-                className="max-w-full h-auto object-cover rounded-[40px] shadow-md cursor-pointer"
+                className="max-w-max h-auto object-cover rounded-[40px] shadow-md cursor-pointer card-groupInfo"
               />
             </div>
           ))}
