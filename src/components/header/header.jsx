@@ -14,7 +14,7 @@ export default function Header() {
       </div>
       <section className="flex flex-col items-center w-[90%]">
         <div className="flex items-center w-full">
-          <ul className="flex w-full justify-evenly items-center">
+          <ul className="flex w-full justify-evenly items-center header-btn">
             <li>
               <NavLink to="оНас" style={navLinkStyle}>
                 <button className="btn btn-pink">Наш детский сад</button>

@@ -8,10 +8,10 @@ export default function Footer() {
     color: "black",
   };
   return (
-    <section className="min-h-[100px] w-full items-center bg-[#eff5f9] flex flex-col gap-[20px] text-[20px] p-[20px]">
+    <section className="min-h-[100px] w-full items-center bg-[#eff5f9] flex flex-col gap-[20px] text-[20px] p-[20px] footer">
       <h1>МБДОУ " Детский сад комбинированного вида №18"</h1>
-      <div className="flex justify-around w-full items-center">
-        <div className="flex flex-col items-center gap-[20px] w-[33%]">
+      <div className="flex justify-around w-full items-center content-footer">
+        <div className="flex flex-col items-center gap-[20px] w-[33%] social">
           <h3>Мы в соц. сетях:</h3>
           <ul className="flex items-center justify-center gap-[10px]">
             <li>
@@ -29,8 +29,8 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col items-center w-[33%]">
-          <ul className="flex flex-col items-start gap-[10px] w-[33%]">
+        <div className="flex flex-col items-center w-[33%] ">
+          <ul className="flex flex-col items-start gap-[10px] w-[33%] navigation">
             <h3>Навигация по сайту:</h3>
             <li>
               <NavLink to="мероприятия" style={navLinkStyle}>
@@ -54,7 +54,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <ul className="flex flex-col items-start gap-[10px] w-[33%]">
+        <ul className="flex flex-col items-start gap-[10px] w-[33%] contacty">
           <li>
             <p>Контактный телефон</p>
             <p>8 (48753) 2-31-92</p>

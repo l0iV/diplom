@@ -1,0 +1,91 @@
+@media screen and (min-width: 768px) and (max-width: 1200px) {
+  .main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+  }
+  .section-left {
+    display: flex;
+    width: 90%;
+  }
+  .banners img {
+    width: 700px;
+  }
+  .groups-list {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 40px;
+    width: max-content;
+  }
+  .btn {
+    max-width: 200px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 767px) {
+  .main-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+  }
+  .section-left {
+    display: flex;
+    width: 100%;
+  }
+  .groups-list {
+    display: flex;
+    width: max-content;
+  }
+  .footer {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+  }
+  .social {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .social h3 {
+    width: max-content;
+  }
+  .org-name {
+    text-align: center;
+    width: 100%;
+  }
+  .logo-main {
+    display: none;
+  }
+  .header-btn {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    gap: 10px;
+  }
+  .content-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+  }
+  .navigation {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .navigation h3 {
+    width: max-content;
+  }
+  .contacty {
+    display: flex;
+    align-items: center;
+    width: 250px;
+  }
+}

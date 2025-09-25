@@ -16,42 +16,11 @@ export default function Index() {
 
   return (
     <section className="flex flex-col w-full h-full items-center gap-[50px]">
-      <section className="w-full flex justify-around items-start max-h-max">
-        <section className="flex flex-col w-[30%] items-center max-h-max gap-[10px]">
-          <h1 className="text-[30px] text-center">Группы детского сада</h1>
-          <ul className="flex flex-col gap-8 w-full">
-            {groupsData.map((group) => (
-              <li key={group.id} className="flex flex-col gap-3 w-full">
-                <div className="flex items-center gap-5 w-full">
-                  <img
-                    src={group.icon}
-                    alt={`Иконка ${group.name}`}
-                    className="w-12"
-                  />
-                  <div className="flex flex-col gap-1">
-                    <p className="text-xl">{group.name}</p>
-                    <p>{group.age}</p>
-                  </div>
-                </div>
-                <div className="card-group bg-white rounded-lg shadow flex flex-col">
-                  <ul className="flex flex-col gap-2 p-[10px] ml-[10px]">
-                    <li className="text-2xl text-blue-600">
-                      {group.groupName}
-                    </li>
-                    <li className="text-gray-400">Воспитатели</li>
-                    {group.teachers.map((teacher, index) => (
-                      <li key={index}>{teacher}</li>
-                    ))}
-                  </ul>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </section>
-        <section className="flex flex-col max-h-max w-[60%] gap-[40px]">
-          <section className="bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] rounded-[50px] p-[30px] flex flex-col gap-[50px]">
-            <div className="flex">
-              <div className="flex flex-col items-start text-[30px] max-w-max font-bold">
+      <section className="w-full flex justify-around items-start max-h-max main-section">
+        <section className="flex flex-col max-h-max w-[60%] gap-[40px] section-left">
+          <section className="bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] rounded-[50px] p-[30px] flex flex-col gap-[50px] ">
+            <div className="flex ">
+              <div className="flex flex-col items-start text-[30px] max-w-max font-bold org-name">
                 <p>Муниципальное бюджетное дошкольное</p>
                 <p>образовательное учреждение "Детский сад</p>
                 <p>комбинированного вида №18"</p>
@@ -59,8 +28,8 @@ export default function Index() {
                   МБДОУ "ДС комбинированного вида №18"
                 </p>
               </div>
-              <div className="relative top-[160px]">
-                <img src={logoMain} alt="" className="w-[400px]" />
+              <div>
+                <img src={logoMain} alt="" className="w-[400px] logo-main" />
               </div>
             </div>
             <div className="flex flex-col items-start">
@@ -93,14 +62,49 @@ export default function Index() {
               </ul>
             </div>
           </section>
-          <ul className="flex flex-col gap-[20px] items-center">
+          <ul className="flex flex-col gap-[20px] items-center banners">
             <li className="cursor-pointer">
               <img src={zapis} alt="" className="w-[1000px] rounded-[20px]" />
             </li>
             <li className="flex gap-[20px]">
               <img src={god} alt="" className="cursor-pointer w-[500px]" />
-              <img src={banner} alt="" className="cursor-pointer w-[500px]" />
             </li>
+            <img src={banner} alt="" className="cursor-pointer w-[500px]" />
+            <li></li>
+          </ul>
+        </section>
+        <section className="flex flex-col w-[30%] items-center max-h-max gap-[20px]">
+          {/* <h1 className="text-[30px] text-center ">Группы детского сада</h1> */}
+          <h1 className=" font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-center w-max text-[40px]">
+            Группы детского сада
+          </h1>
+          <ul className="flex flex-col gap-8 w-full groups-list">
+            {groupsData.map((group) => (
+              <li key={group.id} className="flex flex-col gap-3 w-full">
+                <div className="flex items-center gap-5 w-full">
+                  <img
+                    src={group.icon}
+                    alt={`Иконка ${group.name}`}
+                    className="w-12"
+                  />
+                  <div className="flex flex-col gap-1">
+                    <p className="text-xl">{group.name}</p>
+                    <p>{group.age}</p>
+                  </div>
+                </div>
+                <div className="card-group">
+                  <ul className="flex flex-col gap-2 ml-[10px]">
+                    <li className="text-2xl text-blue-600">
+                      {group.groupName}
+                    </li>
+                    <li className="text-gray-400">Воспитатели</li>
+                    {group.teachers.map((teacher, index) => (
+                      <li key={index}>{teacher}</li>
+                    ))}
+                  </ul>
+                </div>
+              </li>
+            ))}
           </ul>
         </section>
       </section>

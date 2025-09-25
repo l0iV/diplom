@@ -7,6 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import slides from "../sliderNews/listNews/listNews";
+
 export default function Slider() {
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
@@ -19,20 +20,40 @@ export default function Slider() {
     setFullscreenImage(null);
     document.body.style.overflow = "auto";
   };
+
   return (
-    <div
-      className="overflow-hidden relative min-h-[350px] mt-[30px] w-[80%] text-[14px]"
-      id="autoSL"
-    >
+    <div className="min-h-[350px] mt-[30px] w-[90%] text-[14px] items-center overflow-hidden relative">
       <h1 className="text-center font-bold text-[25px] mb-[20px]">
         Наши комнаты
       </h1>
       <Swiper
         modules={[Pagination, Autoplay]}
-        spaceBetween={150}
-        slidesPerView={3}
+        centeredSlides={true}
+        spaceBetween={50}
+        slidesPerView={3} // По умолчанию 3 слайда
         loop={true}
         autoplay={{ delay: 2000 }}
+        breakpoints={{
+          // При 1200px и выше - 3 слайда (по умолчанию)
+          1200: {
+            slidesPerView: 3,
+            spaceBetween: 50,
+          },
+          // При 1000px до 1199px - 2 слайда
+          1000: {
+            slidesPerView: 2,
+            spaceBetween: 20,
+          },
+          // При 768px до 999px - 1 слайд
+          768: {
+            slidesPerView: 1,
+            spaceBetween: 50,
+          },
+          // При 320px до 767px - 1 слайд с меньшими отступами
+          320: {
+            slidesPerView: 1,
+          },
+        }}
       >
         {slides.map((slide, index) => (
           <SwiperSlide key={index} className="flex items-center">
@@ -43,7 +64,7 @@ export default function Slider() {
               <img
                 src={slide.img}
                 alt=""
-                className="object-contain rounded-[20px]"
+                className="object-contain rounded-[20px] max-w-full h-auto"
               />
               <p className="text-center">{slide.text}</p>
             </div>
@@ -58,11 +79,11 @@ export default function Slider() {
           <img
             src={fullscreenImage}
             alt="Увеличенное изображение"
-            className="w-[1250px] max-h-[90vh] object-contain"
+            className="max-w-full max-h-[90vh] object-contain"
             onClick={(e) => e.stopPropagation()}
           />
           <button
-            className="absolute top-2 right-3 text-white text-3xl bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center"
+            className="absolute top-4 right-4 text-white text-3xl bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-700 transition-colors"
             onClick={closeFullscreen}
           >
             &times;

@@ -1,4 +1,5 @@
 import { HashRouter, Route, Routes } from "react-router-dom";
+import "../src/components/styles/media.css";
 import Index from "./components/index/index";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
