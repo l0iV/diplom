@@ -3,13 +3,13 @@ import Map from "../map/map";
 import SliderAbout from "../SliderAbout/sliderNews";
 export default function About() {
   return (
-    <section className="w-full items-center flex-col gap-[100px] flex">
-      <div className="w-[80%] grid grid-cols-2 gap-[30px] justify-between">
+    <section className="w-full items-center flex-col gap-[100px] flex ">
+      <div className="w-[80%] grid grid-cols-2 gap-[30px] justify-between about-main">
         <div className="flex flex-col items-start gap-[60px] text-[18px]">
           {aboutCards.map((card) => (
             <div
               key={card.id}
-              className="rounded-[20px] shadow w-[500px] min-h-[100px] items-center justify-center flex flex-col"
+              className="rounded-[20px] shadow w-[500px] min-h-[100px] items-center justify-center flex flex-col card-info"
             >
               <h2 className="text-xl font-bold mb-2">{card.title}</h2>
               <div className={`flex flex-col items-center ${card.className}`}>
@@ -36,7 +36,9 @@ export default function About() {
           ))}
         </div>
         <div className="bg-white p-6 rounded-lg shadow w-full text-[20px]">
-          <h2 className="text-[30px] font-bold mb-4">{aboutContent.title}</h2>
+          <h2 className="font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-[40px]">
+            {aboutContent.title}
+          </h2>
           <div className="rounded-lg h-full flex items-center flex-col text-justify indent-16 gap-[10px]">
             <p>{aboutContent.description}</p>
             <ul className="flex flex-col gap-[15px] text-justify w-full">
@@ -57,7 +59,7 @@ export default function About() {
         <h2 className="text-xl font-bold mb-4 text-center">
           Карта с местонахождением
         </h2>
-        <div className="rounded-lg h-full min-h-[400px] overflow-hidden">
+        <div className="rounded-lg h-full min-h-max overflow-hidden">
           <Map />
         </div>
       </div>

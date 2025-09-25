@@ -30,26 +30,22 @@ export default function Slider() {
         modules={[Pagination, Autoplay]}
         centeredSlides={true}
         spaceBetween={50}
-        slidesPerView={3} // По умолчанию 3 слайда
+        slidesPerView={3}
         loop={true}
         autoplay={{ delay: 2000 }}
         breakpoints={{
-          // При 1200px и выше - 3 слайда (по умолчанию)
           1200: {
             slidesPerView: 3,
             spaceBetween: 50,
           },
-          // При 1000px до 1199px - 2 слайда
           1000: {
             slidesPerView: 2,
             spaceBetween: 20,
           },
-          // При 768px до 999px - 1 слайд
           768: {
             slidesPerView: 1,
             spaceBetween: 50,
           },
-          // При 320px до 767px - 1 слайд с меньшими отступами
           320: {
             slidesPerView: 1,
           },
