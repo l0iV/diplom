@@ -5,13 +5,13 @@ export default function Events() {
       <h1 className="text-center text-[25px] font-bold mb-[30px]">
         Новости и события
       </h1>
-      <div className="grid grid-cols-3 gap-6 w-[80%]">
+      <div className="grid grid-cols-3 gap-6 w-[80%] events-main">
         {events.map((event) => (
           <div
             key={event.id}
             className="border rounded-[20px] cursor-pointer flex flex-col gap-[10px]"
           >
-            <div className="min-h-[300px]">
+            <div className="max-h-[300px] min-h-max">
               <img
                 src={event.image}
                 alt={event.title}

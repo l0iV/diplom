@@ -31,6 +31,11 @@
   .info-about {
     text-indent: 0;
   }
+  .events-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
 @media screen and (min-width: 320px) and (max-width: 767px) {
   .main-section {
@@ -110,5 +115,10 @@
   }
   .info-about {
     text-indent: 0;
+  }
+  .events-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
 }
