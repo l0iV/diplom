@@ -55,11 +55,11 @@ export default function About() {
         </div>
       </div>
       <SliderAbout />
-      <div className="bg-white p-6 rounded-lg shadow w-[50%] items-center">
+      <div className="bg-white p-6 rounded-lg shadow w-[90%] items-center h-[450px] max-h-max">
         <h2 className="text-xl font-bold mb-4 text-center">
           Карта с местонахождением
         </h2>
-        <div className="rounded-lg h-full min-h-max overflow-hidden">
+        <div className="rounded-lg overflow-hidden">
           <Map />
         </div>
       </div>
