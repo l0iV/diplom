@@ -41,7 +41,7 @@ export default function Footer() {
             </li>
           </ul>
         </div>
-        <div className="flex flex-col items-center w-[33%] ">
+        <div className="flex flex-col items-center w-[35%] ">
           <ul className="flex flex-col items-center gap-[10px] w-[35%] navigation">
             <h3>Навигация по сайту:</h3>
             <li>
