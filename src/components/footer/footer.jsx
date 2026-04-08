@@ -43,11 +43,6 @@ export default function Footer() {
               </NavLink>
             </li>
             <li>
-              <NavLink style={navLinkStyle} to="отзывы">
-                Отзывы
-              </NavLink>
-            </li>
-            <li>
               <NavLink style={navLinkStyle} to="оНас">
                 О нас
               </NavLink>

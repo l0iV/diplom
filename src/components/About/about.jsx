@@ -59,7 +59,7 @@ export default function About() {
         <h2 className="text-xl font-bold mb-4 text-center">
           Карта с местонахождением
         </h2>
-        <div className="rounded-lg overflow-hidden">
+        <div className="rounded-lg">
           <Map />
         </div>
       </div>
