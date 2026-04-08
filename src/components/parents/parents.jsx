@@ -1,13 +1,43 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Groups from "./groupList/groupList";
 import info from "./groupList/infoList";
+import teachers from "./groupList/teacherList";
 
 export default function Parents() {
   const [openedGroup, setOpenedGroup] = useState(null);
+  const [expandedId, setExpandedId] = useState(null);
+  const [heights, setHeights] = useState({});
+  const contentRefs = useRef({});
 
   const toggleGroup = (groupId) => {
     setOpenedGroup(openedGroup === groupId ? null : groupId);
   };
+
+  const toggleExpand = (id) => {
+    setExpandedId(expandedId === id ? null : id);
+  };
+
+  useEffect(() => {
+    if (expandedId && contentRefs.current[expandedId]) {
+      setHeights((prev) => ({
+        ...prev,
+        [expandedId]: contentRefs.current[expandedId].scrollHeight,
+      }));
+    }
+  }, [expandedId]);
+
+  const borderColors = [
+    "border-blue-500",
+    "border-green-500",
+    "border-purple-500",
+    "border-pink-500",
+    "border-yellow-500",
+    "border-red-500",
+    "border-indigo-500",
+    "border-teal-500",
+    "border-orange-500",
+    "border-cyan-500",
+  ];
 
   return (
     <section className="flex flex-col items-center w-full gap-[30px]">
@@ -15,7 +45,7 @@ export default function Parents() {
         <section className="w-[50%] flex flex-col items-center gap-[30px]">
           <div className="max-h-max bg-gray-50 p-4 w-full flex flex-col items-center">
             <h1 className="text-2xl font-bold text-center mb-6 zagolovok">
-              Расписание и меню для каждой группы
+              Примерное 20-дневное меню
             </h1>
             <div className="flex flex-col gap-[30px] items-center">
               {Groups.map((group) => (
@@ -87,40 +117,113 @@ export default function Parents() {
             <p>🧺 Самообслуживание: одевание, уборка игрушек, гигиена.</p>
           </div>
         </section>
+
         <section className="w-[50%] flex flex-col items-center">
           <div className="w-[90%] flex flex-col p-[10px] min-h-[600px] justify-center rounded-[20px] border-form">
-            <h2 className="text-xl font-semibold mb-4">Заявка в сад</h2>
-            <div className="flex flex-col gap-[50px] items-center">
-              <input
-                type="text"
-                placeholder="ФИО ребёнка"
-                className="p-2 border rounded-[15px] w-full h-[70px]"
-              />
-              <input
-                type="text"
-                placeholder="Ваш E-Mail"
-                className="p-2 border rounded-[15px] w-full h-[70px]"
-              />
-              <input
-                type="text"
-                placeholder="Номер телефона"
-                className="p-2 border rounded-[15px] w-full h-[70px]"
-              />
-              <input
-                type="text"
-                placeholder="Комментарий"
-                className="p-2 border rounded-[15px] min-h-[150px] w-full"
-              />
-              <button
-                type="submit"
-                className="bg-blue-500 text-white p-2 rounded-[15px] w-[100px]"
-              >
-                Отправить
-              </button>
+            <h2 className="text-xl font-semibold mb-4 text-center">
+              Наши специалисты
+            </h2>
+            <div className="flex flex-col gap-[10px] w-full">
+              {teachers.map((teacher, index) => (
+                <div
+                  key={teacher.id}
+                  className={`flex w-full border-l-8 rounded-r-lg shadow-md bg-white hover:shadow-lg transition-shadow duration-300 ${
+                    borderColors[index % borderColors.length]
+                  }`}
+                >
+                  {/* Фото специалиста */}
+                  <div className="flex-shrink-0">
+                    <img
+                      src={
+                        teacher.img.FacePng ||
+                        teacher.img.Face ||
+                        teacher.img.Face2 ||
+                        teacher.img.Face3
+                      }
+                      alt={teacher.name}
+                      className="w-[150px] h-full object-cover"
+                    />
+                  </div>
+
+                  {/* Информация о специалисте */}
+                  <div className="p-4 w-full">
+                    <h3 className="text-lg font-bold text-gray-800 mb-2">
+                      {teacher.name}
+                    </h3>
+                    <p className="text-sm font-medium text-blue-600 mb-3">
+                      {teacher.post}
+                    </p>
+
+                    {/* Дополнительная информация */}
+                    <div
+                      ref={(el) => (contentRefs.current[teacher.id] = el)}
+                      style={{
+                        maxHeight:
+                          expandedId === teacher.id ? heights[teacher.id] : 0,
+                      }}
+                      className="overflow-hidden transition-all duration-500 ease-in-out"
+                    >
+                      <div className="space-y-2 text-sm text-gray-600 pt-2">
+                        <p>
+                          <span className="font-semibold">Стаж:</span>{" "}
+                          {teacher.experience}
+                        </p>
+                        <p className="text-xs text-gray-500">
+                          <span className="font-semibold">Аттестация:</span>{" "}
+                          {teacher.certification}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Кнопка "Узнать больше" */}
+                    <button
+                      onClick={() => toggleExpand(teacher.id)}
+                      className="mt-3 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors duration-200 inline-flex items-center gap-2 group"
+                    >
+                      {expandedId === teacher.id ? (
+                        <>
+                          <span>Свернуть</span>
+                          <svg
+                            className="w-4 h-4 transform rotate-180 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M5 15l7-7 7 7"
+                            />
+                          </svg>
+                        </>
+                      ) : (
+                        <>
+                          <span>Узнать больше</span>
+                          <svg
+                            className="w-4 h-4 group-hover:translate-y-0.5 transition-transform duration-300"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M19 9l-7 7-7-7"
+                            />
+                          </svg>
+                        </>
+                      )}
+                    </button>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
       </div>
+
       <section className="w-full flex flex-col items-center">
         <h1 className="text-[25px] font-bold mb-[20px]">Важная информация</h1>
         <div className="grid grid-cols-3 w-[90%] gap-[20px] justify-items-center important-info">
