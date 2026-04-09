@@ -25,7 +25,7 @@ export default function Footer() {
       className="min-h-[100px] w-full items-center bg-[#eff5f9] flex flex-col gap-[20px] text-[20px] p-[20px] footer"
       style={BorderColor}
     >
-      <h1 className="text-[30px] font-bold">
+      <h1 className="text-[30px] font-bold hover:scale-105 transition-all duration-300 cursor-pointer">
         МБДОУ "Детский сад комбинированного вида №18"
       </h1>
 
@@ -40,7 +40,7 @@ export default function Footer() {
             />
             <li>
               <p>Контактный телефон:</p>
-              <p className="text-pink group-hover:text-pink-600 group-hover:underline transition-all duration-300">
+              <p className="text-pink group-hover:text-pink-600 transition-all duration-300">
                 8 (48753) 2-31-92
               </p>
             </li>
@@ -54,7 +54,7 @@ export default function Footer() {
             />
             <li>
               <p>Электронная почта:</p>
-              <p className="text-blue-600 group-hover:text-blue-800 group-hover:underline transition-all duration-300">
+              <p className="text-blue-600 group-hover:text-blue-800 transition-all duration-300">
                 aleksin.ds18@tularegion.org
               </p>
             </li>
@@ -68,57 +68,42 @@ export default function Footer() {
             />
             <li>
               <p>Адрес:</p>
-              <p className="text-red-700 group-hover:text-red-900 group-hover:underline transition-all duration-300">
+              <p className="text-red-700 group-hover:text-red-900 transition-all duration-300">
                 301364, Тульская область, г. Алексин, ул. Заводская, д. 5-а
               </p>
             </li>
           </div>
         </ul>
 
-        {/* Навигация с полоской под ссылкой */}
+        {/* Навигация */}
         <div className="flex flex-col items-center w-[35%]">
           <ul className="flex flex-col items-center gap-[15px] w-[35%] navigation">
             <h3 className="text-[22px] font-bold">Навигация по сайту:</h3>
             <li>
-              <NavLink
-                to="мероприятия"
-                style={navLinkStyle}
-                className="group relative"
-              >
-                <p className="text-pink text-[18px] transition-all duration-300 group-hover:scale-105">
+              <NavLink to="мероприятия" style={navLinkStyle} className="group">
+                <p className="text-pink text-[18px] transition-all duration-300 group-hover:scale-105 group-hover:underline">
                   Мероприятия
                 </p>
-                <span className="absolute -bottom-[5px] left-0 w-0 h-[2px] bg-pink-500 transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="родителям"
-                style={navLinkStyle}
-                className="group relative"
-              >
-                <p className="text-blue-600 text-[18px] transition-all duration-300 group-hover:scale-105">
+              <NavLink to="родителям" style={navLinkStyle} className="group">
+                <p className="text-blue-600 text-[18px] transition-all duration-300 group-hover:scale-105 group-hover:underline">
                   Родителям
                 </p>
-                <span className="absolute -bottom-[5px] left-0 w-0 h-[2px] bg-blue-600 transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
             </li>
             <li>
-              <NavLink
-                to="оНас"
-                style={navLinkStyle}
-                className="group relative"
-              >
-                <p className="text-red-700 text-[18px] transition-all duration-300 group-hover:scale-105">
+              <NavLink to="оНас" style={navLinkStyle} className="group">
+                <p className="text-red-700 text-[18px] transition-all duration-300 group-hover:scale-105 group-hover:underline">
                   О нас
                 </p>
-                <span className="absolute -bottom-[5px] left-0 w-0 h-[2px] bg-red-700 transition-all duration-300 group-hover:w-full"></span>
               </NavLink>
             </li>
           </ul>
         </div>
 
-        {/* Соцсети с движением */}
+        {/* Соцсети */}
         <div className="flex flex-col items-center gap-[20px] w-[33%] social">
           <h3 className="text-[22px] font-bold">Мы в соц. сетях:</h3>
           <ul className="flex items-center justify-center gap-[20px]">
