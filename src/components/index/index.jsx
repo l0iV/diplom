@@ -158,8 +158,10 @@ export default function Index() {
         ))}
       </section>
       <div className="flex flex-col items-center">
-        <p>Столкнулись с нарушением закона? Сообщите нам</p>
-        <p className="cursor-pointer underline text-blue-400">
+        <p className="text-center">
+          Столкнулись с нарушением закона? Сообщите нам
+        </p>
+        <p className="cursor-pointer underline text-blue-400 text-center">
           Противодействие коррупции
         </p>
       </div>
