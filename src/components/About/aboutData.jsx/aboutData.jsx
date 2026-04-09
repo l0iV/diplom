@@ -1,6 +1,7 @@
 import вк from "../../../assets/вк.png";
-import инст from "../../../assets/инста.png";
-import тг from "../../../assets/tg.png";
+import макс from "../../../assets/макс.png";
+import тг from "../../../assets/тг.png";
+
 export const aboutCards = [
   {
     id: 1,
@@ -37,9 +38,9 @@ export const aboutCards = [
     title: "Соц. сети",
     isSocial: true,
     socialIcons: [
-      { icon: вк, alt: "вк", className: "w-[60px]" },
-      { icon: инст, alt: "инст", className: "w-[75px]" },
-      { icon: тг, alt: "тг", className: "w-[45px]" },
+      { icon: вк, alt: "вк" },
+      { icon: макс, alt: "инст" },
+      { icon: тг, alt: "инст" },
     ],
     className: "gap-[10px]",
   },

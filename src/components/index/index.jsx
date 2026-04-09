@@ -144,17 +144,22 @@ export default function Index() {
       </section>
       <section className="flex items-center gap-[50px] w-full justify-center flex-wrap gerb-main">
         {listGerb.map((item) => (
-          <div
+          <a
             key={item.id}
-            className="gerb flex items-center text-[18px] w-[350px] gap-[30px]"
+            href={item.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="gerb flex items-center text-[18px] w-[350px] gap-[30px] hover:opacity-80 transition-opacity cursor-pointer"
           >
             <img
               src={item.img}
               alt={item.title}
               className="h-[80px] w-auto object-contain"
             />
-            <p className="text-center text-gray-500">{item.title}</p>
-          </div>
+            <p className="text-center text-gray-500 hover:text-blue-500 transition-colors">
+              {item.title}
+            </p>
+          </a>
         ))}
       </section>
       <div className="flex flex-col items-center">
