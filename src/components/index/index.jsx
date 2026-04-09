@@ -5,21 +5,18 @@ import email from "../../assets/email.png";
 import house from "../../assets/house.png";
 import watch from "../../assets/watch.png";
 import phone from "../../assets/phone.png";
-import SliderNews from "../sliderNews/sliderNews";
+import SliderNews from "../sliderNews/sliderRooms";
 import god from "../../assets/god.png";
 import banner from "../../assets/banner_news.png";
-import zapis from "../../assets/zapis (2).png";
+import listLessons from "./listIndex.jsx/listLessons";
+import listGerb from "./listIndex.jsx/listGerb";
 export default function Index() {
-  const navLinkStyle = {
-    textDecoration: "none",
-  };
-
   return (
     <section className="flex flex-col w-full h-full items-center gap-[50px]">
       <section className="w-full flex justify-around items-start max-h-max main-section">
         <section className="flex flex-col max-h-max w-[60%] gap-[40px] section-left">
-          <section className="bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] rounded-[50px] p-[30px] flex flex-col gap-[50px] ">
-            <div className="flex ">
+          <section className="bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] rounded-[50px] p-[30px] flex flex-col gap-[50px]">
+            <div className="flex">
               <div className="flex flex-col items-start text-[30px] max-w-max font-bold org-name">
                 <p>Муниципальное бюджетное дошкольное</p>
                 <p>образовательное учреждение "Детский сад</p>
@@ -63,18 +60,15 @@ export default function Index() {
             </div>
           </section>
           <ul className="flex flex-col gap-[20px] items-center banners">
-            <li className="cursor-pointer">
-              <img src={zapis} alt="" className="w-[1000px] rounded-[20px]" />
-            </li>
             <li className="flex gap-[20px]">
-              <img src={god} alt="" className="cursor-pointer w-[500px]" />
+              <img src={god} alt="" className="cursor-pointer w-[700px]" />
             </li>
-            <img src={banner} alt="" className="cursor-pointer w-[500px]" />
+            <img src={banner} alt="" className="cursor-pointer w-[700px]" />
             <li></li>
           </ul>
         </section>
         <section className="flex flex-col w-[30%] items-center max-h-max gap-[20px]">
-          <h1 className=" font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-center text-[40px] max-w-[300px]">
+          <h1 className="font-bold bg-gradient-to-r from-sky-300 via-yellow-200 via-rose-300 to-green-300 bg-clip-text text-transparent text-center text-[40px] max-w-[300px]">
             Группы детского сада
           </h1>
           <ul className="flex flex-col gap-8 w-full groups-list">
@@ -108,6 +102,67 @@ export default function Index() {
         </section>
       </section>
       <SliderNews />
+      <section className="flex flex-col items-center gap-[50px] w-full lesson-text">
+        <p className="text-orange font-bold text-[30px]">
+          Дополнительные занятия
+        </p>
+        <section className="flex flex-wrap justify-center items-center w-full gap-[50px] lesson">
+          {listLessons.map((item) => {
+            const colors = {
+              1: {
+                border: "border-red-500",
+              },
+              2: {
+                border: "border-green-500",
+              },
+              3: {
+                border: "border-blue-500",
+              },
+            };
+
+            const color = colors[item.id];
+
+            return (
+              <div
+                className={`lesson-card flex flex-col border-[2px] ${color.border} w-[400px] h-[300px] rounded-[25px] p-[20px] gap-[30px] shadow-lg hover:shadow-2xl transition-shadow duration-300 cursor-pointer`}
+                key={item.id}
+              >
+                <h3 className={`text-center font-bold text-[25px] `}>
+                  {item.title}
+                </h3>
+                <p className={`text-[20px] indent-10 text-justify`}>
+                  {item.description}
+                </p>
+                <div className="flex flex-col gap-[5px]">
+                  <p className="text-[12px] text-gray-400">{item.position}</p>
+                  <p className="">{item.teacher}</p>
+                </div>
+              </div>
+            );
+          })}
+        </section>
+      </section>
+      <section className="flex items-center gap-[50px] w-full justify-center flex-wrap gerb-main">
+        {listGerb.map((item) => (
+          <div
+            key={item.id}
+            className="gerb flex items-center text-[18px] w-[350px] gap-[30px]"
+          >
+            <img
+              src={item.img}
+              alt={item.title}
+              className="h-[80px] w-auto object-contain"
+            />
+            <p className="text-center text-gray-500">{item.title}</p>
+          </div>
+        ))}
+      </section>
+      <div className="flex flex-col items-center">
+        <p>Столкнулись с нарушением закона? Сообщите нам</p>
+        <p className="cursor-pointer underline text-blue-400">
+          Противодействие коррупции
+        </p>
+      </div>
     </section>
   );
 }

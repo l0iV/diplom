@@ -1,6 +1,6 @@
 import { aboutCards, aboutContent } from "./aboutData.jsx/aboutData";
 import Map from "../map/map";
-import SliderAbout from "../SliderAbout/sliderNews";
+import SliderAbout from "../SliderAbout/sliderNumbers";
 export default function About() {
   return (
     <section className="w-full items-center flex-col gap-[100px] flex ">
@@ -57,7 +57,7 @@ export default function About() {
       <SliderAbout />
       <div className="bg-white p-6 rounded-lg shadow w-[90%] items-center h-[450px] max-h-max">
         <h2 className="text-xl font-bold mb-4 text-center">
-          Карта с местонахождением
+          Покажем на карте где мы
         </h2>
         <div className="rounded-lg">
           <Map />
