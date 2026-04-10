@@ -102,7 +102,7 @@ export default function Index() {
         </section>
       </section>
       <SliderNews />
-      <section className="flex flex-col items-center gap-[50px] w-full lesson-text">
+      <section className="flex flex-col items-center gap-[50px] w-full lesson-text min-h-[500px]">
         <p className="text-orange font-bold text-[30px]">
           Дополнительные занятия
         </p>

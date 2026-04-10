@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import Groups from "./groupList/groupList";
 import info from "./groupList/infoList";
-import teachers from "./groupList/teacherList";
 
 export default function Parents() {
   const [openedGroup, setOpenedGroup] = useState(null);
