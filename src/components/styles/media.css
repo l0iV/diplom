@@ -354,8 +354,8 @@
   .groups-list {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: repeat(2, auto);
     gap: 10px;
+    align-items: center;
   }
 }
 @media screen and (min-width: 423px) and (max-width: 840px) {

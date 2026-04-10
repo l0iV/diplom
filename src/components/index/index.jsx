@@ -122,11 +122,11 @@ export default function Index() {
         </div>
       </div>
       <SliderNews />
-      <div className="w-[90%] mx-auto">
+      <div className="w-[90%]">
         <p className="text-center font-bold text-[35px] bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent mb-[40px] text-black">
           Дополнительные занятия
         </p>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-[30px] lesson">
+        <div className="flex  gap-[30px] lesson">
           {listLessons.map((item) => {
             const colors = {
               1: {
