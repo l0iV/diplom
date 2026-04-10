@@ -1,10 +1,7 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import logo from "../../assets/лого без фона.png";
+
 export default function Header() {
-  const navLinkStyle = {
-    textDecoration: "none",
-    color: "black",
-  };
   return (
     <section className="flex w-full min-h-[150px] items-center flex-col gap-[50px]">
       <div className="w-full justify-center items-center flex logo">
@@ -16,23 +13,63 @@ export default function Header() {
         <div className="flex items-center w-full">
           <ul className="flex w-full justify-evenly items-center header-btn">
             <li>
-              <NavLink to="/" style={navLinkStyle}>
-                <button className="btn btn-orange">Главная</button>
+              <NavLink to="/">
+                {({ isActive }) => (
+                  <button
+                    className={`btn btn-orange transition-all duration-300 ${
+                      isActive
+                        ? "bg-orange-500 text-white -translate-y-2 shadow-lg"
+                        : "hover:-translate-y-0.5"
+                    }`}
+                  >
+                    Главная
+                  </button>
+                )}
               </NavLink>
             </li>
             <li>
-              <NavLink to="оНас" style={navLinkStyle}>
-                <button className="btn btn-pink">Наш детский сад</button>
+              <NavLink to="/оНас">
+                {({ isActive }) => (
+                  <button
+                    className={`btn btn-pink transition-all duration-300 ${
+                      isActive
+                        ? "bg-pink-500 text-white -translate-y-2 shadow-lg"
+                        : "hover:-translate-y-0.5"
+                    }`}
+                  >
+                    Наш детский сад
+                  </button>
+                )}
               </NavLink>
             </li>
             <li>
-              <NavLink to="мероприятия">
-                <button className="btn btn-blue">Мероприятия</button>
+              <NavLink to="/мероприятия">
+                {({ isActive }) => (
+                  <button
+                    className={`btn btn-blue transition-all duration-300 ${
+                      isActive
+                        ? "bg-blue-500 text-white -translate-y-2 shadow-lg"
+                        : "hover:-translate-y-0.5"
+                    }`}
+                  >
+                    Мероприятия
+                  </button>
+                )}
               </NavLink>
             </li>
             <li>
-              <NavLink to="родителям" style={navLinkStyle}>
-                <button className="btn btn-red">Родителям</button>
+              <NavLink to="/родителям">
+                {({ isActive }) => (
+                  <button
+                    className={`btn btn-red transition-all duration-300 ${
+                      isActive
+                        ? "bg-red-500 text-white -translate-y-2 shadow-lg"
+                        : "hover:-translate-y-0.5"
+                    }`}
+                  >
+                    Родителям
+                  </button>
+                )}
               </NavLink>
             </li>
           </ul>

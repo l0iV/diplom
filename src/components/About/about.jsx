@@ -103,8 +103,8 @@ export default function About() {
       </div>
       <SliderTeachers />
       <SliderAbout />
-      <div className="bg-white p-6 rounded-lg shadow w-[90%] h-[450px] hover:shadow-2xl transition-all map-container">
-        <h2 className="text-xl font-bold mb-4 text-center">Где мы находимся</h2>
+      <div className="bg-white p-6 rounded-lg shadow w-[90%] h-[450px] hover:shadow-2xl transition-all map-container flex flex-col gap-[10px] text-orange">
+        <h2 className="text-[30px] font-bold text-center">Где нас найти</h2>
         <div className="rounded-lg overflow-hidden h-[350px] map-wrapper">
           <Map />
         </div>
