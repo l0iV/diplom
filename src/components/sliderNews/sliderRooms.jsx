@@ -32,7 +32,7 @@ export default function Slider() {
         spaceBetween={50}
         slidesPerView={3}
         loop={true}
-        autoplay={{ delay: 2000 }}
+        autoplay={{ delay: 5000 }}
         breakpoints={{
           1200: {
             slidesPerView: 3,
