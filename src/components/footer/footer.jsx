@@ -29,7 +29,7 @@ export default function Footer() {
         МБДОУ "Детский сад комбинированного вида №18"
       </h1>
 
-      <div className="flex justify-around w-full items-start content-footer">
+      <div className="flex justify-center w-full items-start content-footer">
         {/* Контакты */}
         <ul className="flex flex-col items-start gap-[15px] w-[33%] contacty">
           <div className="flex items-center gap-[10px] group cursor-pointer">

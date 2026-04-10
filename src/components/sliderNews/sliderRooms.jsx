@@ -23,8 +23,8 @@ export default function Slider() {
 
   return (
     <div className="min-h-[350px] mt-[30px] w-[90%] text-[14px] items-center overflow-hidden relative">
-      <h1 className="text-center font-bold text-[25px] mb-[20px] text-orange">
-        Ознакомтесь с нашими уютными комнатами
+      <h1 className="text-center font-bold text-[40px] mb-[20px] text-orange">
+        Наши уютные комнаты
       </h1>
       <Swiper
         modules={[Pagination, Autoplay]}

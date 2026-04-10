@@ -122,49 +122,59 @@ export default function Index() {
         </div>
       </div>
       <SliderNews />
-      <div className="w-[90%]">
-        <p className="text-center font-bold text-[35px] bg-gradient-to-r from-orange-500 to-pink-500 bg-clip-text text-transparent mb-[40px] text-black">
-          Дополнительные занятия
+      <div className="w-[90%] flex flex-col items-center gap-[30px] min-h-[550px]">
+        <p className="text-center font-bold text-[40px] text-red-600">
+          Тренируем навыки будущего
         </p>
-        <div className="flex  gap-[30px] lesson">
+        <p className="text-center font-bold text-[25px] text-red-400">
+          Чтобы мечты детей сбывались
+        </p>
+        <div className="flex items-center gap-[10px] w-full h-full flex-wrap justify-center">
           {listLessons.map((item) => {
-            const colors = {
-              1: {
-                border: "border-red-500",
-                text: "text-red-600",
-                bg: "hover:bg-red-50",
-              },
-              2: {
-                border: "border-green-500",
-                text: "text-green-600",
-                bg: "hover:bg-green-50",
-              },
-              3: {
-                border: "border-blue-500",
-                text: "text-blue-600",
-                bg: "hover:bg-blue-50",
-              },
+            const bgColors = {
+              pink: "bg-pink-100",
+              blue: "bg-blue-100",
+              purple: "bg-purple-100",
+              green: "bg-green-100",
+              yellow: "bg-yellow-100",
             };
-            const color = colors[item.id];
+
+            const borderColors = {
+              pink: "border-pink-300",
+              blue: "border-blue-300",
+              purple: "border-purple-300",
+              green: "border-green-300",
+              yellow: "border-yellow-300",
+            };
+
+            const textColors = {
+              pink: "text-pink-700",
+              blue: "text-blue-700",
+              purple: "text-purple-700",
+              green: "text-green-700",
+              yellow: "text-yellow-700",
+            };
+
             return (
               <div
-                className={`flex flex-col border-[2px] ${color.border} rounded-[25px] p-[25px] gap-[20px] shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer ${color.bg} bg-white`}
+                className={`flex flex-col items-center border-2 rounded-[20px] p-[10px] ${bgColors[item.color]} ${borderColors[item.color]} w-[300px] min-h-[500px]`}
                 key={item.id}
               >
-                <h3
-                  className={`text-center font-bold text-[22px] ${color.text}`}
-                >
-                  {item.title}
-                </h3>
-                <p
-                  className={`text-[16px] indent-6 text-justify ${color.text}`}
-                >
-                  {item.description}
-                </p>
-                <div className="flex flex-col gap-[5px] mt-auto">
-                  <p className="text-[11px] text-gray-400">{item.position}</p>
-                  <p className={`font-medium ${color.text}`}>{item.teacher}</p>
+                <div className="flex flex-col items-center">
+                  <div>
+                    <h3
+                      className={`font-bold text-[20px] ${textColors[item.color]}`}
+                    >
+                      {item.name}, {item.age}
+                    </h3>
+                  </div>
+                  <div className="text-[40px]">
+                    <img src={item.emoji} alt="" />
+                  </div>
                 </div>
+                <p className="text-[16px] italic text-gray-700 leading-relaxed text-center  ">
+                  "{item.text}"
+                </p>
               </div>
             );
           })}

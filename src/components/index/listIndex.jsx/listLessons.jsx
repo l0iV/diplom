@@ -1,36 +1,49 @@
+import kids1 from "../../../assets/naviki/kids1.png";
+import kids2 from "../../../assets/naviki/kids2.png";
+import kids3 from "../../../assets/naviki/kids3.png";
+import kids4 from "../../../assets/naviki/kids4.png";
+import kids5 from "../../../assets/naviki/kids5.png";
+
 const listLessons = [
   {
     id: 1,
-    title: "Веселые ступеньки",
-    subtitle: "стэп-аэробика",
-    description:
-      "Занятия физической направленности на степ-платформе для аэробики для детей 6-7 лет",
-    teacher: "Рожкова Евгения Сергеевна",
-    position: "Инструктор по физической культуре",
-    category: "Физическое развитие",
-    age: "6-7 лет",
+    name: "Марина",
+    age: "5 лет",
+    text: "Я хочу, чтобы все люди жили дружно и не было войн",
+    color: "pink",
+    emoji: kids1,
   },
   {
     id: 2,
-    title: "Мы-эколята",
-    subtitle: null,
-    description:
-      "Занятия познавательного цикла с экологической направленностью для детей 5-7 лет",
-    teacher: "Бабкина Олеся Владимировна",
-    position: "Воспитатель",
-    category: "Экологическое воспитание",
-    age: "5-7 лет",
+    name: "Саша",
+    age: "4 года",
+    text: "Я полечу в космос и буду исследовать новые планеты!",
+    color: "blue",
+    emoji: kids2,
   },
   {
     id: 3,
-    title: "Метод Су Джок",
-    subtitle: null,
-    description:
-      "Развитие мелкой моторики рук детей дошкольного возраста методом проведения Су Джок",
-    teacher: "Кузина Анастасия Игоревна",
-    position: "Учитель-логопед",
-    category: "Логопедия",
-    age: "Дошкольный возраст",
+    name: "Артём",
+    age: "6 лет",
+    text: "А я буду делать крутые компьютерные игры и сам в них играть!",
+    color: "purple",
+    emoji: kids3,
+  },
+  {
+    id: 4,
+    name: "Полина",
+    age: "6 лет",
+    text: "Люблю животных и хочу, чтобы они спокойно жили в чистых лесах",
+    color: "green",
+    emoji: kids4,
+  },
+  {
+    id: 5,
+    name: "Миша",
+    age: "5 лет",
+    text: "А я не знаю, кем хочу стать, но когда вырасту, у меня будет самая лучшая работа!",
+    color: "yellow",
+    emoji: kids5,
   },
 ];
 export default listLessons;
