@@ -19,6 +19,40 @@
     grid-template-rows: auto auto;
     gap: 40px;
     width: max-content;
+    .about-main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .info-about {
+      text-indent: 0;
+    }
+
+    .contacts-card {
+      width: 100%;
+    }
+
+    .quote-card {
+      width: 100%;
+    }
+
+    .intelligence-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .teachers-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 30px;
+    }
+
+    .map-container {
+      width: 90%;
+      height: 400px;
+    }
   }
   .btn {
     max-width: 200px;
@@ -151,6 +185,111 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+  }
+  .about-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .info-about {
+    text-indent: 0;
+    text-align: justify;
+  }
+
+  .about-title {
+    font-size: 28px !important;
+    text-align: center;
+  }
+
+  .about-subtitle {
+    font-size: 18px !important;
+    text-align: center;
+  }
+
+  .contacts-card {
+    width: 100%;
+    padding: 20px !important;
+  }
+
+  .contacts-card h2 {
+    text-align: center;
+  }
+
+  .contacts-card .flex {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 5px;
+  }
+
+  .quote-card {
+    width: 100%;
+    padding: 20px !important;
+  }
+
+  .quote-card p {
+    font-size: 14px !important;
+  }
+
+  .intelligence-grid {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .intelligence-card {
+    padding: 8px !important;
+  }
+
+  .intelligence-card div:first-child {
+    font-size: 24px !important;
+  }
+
+  .intelligence-card p {
+    font-size: 10px !important;
+  }
+
+  .section-title {
+    font-size: 24px !important;
+  }
+
+  .teachers-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .teacher-card img {
+    width: 100px !important;
+    height: 100px !important;
+  }
+
+  .teacher-card h3 {
+    font-size: 14px !important;
+  }
+
+  .teacher-card p {
+    font-size: 11px !important;
+  }
+
+  .map-container {
+    width: 95%;
+    height: 350px;
+  }
+
+  .map-wrapper {
+    height: 280px;
+  }
+
+  .modal-content {
+    width: 90% !important;
+    padding: 20px !important;
+  }
+
+  .modal-content h3 {
+    font-size: 18px !important;
   }
 }
 @media screen and (min-width: 1260px) and (max-width: 1417px) {
