@@ -199,18 +199,18 @@
   }
 
   .about-title {
-    font-size: 28px !important;
+    font-size: 28px;
     text-align: center;
   }
 
   .about-subtitle {
-    font-size: 18px !important;
+    font-size: 18px;
     text-align: center;
   }
 
   .contacts-card {
     width: 100%;
-    padding: 20px !important;
+    padding: 20px п;
   }
 
   .contacts-card h2 {
@@ -227,11 +227,11 @@
 
   .quote-card {
     width: 100%;
-    padding: 20px !important;
+    padding: 20px;
   }
 
   .quote-card p {
-    font-size: 14px !important;
+    font-size: 14px;
   }
 
   .intelligence-grid {
@@ -240,19 +240,19 @@
   }
 
   .intelligence-card {
-    padding: 8px !important;
+    padding: 8px;
   }
 
   .intelligence-card div:first-child {
-    font-size: 24px !important;
+    font-size: 24px;
   }
 
   .intelligence-card p {
-    font-size: 10px !important;
+    font-size: 10px;
   }
 
   .section-title {
-    font-size: 24px !important;
+    font-size: 24px;
   }
 
   .teachers-grid {
@@ -262,16 +262,16 @@
   }
 
   .teacher-card img {
-    width: 100px !important;
-    height: 100px !important;
+    width: 100px;
+    height: 100px;
   }
 
   .teacher-card h3 {
-    font-size: 14px !important;
+    font-size: 14px;
   }
 
   .teacher-card p {
-    font-size: 11px !important;
+    font-size: 11px;
   }
 
   .map-container {
@@ -284,12 +284,12 @@
   }
 
   .modal-content {
-    width: 90% !important;
-    padding: 20px !important;
+    width: 90% п;
+    padding: 20px п;
   }
 
   .modal-content h3 {
-    font-size: 18px !important;
+    font-size: 18px;
   }
 }
 @media screen and (min-width: 1260px) and (max-width: 1417px) {
@@ -348,5 +348,48 @@
   .border-form {
     width: 310px;
     max-width: max-content;
+  }
+}
+@media screen and (min-width: 840px) and (max-width: 1692px) {
+  .groups-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, auto);
+    gap: 10px;
+  }
+}
+@media screen and (min-width: 423px) and (max-width: 840px) {
+  .groups-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+  }
+}
+@media screen and (min-width: 320px) and (max-width: 422px) {
+  .groups-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .card {
+    min-width: auto;
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .card .flex.items-center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .card .border-t {
+    text-align: center;
   }
 }

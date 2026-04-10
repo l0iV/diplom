@@ -11,7 +11,6 @@ import SliderTeachers from "../sliderTeachers/sliderTeachers";
 export default function About() {
   return (
     <section className="w-full flex flex-col items-center gap-[60px] pb-[60px] about-main">
-      {/* ГРАДИЕНТНЫЙ БЛОК */}
       <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] py-[60px]">
         <div className="w-[90%] mx-auto">
           <div className="text-center mb-[50px]">
@@ -26,7 +25,6 @@ export default function About() {
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-[30px]">
-            {/* КОНТАКТЫ */}
             <div className="bg-white rounded-[30px] p-[30px] shadow-lg hover:shadow-2xl transition-all contacts-card">
               <h2 className="text-[28px] font-bold text-green-600 mb-[20px]">
                 Контакты
@@ -65,8 +63,6 @@ export default function About() {
                 </div>
               </div>
             </div>
-
-            {/* ЦИТАТА */}
             <div className="bg-white rounded-[30px] p-[30px] shadow-lg hover:shadow-2xl transition-all quote-card">
               <div className="text-center">
                 <div className="text-[50px] mb-[20px]">💬</div>
@@ -84,8 +80,6 @@ export default function About() {
           </div>
         </div>
       </div>
-
-      {/* 10 ВИДОВ ИНТЕЛЛЕКТА */}
       <div className="w-[90%] bg-white rounded-[30px] p-[40px] shadow-lg intelligence-grid">
         <div className="text-center mb-[40px]">
           <h2 className="text-[35px] font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent section-title">
@@ -107,14 +101,8 @@ export default function About() {
           ))}
         </div>
       </div>
-
-      {/* СЛАЙДЕР С ПРЕПОДАМИ */}
       <SliderTeachers />
-
-      {/* СЛАЙДЕР С ЦИФРАМИ */}
       <SliderAbout />
-
-      {/* КАРТА */}
       <div className="bg-white p-6 rounded-lg shadow w-[90%] h-[450px] hover:shadow-2xl transition-all map-container">
         <h2 className="text-xl font-bold mb-4 text-center">Где мы находимся</h2>
         <div className="rounded-lg overflow-hidden h-[350px] map-wrapper">
