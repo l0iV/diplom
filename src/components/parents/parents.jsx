@@ -141,26 +141,25 @@ export default function Parents() {
 
   return (
     <section className="flex flex-col items-center w-full gap-[40px] bg-gradient-to-b from-slate-50 to-white pb-[60px]">
-      <div className="w-full bg-[linear-gradient(135deg,#d5ffd6,#ffbef9)] flex items-center justify-center gap-[100px] min-h-[450px]">
-        <div className=" animate-[float_3s_ease-in-out_infinite]">
+      {/* Верхний блок с картинкой */}
+      <div className="w-full bg-[linear-gradient(135deg,#d5ffd6,#ffbef9)] flex flex-wrap justify-center items-center gap-[100px] min-h-[450px]">
+        <div className="animate-[float_3s_ease-in-out_infinite]">
           <img src={baby} alt="" className="w-[400px]" />
         </div>
-        <div className="flex flex-col gap-[15px] p-[30px] z-10">
+        <div className="flex flex-col gap-[15px] p-[30px]">
           <h1 className="font-bold bg-gradient-to-r from-amber-700 to-rose-600 bg-clip-text text-transparent text-center text-[60px]">
             Уважаемые родители!
           </h1>
           <p className="text-[20px] text-amber-800 text-center max-w-[600px]">
-            Вместе мы создаем счастливое будующее!
+            Вместе мы создаем счастливое будущее!
           </p>
         </div>
       </div>
 
       {/* Форма заявки */}
       <div className="w-[90%] max-w-[1200px] bg-white rounded-[30px] p-[40px] shadow-xl flex flex-col gap-[40px] items-center">
-        <div className="w-full flex flex-col gap-[20px] ">
-          <h2 className="text-[28px] font-bold ">
-            Подача заявки в детский сад
-          </h2>
+        <div className="w-full flex flex-col gap-[20px]">
+          <h2 className="text-[28px] font-bold">Подача заявки в детский сад</h2>
           <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-[15px]">
             <input
               type="text"
@@ -217,19 +216,19 @@ export default function Parents() {
               <option value="srednyaya">Средняя (4 - 5 лет)</option>
               <option value="starshaya">Старшая (5 - 6 лет)</option>
             </select>
+            <button
+              type="submit"
+              className="col-span-2 bg-gradient-to-r from-green-400 to-green-500 min-h-[50px] rounded-[50px] text-white font-bold text-[16px] hover:from-green-500 hover:to-green-600 transition-all duration-300 cursor-pointer"
+            >
+              Подать заявление
+            </button>
           </form>
-          <button
-            type="button"
-            className="bg-green-300 min-h-[50px] rounded-[50px] text-gray-800"
-          >
-            Подать заявление
-          </button>
         </div>
       </div>
 
-      {/* Меню питания - колонка, открывается по одному */}
+      {/* Меню питания */}
       <div className="w-[90%] max-w-[900px] flex flex-col items-center gap-[30px]">
-        <h2 className="text-[32px] font-bold ">Примерное 20-дневное меню</h2>
+        <h2 className="text-[32px] font-bold">Примерное 20-дневное меню</h2>
         <p className="text-slate-500 text-center">
           Нажмите на группу, чтобы посмотреть меню
         </p>
@@ -242,7 +241,7 @@ export default function Parents() {
             >
               <button
                 onClick={() => toggleMenu(group.key)}
-                className="w-full p-[20px] bg-gradient-to-r from-green-50 to-teal-50 hover:from-green-100 hover:to-teal-100 transition-all flex justify-between items-center"
+                className="w-full p-[20px] bg-gradient-to-r from-green-50 to-teal-50 hover:from-green-100 hover:to-teal-100 transition-all flex justify-between items-center cursor-pointer"
               >
                 <span className="text-[20px] font-bold text-slate-800">
                   {group.name}
@@ -342,7 +341,7 @@ export default function Parents() {
                 <div className="w-[50px] h-[50px] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-[18px]">
                   {review.title[0]}
                 </div>
-                <div>
+                <div className="flex flex-col gap-[4px]">
                   <h3 className="font-bold text-[16px] text-slate-800">
                     {review.title}
                   </h3>

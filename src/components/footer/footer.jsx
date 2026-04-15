@@ -6,6 +6,7 @@ import email from "../../assets/footer-ico/icons8-@-24.png";
 import home from "../../assets/footer-ico/icons8-здание-32.png";
 import тг from "../../assets/тг.png";
 import logo from "../../assets/лого без фона.png";
+
 export default function Footer() {
   const navLinkStyle = {
     textDecoration: "none",
@@ -29,48 +30,52 @@ export default function Footer() {
 
       <div className="flex flex-col items-center gap-[40px] w-full">
         <div className="flex flex-wrap justify-center items-start gap-[80px]">
+          {/* ЛЕВАЯ КОЛОНКА - Контакты */}
           <div className="flex flex-col gap-[20px]">
             <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
             <ul className="flex flex-col gap-[16px]">
+              {/* Телефон */}
               <div className="flex items-center gap-[12px] group">
                 <img
                   src={phone}
                   alt="телефон"
-                  className="w-[20px] h-[20px] group-hover:scale-110 transition-all duration-300"
+                  className="w-[20px] h-[20px] group-hover:w-[26px] group-hover:h-[26px] transition-all duration-300"
                 />
-                <li className="flex flex-col">
+                <li className="flex flex-col cursor-pointer">
                   <p className="text-[10px] text-gray-400">
                     Контактный телефон
                   </p>
-                  <p className="text-[14px] text-gray-700 group-hover:text-orange-500 transition-colors duration-300 cursor-pointer">
+                  <p className="text-[14px] text-gray-700 group-hover:text-orange transition-colors duration-300">
                     8 (48753) 2-31-92
                   </p>
                 </li>
               </div>
 
-              <div className="flex items-center gap-[12px] group">
+              {/* Email */}
+              <div className="flex items-center gap-[12px] group cursor-pointer">
                 <img
                   src={email}
                   alt="email"
-                  className="w-[20px] h-[20px] group-hover:scale-110 transition-all duration-300"
+                  className="w-[20px] h-[20px] group-hover:w-[26px] group-hover:h-[26px] transition-all duration-300"
                 />
                 <li className="flex flex-col">
                   <p className="text-[10px] text-gray-400">Электронная почта</p>
-                  <p className="text-[14px] text-gray-700 group-hover:text-orange-500 transition-colors duration-300 cursor-pointer">
+                  <p className="text-[14px] text-gray-700 group-hover:text-blue-500 transition-colors duration-300">
                     aleksin.ds18@tularegion.org
                   </p>
                 </li>
               </div>
 
-              <div className="flex items-start gap-[12px] group">
+              {/* Адрес */}
+              <div className="flex items-start gap-[12px] group cursor-pointer">
                 <img
                   src={home}
                   alt="адрес"
-                  className="w-[20px] h-[20px] mt-[2px] group-hover:scale-110 transition-all duration-300"
+                  className="w-[20px] h-[20px] mt-[2px] group-hover:w-[26px] group-hover:h-[26px] transition-all duration-300"
                 />
                 <li className="flex flex-col">
                   <p className="text-[10px] text-gray-400">Адрес</p>
-                  <p className="text-[14px] text-gray-700 group-hover:text-orange-500 transition-colors duration-300 max-w-[250px] cursor-pointer">
+                  <p className="text-[14px] text-gray-700 group-hover:text-green-500 transition-colors duration-300 max-w-[250px]">
                     301364, Тульская область, г. Алексин, ул. Заводская, д. 5-а
                   </p>
                 </li>
@@ -116,7 +121,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* ПРАВАЯ КОЛОНКА - Соцсети */}
+          {/* ПРАВАЯ КОЛОНКА - Соцсети и лого */}
           <div className="flex flex-col gap-[30px] items-center">
             <div>
               <img src={logo} alt="" className="w-[300px]" />
@@ -128,12 +133,12 @@ export default function Footer() {
                     key={social.name}
                     to={social.url}
                     className={`
-                    flex items-center gap-[8px] px-[16px] py-[10px] rounded-full text-[14px] font-medium
-                    bg-gray-50 text-gray-700 border border-gray-200
-                    transition-all duration-300 ease-out
-                    hover:shadow-md hover:-translate-y-[2px]
-                    ${social.color} hover:text-white hover:border-transparent
-                  `}
+                      flex items-center gap-[8px] px-[16px] py-[10px] rounded-full text-[14px] font-medium
+                      bg-gray-50 text-gray-700 border border-gray-200
+                      transition-all duration-300 ease-out
+                      hover:shadow-md hover:-translate-y-[2px]
+                      ${social.color} hover:text-white hover:border-transparent
+                    `}
                   >
                     <img
                       src={social.icon}
