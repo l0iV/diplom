@@ -1,116 +1,9 @@
 import React, { useState } from "react";
 import baby from "../../assets/baby.png";
-
-const officialDocuments = [
-  { id: 1, title: "Договор об образовании", icon: "📄" },
-  { id: 2, title: "Порядок приема и отчисления", icon: "📖" },
-  { id: 3, title: "Режим дня и график работы", icon: "🕒" },
-  { id: 4, title: "План образовательной деятельности", icon: "📈" },
-  { id: 5, title: "Правила внутреннего распорядка", icon: "🛡️" },
-  { id: 6, title: "Информация о питании", icon: "🍽️" },
-  { id: 7, title: "Родительский комитет", icon: "👨‍👩‍👧‍👦" },
-  { id: 8, title: "Дополнительные услуги", icon: "⭐" },
-  { id: 9, title: "Противодействие коррупции", icon: "⚖️" },
-  { id: 10, title: "Полезные ссылки", icon: "🔗" },
-];
-
-const parentsReviews = [
-  {
-    id: 1,
-    title: "Анна С.",
-    text: "Отличный садик! Дочка ходит с удовольствием, воспитатели очень внимательные.",
-    rating: 5,
-  },
-  {
-    id: 2,
-    title: "Михаил К.",
-    text: "Хорошая подготовка к школе, много развивающих занятий. Рекомендую!",
-    rating: 5,
-  },
-  {
-    id: 3,
-    title: "Елена В.",
-    text: "Отдельное спасибо за питание - ребёнок всегда сытый и довольный.",
-    rating: 5,
-  },
-];
-
-const menuData = [
-  {
-    key: "yasli",
-    name: "Ясли (1.5 - 3 года)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: [
-        "Каша рисовая молочная",
-        "Чай с молоком",
-        "Бутерброд с маслом",
-      ][i % 3],
-      lunch: [
-        "Суп овощной, котлета куриная с пюре, компот",
-        "Борщ, рыба запечённая с рисом, кисель",
-        "Суп-лапша, тефтели с гречкой, сок",
-      ][i % 3],
-      afternoonSnack: ["Йогурт", "Творожная запеканка", "Печенье с молоком"][
-        i % 3
-      ],
-      dinner: ["Омлет, чай", "Сырники со сметаной", "Пудинг творожный"][i % 3],
-    })),
-  },
-  {
-    key: "mladshaya",
-    name: "Младшая (3 - 4 года)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: ["Каша манная", "Какао", "Сыр с хлебом"][i % 3],
-      lunch: [
-        "Рассольник, гуляш с макаронами, морс",
-        "Щи, плов куриный, компот",
-        "Суп грибной, биточки с картофельным пюре, кисель",
-      ][i % 3],
-      afternoonSnack: ["Фрукты", "Булочка с чаем", "Смузи"][i % 3],
-      dinner: [
-        "Рыбные котлеты с пюре",
-        "Макароны с сыром",
-        "Запеканка рисовая",
-      ][i % 3],
-    })),
-  },
-  {
-    key: "srednyaya",
-    name: "Средняя (4 - 5 лет)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: ["Овсяная каша с ягодами", "Чай", "Омлет с сыром"][i % 3],
-      lunch: [
-        "Солянка, печень по-строгановски с гречкой, сок",
-        "Свекольник, голубцы, компот",
-        "Уха, курица запечённая с овощами, морс",
-      ][i % 3],
-      afternoonSnack: ["Ряженка", "Пряники", "Кефир с печеньем"][i % 3],
-      dinner: ["Драники со сметаной", "Гречневики", "Ленивые вареники"][i % 3],
-    })),
-  },
-  {
-    key: "starshaya",
-    name: "Старшая (5 - 6 лет)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: ["Сырники со сгущёнкой", "Какао", "Гренки с яйцом"][i % 3],
-      lunch: [
-        "Харчо, бефстроганов с рисом, кисель",
-        "Гороховый суп, котлета по-киевски с пюре, компот",
-        "Крем-суп из брокколи, запеканка мясная, сок",
-      ][i % 3],
-      afternoonSnack: ["Йогурт с мюсли", "Фруктовое пюре", "Молоко с печеньем"][
-        i % 3
-      ],
-      dinner: ["Блинчики с творогом", "Рисовая запеканка", "Рыбное суфле"][
-        i % 3
-      ],
-    })),
-  },
-];
+import menuData from "./groupList/groupList";
+import officialDocuments from "./groupList/infoList";
+import parentsReviews from "../sliderParentsReviews/listSlider/parentsReviewsList";
+import SliderReviews from "../sliderParentsReviews/sliderReviews";
 
 export default function Parents() {
   const [formData, setFormData] = useState({
@@ -228,8 +121,10 @@ export default function Parents() {
 
       {/* Меню питания */}
       <div className="w-[90%] max-w-[900px] flex flex-col items-center gap-[30px]">
-        <h2 className="text-[32px] font-bold">Примерное 20-дневное меню</h2>
-        <p className="text-slate-500 text-center">
+        <h2 className="text-[32px] font-bold text-blue-800">
+          Примерное 20-дневное меню
+        </h2>
+        <p className=" text-center text-blue-300">
           Нажмите на группу, чтобы посмотреть меню
         </p>
 
@@ -312,7 +207,7 @@ export default function Parents() {
 
       {/* Документы */}
       <div className="w-[90%] max-w-[1200px] flex flex-col items-center gap-[30px]">
-        <h2 className="text-[32px] font-bold">Документы</h2>
+        <h2 className="text-[32px] font-bold text-orange">Документы</h2>
         <div className="grid grid-cols-2 md:grid-cols-5 gap-[15px] w-full">
           {officialDocuments.map((doc) => (
             <div
@@ -329,32 +224,7 @@ export default function Parents() {
       </div>
 
       {/* Отзывы */}
-      <div className="w-[90%] max-w-[1200px] flex flex-col items-center gap-[30px] mb-[40px]">
-        <h2 className="text-[32px] font-bold">Отзывы родителей</h2>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-[20px] w-full">
-          {parentsReviews.map((review) => (
-            <div
-              key={review.id}
-              className="bg-white rounded-[20px] p-[25px] shadow-lg hover:shadow-xl transition-all"
-            >
-              <div className="flex items-center gap-[12px] mb-[15px]">
-                <div className="w-[50px] h-[50px] bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center text-white font-bold text-[18px]">
-                  {review.title[0]}
-                </div>
-                <div className="flex flex-col gap-[4px]">
-                  <h3 className="font-bold text-[16px] text-slate-800">
-                    {review.title}
-                  </h3>
-                  <div className="text-yellow-500 text-[14px]">
-                    {"★".repeat(review.rating)}
-                  </div>
-                </div>
-              </div>
-              <p className="text-slate-600 leading-relaxed">"{review.text}"</p>
-            </div>
-          ))}
-        </div>
-      </div>
+      <SliderReviews />
     </section>
   );
 }
