@@ -30,18 +30,16 @@ export default function Footer() {
 
       <div className="flex flex-col items-center gap-[40px] w-full">
         <div className="flex flex-wrap justify-center items-start gap-[80px]">
-          {/* ЛЕВАЯ КОЛОНКА - Контакты */}
           <div className="flex flex-col gap-[20px]">
             <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
             <ul className="flex flex-col gap-[16px]">
-              {/* Телефон */}
-              <div className="flex items-center gap-[12px] group">
+              <div className="flex items-center gap-[12px] group cursor-pointer">
                 <img
                   src={phone}
                   alt="телефон"
                   className="w-[20px] h-[20px] group-hover:w-[26px] group-hover:h-[26px] transition-all duration-300"
                 />
-                <li className="flex flex-col cursor-pointer">
+                <li className="flex flex-col">
                   <p className="text-[10px] text-gray-400">
                     Контактный телефон
                   </p>
@@ -50,8 +48,6 @@ export default function Footer() {
                   </p>
                 </li>
               </div>
-
-              {/* Email */}
               <div className="flex items-center gap-[12px] group cursor-pointer">
                 <img
                   src={email}
@@ -65,8 +61,6 @@ export default function Footer() {
                   </p>
                 </li>
               </div>
-
-              {/* Адрес */}
               <div className="flex items-start gap-[12px] group cursor-pointer">
                 <img
                   src={home}
@@ -82,8 +76,6 @@ export default function Footer() {
               </div>
             </ul>
           </div>
-
-          {/* ЦЕНТРАЛЬНАЯ КОЛОНКА - Навигация */}
           <div className="flex flex-col items-center gap-[20px]">
             <h3 className="text-[18px] font-bold text-blue-800">
               Навигация по сайту
@@ -93,35 +85,40 @@ export default function Footer() {
                 <NavLink
                   to="мероприятия"
                   style={navLinkStyle}
-                  className="group block"
+                  className="group block relative"
                 >
-                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 group-hover:translate-x-[4px] transition-all duration-300">
+                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 transition-all duration-300">
                     Мероприятия
                   </p>
+                  <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-blue-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </NavLink>
               </li>
               <li>
                 <NavLink
                   to="родителям"
                   style={navLinkStyle}
-                  className="group block"
+                  className="group block relative"
                 >
-                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 group-hover:translate-x-[4px] transition-all duration-300">
+                  <p className="text-[16px] text-gray-600 group-hover:text-purple-500 transition-all duration-300">
                     Родителям
                   </p>
+                  <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-purple-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </NavLink>
               </li>
               <li>
-                <NavLink to="оНас" style={navLinkStyle} className="group block">
-                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 group-hover:translate-x-[4px] transition-all duration-300">
+                <NavLink
+                  to="оНас"
+                  style={navLinkStyle}
+                  className="group block relative"
+                >
+                  <p className="text-[16px] text-gray-600 group-hover:text-green-500 transition-all duration-300">
                     О нас
                   </p>
+                  <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-green-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </NavLink>
               </li>
             </ul>
           </div>
-
-          {/* ПРАВАЯ КОЛОНКА - Соцсети и лого */}
           <div className="flex flex-col gap-[30px] items-center">
             <div>
               <img src={logo} alt="" className="w-[300px]" />
@@ -152,8 +149,6 @@ export default function Footer() {
             </div>
           </div>
         </div>
-
-        {/* Нижний блок - Копирайт */}
         <div className="flex flex-wrap justify-center items-center gap-[20px] pt-[20px] text-[12px] text-gray-400 border-t border-gray-100 w-full">
           <p>Copyright © 2026. All Rights Reserved | by l0iV</p>
         </div>
