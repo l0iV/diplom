@@ -10,17 +10,17 @@ import SliderTeachers from "../sliderTeachers/sliderTeachers";
 
 export default function About() {
   return (
-    <section className="w-full flex flex-col items-center gap-[60px] pb-[60px] about-main">
-      <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] py-[60px]">
-        <div className="w-[90%] mx-auto">
-          <div className="text-center mb-[50px]">
-            <h1 className="text-[50px] font-bold text-green-700 mb-[20px] about-title">
+    <section className="w-full flex flex-col items-center gap-[60px] about-main h-full">
+      <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] min-h-[700px] flex items-center justify-center">
+        <div className="w-[90%] flex flex-col gap-[50px]">
+          <div className="text-center">
+            <h1 className="text-[50px] font-bold text-green-700 about-title">
               Муниципальное бюджетное дошкольное
             </h1>
             <p className="text-[30px] font-bold text-gray-700 about-subtitle">
               {kindergartenName.full}
             </p>
-            <p className="text-[18px] text-gray-500 mt-[10px]">
+            <p className="text-[18px] text-gray-500">
               {kindergartenName.short}
             </p>
           </div>
@@ -89,7 +89,7 @@ export default function About() {
             Чтобы ваш ребёнок рос счастливым, здоровым и успешным
           </p>
         </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-[20px]">
+        <div className="grid grid-cols-5  gap-[20px]">
           {intelligenceList.map((item) => (
             <div
               key={item.id}
