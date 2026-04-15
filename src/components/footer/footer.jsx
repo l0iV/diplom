@@ -144,7 +144,6 @@ export default function Footer() {
                   </NavLink>
                 ))}
               </div>
-              <h3 className="text-[13px] text-gray-800">- мы в соц. сетях</h3>
             </div>
           </div>
         </div>
