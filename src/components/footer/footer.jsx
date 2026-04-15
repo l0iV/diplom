@@ -5,136 +5,155 @@ import phone from "../../assets/footer-ico/icons8-телефон-24.png";
 import email from "../../assets/footer-ico/icons8-@-24.png";
 import home from "../../assets/footer-ico/icons8-здание-32.png";
 import тг from "../../assets/тг.png";
-
+import logo from "../../assets/лого без фона.png";
 export default function Footer() {
   const navLinkStyle = {
     textDecoration: "none",
-    color: "black",
+    color: "#374151",
   };
 
-  const BorderColor = {
-    borderLeft: "5px solid orange",
-    borderTop: "5px solid blue",
-    borderRight: "5px solid red",
-    borderBottom: "5px solid green",
-    borderRadius: "40px",
-  };
+  const socials = [
+    { name: "ВКонтакте", url: "/vk", icon: вк, color: "hover:bg-[#0077FF]" },
+    {
+      name: "Max",
+      url: "/ok",
+      icon: макс,
+      color: "hover:bg-[#7a63be]",
+    },
+    { name: "Telegram", url: "/tg", icon: тг, color: "hover:bg-[#26A5E4]" },
+  ];
 
   return (
-    <section
-      className="min-h-[100px] w-full items-center bg-[#eff5f9] flex flex-col gap-[20px] text-[20px] p-[20px] footer"
-      style={BorderColor}
-    >
-      <h1 className="text-[30px] font-bold hover:scale-105 transition-all duration-300 cursor-pointer">
-        МБДОУ "Детский сад комбинированного вида №18"
-      </h1>
+    <footer className="w-full flex flex-col items-center gap-[20px]">
+      <div className="w-[90%] h-[3px] bg-gradient-to-r from-red-500 via-orange-500 via-green-500 to-blue-500 rounded-[200px]"></div>
 
-      <div className="flex justify-center w-full items-start content-footer">
-        {/* Контакты */}
-        <ul className="flex flex-col items-start gap-[15px] w-[33%] contacty">
-          <div className="flex items-center gap-[10px] group cursor-pointer">
-            <img
-              src={phone}
-              alt=""
-              className="w-[24px] h-[24px] group-hover:scale-110 transition-all duration-300"
-            />
-            <li>
-              <p>Контактный телефон:</p>
-              <p className="text-pink group-hover:text-pink-600 transition-all duration-300">
-                8 (48753) 2-31-92
-              </p>
-            </li>
+      <div className="flex flex-col items-center gap-[40px] w-full">
+        <div className="flex flex-wrap justify-center items-start gap-[80px]">
+          <div className="flex flex-col gap-[20px]">
+            <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
+            <ul className="flex flex-col gap-[16px]">
+              <div className="flex items-center gap-[12px] group">
+                <img
+                  src={phone}
+                  alt="телефон"
+                  className="w-[20px] h-[20px] group-hover:scale-110 transition-all duration-300"
+                />
+                <li className="flex flex-col">
+                  <p className="text-[10px] text-gray-400">
+                    Контактный телефон
+                  </p>
+                  <p className="text-[14px] text-gray-700 group-hover:text-orange-500 transition-colors duration-300 cursor-pointer">
+                    8 (48753) 2-31-92
+                  </p>
+                </li>
+              </div>
+
+              <div className="flex items-center gap-[12px] group">
+                <img
+                  src={email}
+                  alt="email"
+                  className="w-[20px] h-[20px] group-hover:scale-110 transition-all duration-300"
+                />
+                <li className="flex flex-col">
+                  <p className="text-[10px] text-gray-400">Электронная почта</p>
+                  <p className="text-[14px] text-gray-700 group-hover:text-orange-500 transition-colors duration-300 cursor-pointer">
+                    aleksin.ds18@tularegion.org
+                  </p>
+                </li>
+              </div>
+
+              <div className="flex items-start gap-[12px] group">
+                <img
+                  src={home}
+                  alt="адрес"
+                  className="w-[20px] h-[20px] mt-[2px] group-hover:scale-110 transition-all duration-300"
+                />
+                <li className="flex flex-col">
+                  <p className="text-[10px] text-gray-400">Адрес</p>
+                  <p className="text-[14px] text-gray-700 group-hover:text-orange-500 transition-colors duration-300 max-w-[250px] cursor-pointer">
+                    301364, Тульская область, г. Алексин, ул. Заводская, д. 5-а
+                  </p>
+                </li>
+              </div>
+            </ul>
           </div>
 
-          <div className="flex items-center gap-[10px] group cursor-pointer">
-            <img
-              src={email}
-              alt=""
-              className="w-[24px] h-[24px] group-hover:scale-110 transition-all duration-300"
-            />
-            <li>
-              <p>Электронная почта:</p>
-              <p className="text-blue-600 group-hover:text-blue-800 transition-all duration-300">
-                aleksin.ds18@tularegion.org
-              </p>
-            </li>
+          {/* ЦЕНТРАЛЬНАЯ КОЛОНКА - Навигация */}
+          <div className="flex flex-col items-center gap-[20px]">
+            <h3 className="text-[18px] font-bold text-blue-800">
+              Навигация по сайту
+            </h3>
+            <ul className="flex flex-col items-center gap-[12px]">
+              <li>
+                <NavLink
+                  to="мероприятия"
+                  style={navLinkStyle}
+                  className="group block"
+                >
+                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 group-hover:translate-x-[4px] transition-all duration-300">
+                    Мероприятия
+                  </p>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="родителям"
+                  style={navLinkStyle}
+                  className="group block"
+                >
+                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 group-hover:translate-x-[4px] transition-all duration-300">
+                    Родителям
+                  </p>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink to="оНас" style={navLinkStyle} className="group block">
+                  <p className="text-[16px] text-gray-600 group-hover:text-blue-500 group-hover:translate-x-[4px] transition-all duration-300">
+                    О нас
+                  </p>
+                </NavLink>
+              </li>
+            </ul>
           </div>
 
-          <div className="flex items-center gap-[10px] group cursor-pointer">
-            <img
-              src={home}
-              alt=""
-              className="w-[24px] h-[24px] group-hover:scale-110 transition-all duration-300"
-            />
-            <li>
-              <p>Адрес:</p>
-              <p className="text-red-700 group-hover:text-red-900 transition-all duration-300">
-                301364, Тульская область, г. Алексин, ул. Заводская, д. 5-а
-              </p>
-            </li>
+          {/* ПРАВАЯ КОЛОНКА - Соцсети */}
+          <div className="flex flex-col gap-[30px] items-center">
+            <div>
+              <img src={logo} alt="" className="w-[300px]" />
+            </div>
+            <div className="flex items-center gap-[10px]">
+              <div className="flex flex-wrap justify-center gap-[12px]">
+                {socials.map((social) => (
+                  <NavLink
+                    key={social.name}
+                    to={social.url}
+                    className={`
+                    flex items-center gap-[8px] px-[16px] py-[10px] rounded-full text-[14px] font-medium
+                    bg-gray-50 text-gray-700 border border-gray-200
+                    transition-all duration-300 ease-out
+                    hover:shadow-md hover:-translate-y-[2px]
+                    ${social.color} hover:text-white hover:border-transparent
+                  `}
+                  >
+                    <img
+                      src={social.icon}
+                      alt={social.name}
+                      className="w-[16px] h-[16px]"
+                    />
+                    {social.name}
+                  </NavLink>
+                ))}
+              </div>
+              <h3 className="text-[13px] text-gray-800">- мы в соц. сетях</h3>
+            </div>
           </div>
-        </ul>
-
-        {/* Навигация */}
-        <div className="flex flex-col items-center w-[35%]">
-          <ul className="flex flex-col items-center gap-[15px] w-[35%] navigation">
-            <h3 className="text-[22px] font-bold">Навигация по сайту:</h3>
-            <li>
-              <NavLink to="мероприятия" style={navLinkStyle} className="group">
-                <p className="text-pink text-[18px] transition-all duration-300 group-hover:scale-105 group-hover:underline">
-                  Мероприятия
-                </p>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="родителям" style={navLinkStyle} className="group">
-                <p className="text-blue-600 text-[18px] transition-all duration-300 group-hover:scale-105 group-hover:underline">
-                  Родителям
-                </p>
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="оНас" style={navLinkStyle} className="group">
-                <p className="text-red-700 text-[18px] transition-all duration-300 group-hover:scale-105 group-hover:underline">
-                  О нас
-                </p>
-              </NavLink>
-            </li>
-          </ul>
         </div>
 
-        {/* Соцсети */}
-        <div className="flex flex-col items-center gap-[20px] w-[33%] social">
-          <h3 className="text-[22px] font-bold">Мы в соц. сетях:</h3>
-          <ul className="flex items-center justify-center gap-[20px]">
-            <li className="group">
-              <img
-                src={вк}
-                alt="вк"
-                className="w-[45px] cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-[5px]"
-              />
-            </li>
-            <li className="group">
-              <img
-                src={макс}
-                alt="инст"
-                className="w-[45px] cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-[5px]"
-              />
-            </li>
-            <li className="group">
-              <img
-                src={тг}
-                alt="телеграмм"
-                className="w-[45px] cursor-pointer transition-all duration-300 group-hover:scale-110 group-hover:-translate-y-[5px]"
-              />
-            </li>
-          </ul>
+        {/* Нижний блок - Копирайт */}
+        <div className="flex flex-wrap justify-center items-center gap-[20px] pt-[20px] text-[12px] text-gray-400 border-t border-gray-100 w-full">
+          <p>Copyright © 2026. All Rights Reserved | by l0iV</p>
         </div>
       </div>
-
-      <h1 className="text-[14px] text-gray-500 mt-[20px] pt-[10px] border-t border-gray-300 w-full text-center">
-        Copyright © 2026. All Rights Reserved | by l0iV
-      </h1>
-    </section>
+    </footer>
   );
 }
