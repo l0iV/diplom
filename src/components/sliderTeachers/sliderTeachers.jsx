@@ -16,8 +16,8 @@ export default function SliderTeachers() {
 
   return (
     <>
-      <div className="w-[90%] bg-white p-6 rounded-lg shadow">
-        <h2 className="text-[35px] font-bold text-center mb-[40px] bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
+      <div className="w-[90%] bg-white p-6 rounded-lg shadow-lg">
+        <h2 className="text-[35px] font-bold text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent ">
           Наша команда
         </h2>
 
@@ -38,29 +38,33 @@ export default function SliderTeachers() {
               <SwiperSlide key={teacher.id}>
                 <div
                   onClick={() => handleTeacherClick(teacher)}
-                  className="text-center group cursor-pointer p-[10px]"
+                  className="flex flex-col items-center justify-center gap-[15px] cursor-pointer group p-[10px] min-h-[350px]"
                 >
                   {teacher.image ? (
                     <img
                       src={teacher.image}
                       alt={teacher.name}
-                      className="w-[150px] h-[150px] rounded-full mx-auto mb-[15px] object-cover group-hover:scale-110 transition-all duration-300 shadow-md"
+                      className="w-[150px] h-[150px] rounded-full object-cover shadow-md group-hover:scale-110 transition-all duration-300"
                     />
                   ) : (
-                    <div className="w-[150px] h-[150px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mx-auto mb-[15px] flex items-center justify-center text-[60px] group-hover:scale-110 transition-all">
+                    <div className="w-[150px] h-[150px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-[60px] group-hover:scale-110 transition-all duration-300">
                       👩‍🏫
                     </div>
                   )}
-                  <h3 className="font-bold text-[18px] group-hover:text-blue-600 transition-colors">
-                    {teacher.name}
-                  </h3>
-                  <p className="text-gray-500 text-[14px]">
-                    {teacher.position}
-                  </p>
-                  <p className="text-[12px] text-gray-400 mt-[5px]">
-                    Стаж: {teacher.experience}
-                  </p>
-                  <button className="mt-[10px] px-[15px] py-[5px] bg-blue-500 text-white rounded-full text-[12px] opacity-0 group-hover:opacity-100 transition-all hover:bg-blue-600">
+
+                  <div className="flex flex-col items-center justify-center gap-[5px] text-center">
+                    <h3 className="font-bold text-[18px] group-hover:text-blue-600 transition-colors">
+                      {teacher.name}
+                    </h3>
+                    <p className="text-gray-500 text-[14px]">
+                      {teacher.position}
+                    </p>
+                    <p className="text-[12px] text-gray-400">
+                      Стаж: {teacher.experience}
+                    </p>
+                  </div>
+
+                  <button className="p-[10px] bg-blue-500 text-white rounded-full text-[12px] transition-all hover:bg-blue-600">
                     Подробнее
                   </button>
                 </div>
@@ -83,25 +87,25 @@ export default function SliderTeachers() {
             >
               ×
             </button>
-            <div className="text-center">
+            <div className="text-center flex flex-col items-center w-full justify-center gap-[10px]">
               {selectedTeacher.image ? (
                 <img
                   src={selectedTeacher.image}
                   alt={selectedTeacher.name}
-                  className="w-[120px] h-[120px] rounded-full mx-auto mb-[20px] object-cover border-4 border-blue-400"
+                  className="w-[120px] h-[120px] rounded-full object-cover border-4 border-blue-400"
                 />
               ) : (
-                <div className="w-[120px] h-[120px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mx-auto mb-[20px] flex items-center justify-center text-[50px]">
+                <div className="w-[120px] h-[120px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-[50px]">
                   👩‍🏫
                 </div>
               )}
               <h3 className="text-[25px] font-bold mb-[5px]">
                 {selectedTeacher.name}
               </h3>
-              <p className="text-blue-600 text-[16px] mb-[20px]">
+              <p className="text-blue-600 text-[16px] ">
                 {selectedTeacher.position}
               </p>
-              <div className="text-left space-y-[10px]">
+              <div className="flex flex-col text-start indent-10 gap-[10px]">
                 <p>
                   <span className="font-bold">Стаж:</span>{" "}
                   {selectedTeacher.experience}
@@ -115,17 +119,13 @@ export default function SliderTeachers() {
                   {selectedTeacher.group}
                 </p>
                 <p>
-                  <span className="font-bold">Возраст:</span>{" "}
-                  {selectedTeacher.age}
-                </p>
-                <p>
                   <span className="font-bold">Телефон:</span>{" "}
                   {selectedTeacher.phone}
                 </p>
               </div>
               <button
                 onClick={() => setShowModal(false)}
-                className="mt-[25px] w-full py-[12px] bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-[10px] font-semibold hover:shadow-lg"
+                className=" w-full py-[12px] bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-[10px] font-semibold hover:shadow-lg"
               >
                 Закрыть
               </button>

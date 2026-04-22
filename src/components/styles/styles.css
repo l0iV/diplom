@@ -7,15 +7,6 @@
   margin: 0;
   font-family: LorenzoSans;
 }
-@keyframes float {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-20px);
-  }
-}
 li {
   list-style-type: none;
 }
@@ -153,4 +144,84 @@ main {
 
 .raspisanie:hover {
   transform: scale(1.05);
+}
+.card-pink {
+  background-color: #fce4ec;
+  border-color: #f8bbd0;
+}
+
+.card-blue {
+  background-color: #dbeafe;
+  border-color: #93c5fd;
+}
+
+.card-purple {
+  background-color: #f3e8ff;
+  border-color: #d8b4fe;
+}
+
+.card-green {
+  background-color: #dcfce7;
+  border-color: #86efac;
+}
+
+.card-yellow {
+  background-color: #fee2e2;
+  border-color: #fecaca;
+}
+
+.title-pink {
+  color: #c2185b;
+}
+
+.title-blue {
+  color: #1d4ed8;
+}
+
+.title-purple {
+  color: #6b21a5;
+}
+
+.title-green {
+  color: #15803d;
+}
+
+.title-yellow {
+  color: #b91c1c;
+}
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.85) translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+@keyframes overlayFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.animate-modal {
+  animation: modalFadeIn 0.3s ease-out forwards;
+}
+
+.animate-overlay {
+  animation: overlayFadeIn 0.2s ease-out forwards;
+}
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
 }

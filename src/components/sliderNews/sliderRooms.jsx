@@ -23,8 +23,8 @@ export default function Slider() {
 
   return (
     <div className="min-h-[350px] mt-[30px] w-[90%] text-[14px] items-center overflow-hidden relative">
-      <h1 className="text-center font-bold text-[40px] mb-[20px] text-orange">
-        Наши уютные комнаты
+      <h1 className="text-center font-bold text-[40px] mb-[20px] text-green-800">
+        Наш детский сад!
       </h1>
       <Swiper
         modules={[Pagination, Autoplay]}
@@ -75,14 +75,14 @@ export default function Slider() {
           <img
             src={fullscreenImage}
             alt="Увеличенное изображение"
-            className="max-w-full max-h-[90vh] object-contain"
+            className="object-contain min-h-[500px] rounded-[50px]"
             onClick={(e) => e.stopPropagation()}
           />
           <button
             className="absolute top-4 right-4 text-white text-3xl bg-gray-800 rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-700 transition-colors"
             onClick={closeFullscreen}
           >
-            &times;
+            ✕
           </button>
         </div>
       )}

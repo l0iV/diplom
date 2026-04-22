@@ -50,17 +50,26 @@ export default function Parents() {
       </div>
 
       {/* Форма заявки */}
-      <div className="w-[90%] max-w-[1200px] bg-white rounded-[30px] p-[40px] shadow-xl flex flex-col gap-[40px] items-center">
-        <div className="w-full flex flex-col gap-[20px]">
-          <h2 className="text-[28px] font-bold">Подача заявки в детский сад</h2>
-          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-[15px]">
+      <div className="w-[75%] bg-white rounded-[30px] p-[40px] shadow-xl flex flex-col gap-[40px] items-center justify-center">
+        <div className="w-full flex flex-col gap-[60px]">
+          <div className="text-center">
+            <div className="text-[50px] mb-[10px]">📝</div>
+            <h2 className="text-[28px] font-bold bg-gradient-to-r from-green-600 to-blue-600 bg-clip-text text-transparent">
+              Подача заявки в детский сад
+            </h2>
+            <p className="text-[14px] text-gray-400 mt-[10px]">
+              Заполните форму и мы свяжемся с вами в ближайшее время
+            </p>
+          </div>
+
+          <form onSubmit={handleSubmit} className="grid grid-cols-2 gap-[30px]">
             <input
               type="text"
               name="parentName"
               value={formData.parentName}
               onChange={handleInputChange}
               placeholder="ФИО родителя"
-              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all"
+              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100 transition-all"
               required
             />
             <input
@@ -69,7 +78,7 @@ export default function Parents() {
               value={formData.phone}
               onChange={handleInputChange}
               placeholder="Телефон"
-              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all"
+              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100 transition-all"
               required
             />
             <input
@@ -78,7 +87,7 @@ export default function Parents() {
               value={formData.email}
               onChange={handleInputChange}
               placeholder="Email"
-              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all"
+              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100 transition-all"
             />
             <input
               type="text"
@@ -86,7 +95,7 @@ export default function Parents() {
               value={formData.childName}
               onChange={handleInputChange}
               placeholder="ФИО ребенка"
-              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all"
+              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100 transition-all"
               required
             />
             <input
@@ -94,31 +103,124 @@ export default function Parents() {
               name="birthDate"
               value={formData.birthDate}
               onChange={handleInputChange}
-              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all"
+              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100 transition-all"
               required
             />
             <select
               name="group"
               value={formData.group}
               onChange={handleInputChange}
-              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-100 transition-all"
+              className="w-full bg-slate-50 border border-slate-200 rounded-[12px] p-[12px] outline-none focus:border-green-400 focus:ring-2 focus:ring-green-100 transition-all"
             >
               <option value="">Выберите группу</option>
               <option value="yasli">Ясли (1.5 - 3 года)</option>
               <option value="mladshaya">Младшая (3 - 4 года)</option>
               <option value="srednyaya">Средняя (4 - 5 лет)</option>
               <option value="starshaya">Старшая (5 - 6 лет)</option>
+              <option value="podgotovitelnaya">
+                Подготовительная (6 - 7 лет)
+              </option>
             </select>
+
+            {/* Чекбокс согласия */}
+            <div className="col-span-2 flex items-start gap-[10px]">
+              <input
+                type="checkbox"
+                id="consent"
+                className="mt-[2px] w-[16px] h-[16px] cursor-pointer"
+                required
+              />
+              <label
+                htmlFor="consent"
+                className="text-[12px] text-gray-500 cursor-pointer"
+              >
+                Я согласен(на) на обработку персональных данных в соответствии с
+                <a href="#" className="text-green-600 hover:underline">
+                  {" "}
+                  политикой конфиденциальности
+                </a>
+              </label>
+            </div>
+
             <button
               type="submit"
-              className="col-span-2 bg-gradient-to-r from-green-400 to-green-500 min-h-[50px] rounded-[50px] text-white font-bold text-[16px] hover:from-green-500 hover:to-green-600 transition-all duration-300 cursor-pointer"
+              className="col-span-2 bg-gradient-to-r from-green-500 to-blue-500 min-h-[55px] rounded-[50px] text-white font-bold text-[18px] hover:from-green-600 hover:to-blue-600 transition-all duration-300 cursor-pointer shadow-md hover:shadow-lg"
             >
-              Подать заявление
+              📨 Отправить заявку
             </button>
           </form>
+
+          {/* Инфо-блок */}
+          <div className="flex items-center justify-center gap-[30px] flex-wrap pt-[20px] border-t border-gray-100">
+            <div className="flex items-center gap-[8px] text-[13px] text-gray-400">
+              <span>🔒</span> Данные защищены
+            </div>
+            <div className="flex items-center gap-[8px] text-[13px] text-gray-400">
+              <span>⏱️</span> Ответ в течение 24 часов
+            </div>
+            <div className="flex items-center gap-[8px] text-[13px] text-gray-400">
+              <span>📞</span> Или звоните: 8 (48753) 2-31-92
+            </div>
+          </div>
         </div>
       </div>
+      {/* Блок с мессенджерами */}
+      <div className="w-[75%] bg-gradient-to-r from-blue-50 to-purple-50 rounded-[30px] p-[40px] shadow-xl flex flex-col items-center gap-[30px]">
+        <div className="text-center">
+          <h3 className="text-[24px] font-bold text-gray-800 mb-[10px]">
+            💬 Или просто напишите в мессенджер
+          </h3>
+        </div>
 
+        <div className="flex items-center justify-center gap-[30px] flex-wrap">
+          {/* Telegram */}
+          <a
+            href="https://t.me/ваш_логин"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-[12px] bg-white px-[25px] py-[12px] rounded-[50px] shadow-md hover:shadow-lg transition-all hover:scale-105"
+          >
+            <span className="text-[28px]">📱</span>
+            <div>
+              <p className="font-bold text-[16px] text-gray-800">Telegram</p>
+              <p className="text-[12px] text-gray-400">@ваш_логин</p>
+            </div>
+          </a>
+
+          {/* WhatsApp */}
+          <a
+            href="https://wa.me/79000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-[12px] bg-white px-[25px] py-[12px] rounded-[50px] shadow-md hover:shadow-lg transition-all hover:scale-105"
+          >
+            <span className="text-[28px]">💚</span>
+            <div>
+              <p className="font-bold text-[16px] text-gray-800">WhatsApp</p>
+              <p className="text-[12px] text-gray-400">+7 (900) 000-00-00</p>
+            </div>
+          </a>
+
+          {/* Viber */}
+          <a
+            href="viber://chat?number=79000000000"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-[12px] bg-white px-[25px] py-[12px] rounded-[50px] shadow-md hover:shadow-lg transition-all hover:scale-105"
+          >
+            <span className="text-[28px]">💜</span>
+            <div>
+              <p className="font-bold text-[16px] text-gray-800">Viber</p>
+              <p className="text-[12px] text-gray-400">+7 (900) 000-00-00</p>
+            </div>
+          </a>
+        </div>
+
+        <p className="text-[12px] text-gray-400 text-center">
+          Нажимая на кнопку мессенджера, вы соглашаетесь с политикой обработки
+          персональных данных
+        </p>
+      </div>
       {/* Меню питания */}
       <div className="w-[90%] max-w-[900px] flex flex-col items-center gap-[30px]">
         <h2 className="text-[32px] font-bold text-blue-800">
@@ -206,9 +308,9 @@ export default function Parents() {
       </div>
 
       {/* Документы */}
-      <div className="w-[90%] max-w-[1200px] flex flex-col items-center gap-[30px]">
+      <div className="w-[80%] flex flex-col items-center gap-[30px]">
         <h2 className="text-[32px] font-bold text-orange">Документы</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-[15px] w-full">
+        <div className="grid grid-cols-5 gap-[15px] w-full">
           {officialDocuments.map((doc) => (
             <div
               key={doc.id}
@@ -222,8 +324,6 @@ export default function Parents() {
           ))}
         </div>
       </div>
-
-      {/* Отзывы */}
       <SliderReviews />
     </section>
   );
