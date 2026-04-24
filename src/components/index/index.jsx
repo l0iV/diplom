@@ -15,8 +15,6 @@ export default function Index() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Состояния для модалки педагога
-  const [selectedTeacher, setSelectedTeacher] = useState(null);
-  const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
 
   // Функция открытия модалки группы
   const handleGroupClick = (group) => {
@@ -28,21 +26,6 @@ export default function Index() {
   const closeModal = () => {
     setIsModalOpen(false);
     setSelectedGroup(null);
-  };
-
-  // Функция открытия модалки педагога
-  const handleTeacherClick = (teacherName) => {
-    const teacher = teachersList.find((t) => t.name === teacherName);
-    if (teacher) {
-      setSelectedTeacher(teacher);
-      setIsTeacherModalOpen(true);
-    }
-  };
-
-  // Функция закрытия модалки педагога
-  const closeTeacherModal = () => {
-    setIsTeacherModalOpen(false);
-    setSelectedTeacher(null);
   };
 
   // Функция поиска фото воспитателя
@@ -304,7 +287,6 @@ export default function Index() {
                         </p>
                         <p className="text-[12px] text-gray-500">Воспитатель</p>
                       </div>
-                      <div className="text-blue-500 text-[14px]">→</div>
                     </div>
                   );
                 })}
@@ -316,69 +298,6 @@ export default function Index() {
               <button
                 onClick={closeModal}
                 className="w-full py-[12px] bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-[20px] font-bold hover:opacity-90 transition-all"
-              >
-                Закрыть
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* МОДАЛЬНОЕ ОКНО ПЕДАГОГА (копия из SliderTeachers) */}
-      {isTeacherModalOpen && selectedTeacher && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-[20px]"
-          onClick={closeTeacherModal}
-        >
-          <div
-            className="bg-white rounded-[20px] max-w-[500px] w-full p-[30px] relative max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <button
-              onClick={closeTeacherModal}
-              className="absolute top-[15px] right-[20px] text-[30px] text-gray-500 hover:text-gray-800"
-            >
-              ×
-            </button>
-            <div className="text-center flex flex-col items-center w-full gap-[10px]">
-              {selectedTeacher.image ? (
-                <img
-                  src={selectedTeacher.image}
-                  alt={selectedTeacher.name}
-                  className="w-[120px] h-[120px] rounded-full object-cover border-4 border-blue-400"
-                />
-              ) : (
-                <div className="w-[120px] h-[120px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-[50px]">
-                  👩‍🏫
-                </div>
-              )}
-              <h3 className="text-[25px] font-bold mb-[5px]">
-                {selectedTeacher.name}
-              </h3>
-              <p className="text-blue-600 text-[16px]">
-                {selectedTeacher.position}
-              </p>
-              <div className="flex flex-col text-start indent-10 gap-[10px]">
-                <p>
-                  <span className="font-bold">Стаж:</span>{" "}
-                  {selectedTeacher.experience}
-                </p>
-                <p>
-                  <span className="font-bold">Образование:</span>{" "}
-                  {selectedTeacher.education}
-                </p>
-                <p>
-                  <span className="font-bold">Группа:</span>{" "}
-                  {selectedTeacher.group || "Не указана"}
-                </p>
-                <p>
-                  <span className="font-bold">Телефон:</span>{" "}
-                  {selectedTeacher.phone}
-                </p>
-              </div>
-              <button
-                onClick={closeTeacherModal}
-                className="w-full py-[12px] bg-gradient-to-r from-blue-500 to-purple-500 text-white rounded-[10px] font-semibold hover:shadow-lg mt-[10px]"
               >
                 Закрыть
               </button>

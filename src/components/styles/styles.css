@@ -3,7 +3,7 @@
   src: url(../../assets/LorenzoSans.ttf);
 }
 * {
-  padding: 123123123;
+  padding: 0;
   margin: 0;
   font-family: LorenzoSans;
 }
@@ -48,23 +48,47 @@ main {
 }
 
 .btn-pink {
-  background-color: #c863a3;
+  background: linear-gradient(135deg, #c863a3 0%, #b04e8a 100%);
   color: white;
+  border: none;
+}
+
+.btn-pink:hover {
+  background: linear-gradient(135deg, #b04e8a 0%, #9a3a73 100%);
+  transform: translateY(-2px);
 }
 
 .btn-blue {
-  background-color: #3fbfe4;
+  background: linear-gradient(135deg, #3fbfe4 0%, #2a9cd6 100%);
   color: white;
+  border: none;
+}
+
+.btn-blue:hover {
+  background: linear-gradient(135deg, #2a9cd6 0%, #1a7bb8 100%);
+  transform: translateY(-2px);
 }
 
 .btn-orange {
-  background-color: #ed7417;
+  background: linear-gradient(135deg, #ed7417 0%, #d45d0a 100%);
   color: white;
+  border: none;
+}
+
+.btn-orange:hover {
+  background: linear-gradient(135deg, #d45d0a 0%, #b84a05 100%);
+  transform: translateY(-2px);
 }
 
 .btn-red {
-  background-color: #ef2c34;
+  background: linear-gradient(135deg, #ef2c34 0%, #d41a22 100%);
   color: white;
+  border: none;
+}
+
+.btn-red:hover {
+  background: linear-gradient(135deg, #d41a22 0%, #b81018 100%);
+  transform: translateY(-2px);
 }
 .card-group {
   display: flex;

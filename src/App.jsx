@@ -10,26 +10,10 @@ import Parents from "./components/parents/parents";
 import { useEffect } from "react";
 
 function App() {
-  const fetchApi = async () => {
-    try {
-      console.log("Отправка запроса на сервер...");
-      const response = await axios.get("http://localhost:5000/test");
-      console.log("✅ Данные успешно получены:", response.data);
-      console.log("📊 Записи из БД:", response.data.data);
-    } catch (error) {
-      console.log("❌ Ошибка при запросе:", error);
-      console.log("Детали ошибки:", error.response?.data);
-    }
-  };
-
-  useEffect(() => {
-    fetchApi();
-  }, []);
-
   return (
     <HashRouter>
       <Header />
-      <main className="flex max-w-[1920px] gap-[100px] flex-col">
+      <main className="flex w-full gap-[100px] flex-col">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="оНас" element={<About />} />

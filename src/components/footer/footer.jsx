@@ -6,8 +6,11 @@ import email from "../../assets/footer-ico/icons8-@-24.png";
 import home from "../../assets/footer-ico/icons8-здание-32.png";
 import тг from "../../assets/тг.png";
 import logo from "../../assets/лого без фона.png";
+import { useState } from "react";
 
 export default function Footer() {
+  const [copiedType, setCopiedType] = useState(null);
+
   const navLinkStyle = {
     textDecoration: "none",
     color: "#374151",
@@ -24,6 +27,19 @@ export default function Footer() {
     { name: "Telegram", url: "/tg", icon: тг, color: "hover:bg-[#26A5E4]" },
   ];
 
+  const copyToClipboard = (text, type) => {
+    navigator.clipboard.writeText(text);
+    setCopiedType(type);
+    setTimeout(() => setCopiedType(null), 2000);
+  };
+
+  const openMap = () => {
+    window.open(
+      "https://www.google.com/maps/search/?api=1&query=301364+Тульская+область+г.Алексин+ул.Заводская+5а",
+      "_blank",
+    );
+  };
+
   return (
     <footer className="w-full flex flex-col items-center gap-[20px]">
       <div className="w-[90%] h-[3px] bg-gradient-to-r from-red-500 via-orange-500 via-green-500 to-blue-500 rounded-[200px]"></div>
@@ -33,7 +49,10 @@ export default function Footer() {
           <div className="flex flex-col gap-[20px]">
             <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
             <ul className="flex flex-col gap-[16px]">
-              <div className="flex items-center gap-[12px] group cursor-pointer">
+              <div
+                onClick={() => copyToClipboard("8 (48753) 2-31-92", "phone")}
+                className="flex items-center gap-[12px] group cursor-pointer relative"
+              >
                 <img
                   src={phone}
                   alt="телефон"
@@ -47,8 +66,19 @@ export default function Footer() {
                     8 (48753) 2-31-92
                   </p>
                 </li>
+                {copiedType === "phone" && (
+                  <span className="absolute left-[40px] top-[-20px] text-[10px] text-green-600 bg-white px-[8px] py-[2px] rounded-[10px] shadow-md">
+                    ✅ Скопировано!
+                  </span>
+                )}
               </div>
-              <div className="flex items-center gap-[12px] group cursor-pointer">
+
+              <div
+                onClick={() =>
+                  copyToClipboard("aleksin.ds18@tularegion.org", "email")
+                }
+                className="flex items-center gap-[12px] group cursor-pointer relative"
+              >
                 <img
                   src={email}
                   alt="email"
@@ -60,8 +90,17 @@ export default function Footer() {
                     aleksin.ds18@tularegion.org
                   </p>
                 </li>
+                {copiedType === "email" && (
+                  <span className="absolute left-[40px] top-[-20px] text-[10px] text-green-600 bg-white px-[8px] py-[2px] rounded-[10px] shadow-md">
+                    ✅ Скопировано!
+                  </span>
+                )}
               </div>
-              <div className="flex items-start gap-[12px] group cursor-pointer">
+
+              <div
+                onClick={openMap}
+                className="flex items-start gap-[12px] group cursor-pointer"
+              >
                 <img
                   src={home}
                   alt="адрес"
@@ -76,6 +115,7 @@ export default function Footer() {
               </div>
             </ul>
           </div>
+
           <div className="flex flex-col items-center gap-[20px]">
             <h3 className="text-[18px] font-bold text-blue-800">
               Навигация по сайту
@@ -119,6 +159,7 @@ export default function Footer() {
               </li>
             </ul>
           </div>
+
           <div className="flex flex-col gap-[30px] items-center">
             <div>
               <img src={logo} alt="" className="w-[300px]" />
@@ -149,6 +190,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
+
         <div className="flex flex-wrap justify-center items-center gap-[20px] pt-[20px] text-[12px] text-gray-400 border-t border-gray-100 w-full">
           <p>Copyright © 2026. All Rights Reserved | by l0iV</p>
         </div>

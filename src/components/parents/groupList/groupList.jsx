@@ -1,77 +1,220 @@
+// Функция для получения даты в формате "DD.MM"
+const getDateOffset = (date) => {
+  return `${String(date.getDate()).padStart(2, "0")}.${String(date.getMonth() + 1).padStart(2, "0")}`;
+};
+
+// Функция для получения дня недели (1 = понедельник, 5 = пятница, 6 = суббота, 0 = воскресенье)
+const isWeekend = (date) => {
+  const day = date.getDay();
+  return day === 0 || day === 6; // суббота(6) или воскресенье(0)
+};
+
+// Функция для создания массива дней ТОЛЬКО рабочие дни (пн-пт)
+const createWorkDaysArray = (daysCount) => {
+  const workDays = [];
+  let currentDate = new Date();
+
+  // Сдвигаем на сегодня, если сегодня выходной - идем до понедельника
+  while (workDays.length < daysCount) {
+    if (!isWeekend(currentDate)) {
+      const dayOfWeek = currentDate.getDay(); // 1 = пн, 5 = пт
+      const dayNames = {
+        1: "Понедельник",
+        2: "Вторник",
+        3: "Среда",
+        4: "Четверг",
+        5: "Пятница",
+      };
+
+      workDays.push({
+        day: workDays.length + 1,
+        date: getDateOffset(currentDate),
+        dayOfWeek: dayOfWeek,
+        dayName: dayNames[dayOfWeek],
+        fullDate: `${currentDate.toLocaleDateString("ru-RU", {
+          day: "numeric",
+          month: "long",
+        })}, ${dayNames[dayOfWeek]}`,
+        breakfast: [
+          "Каша рисовая молочная",
+          "Чай с молоком",
+          "Бутерброд с маслом",
+        ][workDays.length % 3],
+        lunch: [
+          "Суп овощной, котлета куриная с пюре, компот",
+          "Борщ, рыба запечённая с рисом, кисель",
+          "Суп-лапша, тефтели с гречкой, сок",
+        ][workDays.length % 3],
+        afternoonSnack: ["Йогурт", "Творожная запеканка", "Печенье с молоком"][
+          workDays.length % 3
+        ],
+        dinner: ["Омлет, чай", "Сырники со сметаной", "Пудинг творожный"][
+          workDays.length % 3
+        ],
+      });
+    }
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return workDays;
+};
+
 const menuData = [
   {
     key: "yasli",
-    name: "Зачик (1.5 - 3 года)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: [
-        "Каша рисовая молочная",
-        "Чай с молоком",
-        "Бутерброд с маслом",
-      ][i % 3],
-      lunch: [
-        "Суп овощной, котлета куриная с пюре, компот",
-        "Борщ, рыба запечённая с рисом, кисель",
-        "Суп-лапша, тефтели с гречкой, сок",
-      ][i % 3],
-      afternoonSnack: ["Йогурт", "Творожная запеканка", "Печенье с молоком"][
-        i % 3
-      ],
-      dinner: ["Омлет, чай", "Сырники со сметаной", "Пудинг творожный"][i % 3],
-    })),
+    name: "Зайчик (1.5 - 3 года)",
+    days: createWorkDaysArray(20),
   },
   {
     key: "mladshaya",
     name: "Разновозрастная группа (3 - 4 года)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: ["Каша манная", "Какао", "Сыр с хлебом"][i % 3],
-      lunch: [
-        "Рассольник, гуляш с макаронами, морс",
-        "Щи, плов куриный, компот",
-        "Суп грибной, биточки с картофельным пюре, кисель",
-      ][i % 3],
-      afternoonSnack: ["Фрукты", "Булочка с чаем", "Смузи"][i % 3],
-      dinner: [
-        "Рыбные котлеты с пюре",
-        "Макароны с сыром",
-        "Запеканка рисовая",
-      ][i % 3],
-    })),
+    days: (() => {
+      const workDays = [];
+      let currentDate = new Date();
+
+      while (workDays.length < 20) {
+        if (!isWeekend(currentDate)) {
+          const dayOfWeek = currentDate.getDay();
+          const dayNames = {
+            1: "Понедельник",
+            2: "Вторник",
+            3: "Среда",
+            4: "Четверг",
+            5: "Пятница",
+          };
+
+          workDays.push({
+            day: workDays.length + 1,
+            date: getDateOffset(currentDate),
+            dayOfWeek: dayOfWeek,
+            dayName: dayNames[dayOfWeek],
+            fullDate: `${currentDate.toLocaleDateString("ru-RU", {
+              day: "numeric",
+              month: "long",
+            })}, ${dayNames[dayOfWeek]}`,
+            breakfast: ["Каша манная", "Какао", "Сыр с хлебом"][
+              workDays.length % 3
+            ],
+            lunch: [
+              "Рассольник, гуляш с макаронами, морс",
+              "Щи, плов куриный, компот",
+              "Суп грибной, биточки с картофельным пюре, кисель",
+            ][workDays.length % 3],
+            afternoonSnack: ["Фрукты", "Булочка с чаем", "Смузи"][
+              workDays.length % 3
+            ],
+            dinner: [
+              "Рыбные котлеты с пюре",
+              "Макароны с сыром",
+              "Запеканка рисовая",
+            ][workDays.length % 3],
+          });
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return workDays;
+    })(),
   },
   {
     key: "srednyaya",
     name: "Старшая группа (4 - 5 лет)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: ["Овсяная каша с ягодами", "Чай", "Омлет с сыром"][i % 3],
-      lunch: [
-        "Солянка, печень по-строгановски с гречкой, сок",
-        "Свекольник, голубцы, компот",
-        "Уха, курица запечённая с овощами, морс",
-      ][i % 3],
-      afternoonSnack: ["Ряженка", "Пряники", "Кефир с печеньем"][i % 3],
-      dinner: ["Драники со сметаной", "Гречневики", "Ленивые вареники"][i % 3],
-    })),
+    days: (() => {
+      const workDays = [];
+      let currentDate = new Date();
+
+      while (workDays.length < 20) {
+        if (!isWeekend(currentDate)) {
+          const dayOfWeek = currentDate.getDay();
+          const dayNames = {
+            1: "Понедельник",
+            2: "Вторник",
+            3: "Среда",
+            4: "Четверг",
+            5: "Пятница",
+          };
+
+          workDays.push({
+            day: workDays.length + 1,
+            date: getDateOffset(currentDate),
+            dayOfWeek: dayOfWeek,
+            dayName: dayNames[dayOfWeek],
+            fullDate: `${currentDate.toLocaleDateString("ru-RU", {
+              day: "numeric",
+              month: "long",
+            })}, ${dayNames[dayOfWeek]}`,
+            breakfast: ["Овсяная каша с ягодами", "Чай", "Омлет с сыром"][
+              workDays.length % 3
+            ],
+            lunch: [
+              "Солянка, печень по-строгановски с гречкой, сок",
+              "Свекольник, голубцы, компот",
+              "Уха, курица запечённая с овощами, морс",
+            ][workDays.length % 3],
+            afternoonSnack: ["Ряженка", "Пряники", "Кефир с печеньем"][
+              workDays.length % 3
+            ],
+            dinner: ["Драники со сметаной", "Гречневики", "Ленивые вареники"][
+              workDays.length % 3
+            ],
+          });
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return workDays;
+    })(),
   },
   {
     key: "starshaya",
     name: "Подготовительная группа (5 - 6 лет)",
-    days: Array.from({ length: 20 }, (_, i) => ({
-      day: i + 1,
-      breakfast: ["Сырники со сгущёнкой", "Какао", "Гренки с яйцом"][i % 3],
-      lunch: [
-        "Харчо, бефстроганов с рисом, кисель",
-        "Гороховый суп, котлета по-киевски с пюре, компот",
-        "Крем-суп из брокколи, запеканка мясная, сок",
-      ][i % 3],
-      afternoonSnack: ["Йогурт с мюсли", "Фруктовое пюре", "Молоко с печеньем"][
-        i % 3
-      ],
-      dinner: ["Блинчики с творогом", "Рисовая запеканка", "Рыбное суфле"][
-        i % 3
-      ],
-    })),
+    days: (() => {
+      const workDays = [];
+      let currentDate = new Date();
+
+      while (workDays.length < 20) {
+        if (!isWeekend(currentDate)) {
+          const dayOfWeek = currentDate.getDay();
+          const dayNames = {
+            1: "Понедельник",
+            2: "Вторник",
+            3: "Среда",
+            4: "Четверг",
+            5: "Пятница",
+          };
+
+          workDays.push({
+            day: workDays.length + 1,
+            date: getDateOffset(currentDate),
+            dayOfWeek: dayOfWeek,
+            dayName: dayNames[dayOfWeek],
+            fullDate: `${currentDate.toLocaleDateString("ru-RU", {
+              day: "numeric",
+              month: "long",
+            })}, ${dayNames[dayOfWeek]}`,
+            breakfast: ["Сырники со сгущёнкой", "Какао", "Гренки с яйцом"][
+              workDays.length % 3
+            ],
+            lunch: [
+              "Харчо, бефстроганов с рисом, кисель",
+              "Гороховый суп, котлета по-киевски с пюре, компот",
+              "Крем-суп из брокколи, запеканка мясная, сок",
+            ][workDays.length % 3],
+            afternoonSnack: [
+              "Йогурт с мюсли",
+              "Фруктовое пюре",
+              "Молоко с печеньем",
+            ][workDays.length % 3],
+            dinner: [
+              "Блинчики с творогом",
+              "Рисовая запеканка",
+              "Рыбное суфле",
+            ][workDays.length % 3],
+          });
+        }
+        currentDate.setDate(currentDate.getDate() + 1);
+      }
+      return workDays;
+    })(),
   },
 ];
+
 export default menuData;
