@@ -66,11 +66,6 @@ export default function Footer() {
                     8 (48753) 2-31-92
                   </p>
                 </li>
-                {copiedType === "phone" && (
-                  <span className="absolute left-[40px] top-[-20px] text-[10px] text-green-600 bg-white px-[8px] py-[2px] rounded-[10px] shadow-md">
-                    ✅ Скопировано!
-                  </span>
-                )}
               </div>
 
               <div
@@ -90,11 +85,6 @@ export default function Footer() {
                     aleksin.ds18@tularegion.org
                   </p>
                 </li>
-                {copiedType === "email" && (
-                  <span className="absolute left-[40px] top-[-20px] text-[10px] text-green-600 bg-white px-[8px] py-[2px] rounded-[10px] shadow-md">
-                    ✅ Скопировано!
-                  </span>
-                )}
               </div>
 
               <div
