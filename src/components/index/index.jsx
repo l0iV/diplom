@@ -107,7 +107,7 @@ export default function Index() {
         <h1 className="font-bold text-center text-[40px] text-blue-800">
           Группы детского сада
         </h1>
-        <div className="flex items-center justify-around w-full flex-wrap gap-[20px]">
+        <div className="flex items-center justify-around w-full gap-[20px]">
           {groupsData.map((group) => (
             <div
               key={group.id}
@@ -152,7 +152,7 @@ export default function Index() {
         <p className="text-center font-bold text-[25px] text-red-400">
           Чтобы мечты детей сбывались
         </p>
-        <div className="flex items-center gap-[10px] w-full h-full justify-center flex-wrap">
+        <div className="flex items-center gap-[10px] w-full h-full justify-center">
           {listLessons.map((item) => {
             return (
               <div
@@ -193,35 +193,37 @@ export default function Index() {
           />
         </li>
       </ul>
-      <div className="flex flex-wrap items-center justify-center gap-[40px] w-[90%] py-[30px] border-t border-b border-gray-200">
-        {listGerb.map((item) => (
-          <a
-            key={item.id}
-            href={item.link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex flex-col items-center gap-[15px] w-[200px] hover:scale-105 transition-all duration-300"
-          >
-            <img
-              src={item.img}
-              alt={item.title}
-              className="h-[70px] w-auto object-contain"
-            />
-            <p className="text-center text-gray-500 text-[12px] hover:text-blue-500 transition-colors">
-              {item.title}
-            </p>
-          </a>
-        ))}
-      </div>
-      <div className="flex flex-col items-center gap-[10px] py-[30px]">
-        <p className="text-center text-gray-700">
-          Столкнулись с нарушением закона? Сообщите нам
-        </p>
-        <NavLink to="https://licey3-kras.gosuslugi.ru/netcat_files/userfiles/2025_AntiKor/Federalnyy_zakon_O_protivodeystvii_korruptsii.pdf">
-          <p className="cursor-pointer underline text-blue-500 hover:text-blue-700 transition-colors text-center">
-            Противодействие коррупции
+      <div className="flex items-center w-[70%] flex-col gap-[20px] border-gray-200 border-t-[1px]">
+        <div className="flex items-center justify-center gap-[40px] w-[90%] py-[10px]">
+          {listGerb.map((item) => (
+            <a
+              key={item.id}
+              href={item.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-[15px] w-[200px] hover:scale-105 transition-all duration-300"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                className="h-[70px] w-auto object-contain"
+              />
+              <p className="text-center text-gray-500 text-[12px] hover:text-blue-500 transition-colors">
+                {item.title}
+              </p>
+            </a>
+          ))}
+        </div>
+        <div className="flex flex-col items-center gap-[10px]">
+          <p className="text-center text-gray-700">
+            Столкнулись с нарушением закона? Сообщите нам
           </p>
-        </NavLink>
+          <NavLink to="https://licey3-kras.gosuslugi.ru/netcat_files/userfiles/2025_AntiKor/Federalnyy_zakon_O_protivodeystvii_korruptsii.pdf">
+            <p className="cursor-pointer underline text-blue-500 hover:text-blue-700 transition-colors text-center">
+              Противодействие коррупции
+            </p>
+          </NavLink>
+        </div>
       </div>
 
       {/* МОДАЛЬНОЕ ОКНО ГРУППЫ */}

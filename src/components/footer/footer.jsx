@@ -43,9 +43,8 @@ export default function Footer() {
   return (
     <footer className="w-full flex flex-col items-center gap-[20px]">
       <div className="w-[90%] h-[3px] bg-gradient-to-r from-red-500 via-orange-500 via-green-500 to-blue-500 rounded-[200px]"></div>
-
       <div className="flex flex-col items-center gap-[40px] w-full">
-        <div className="flex flex-wrap justify-center items-start gap-[80px]">
+        <div className="flex justify-center items-start gap-[80px]">
           <div className="flex flex-col gap-[20px]">
             <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
             <ul className="flex flex-col gap-[16px]">
@@ -155,13 +154,13 @@ export default function Footer() {
               <img src={logo} alt="" className="w-[300px]" />
             </div>
             <div className="flex items-center gap-[10px]">
-              <div className="flex flex-wrap justify-center gap-[12px]">
+              <div className="flex justify-center gap-[12px]">
                 {socials.map((social) => (
                   <NavLink
                     key={social.name}
                     to={social.url}
                     className={`
-                      flex items-center gap-[8px] px-[16px] py-[10px] rounded-full text-[14px] font-medium
+                      flex items-center gap-[8px] p-[10px] rounded-full text-[14px] font-medium
                       bg-gray-50 text-gray-700 border border-gray-200
                       transition-all duration-300 ease-out
                       hover:shadow-md hover:-translate-y-[2px]
@@ -181,7 +180,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="flex flex-wrap justify-center items-center gap-[20px] pt-[20px] text-[12px] text-gray-400 border-t border-gray-100 w-full">
+        <div className="flex justify-center items-center gap-[20px] pt-[20px] text-[12px] text-gray-400 border-t border-gray-100 w-full">
           <p>Copyright © 2026. All Rights Reserved | by l0iV</p>
         </div>
       </div>

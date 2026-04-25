@@ -1,0 +1,265 @@
+/* ================================================================
+   MEDIA.CSS — Адаптивная вёрстка сайта ДС №18
+   ================================================================
+   Брейкпоинты:
+     Телефон малый  — до 480px
+     Телефон        — до 767px
+     Планшет        — до 1023px
+     Десктоп        — 1024px+  (базовые стили в Tailwind)
+
+   КАК ПОЛЬЗОВАТЬСЯ:
+   В каждом блоке написано, к какому JSX-элементу
+   добавить CSS-класс, чтобы адаптивка заработала.
+   ================================================================ */
+
+/* ────────────────────────────────────────────────────────────────
+   ХЕДЕР
+   Добавь классы:
+     header.jsx → <section>               className="... header-root"
+     header.jsx → <img src={logo}>        className="... header-logo"
+     header.jsx → <ul>                    className="... header-nav"
+     header.jsx → каждый <button>         className="... header-btn"
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .header-logo {
+    width: 380px;
+  }
+  .header-btn {
+    width: 170px;
+    font-size: 15px;
+    height: 40px;
+  }
+}
+
+@media (max-width: 767px) {
+  .header-logo {
+    width: 200px;
+  }
+  .header-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+  .header-btn {
+    width: 140px;
+    font-size: 13px;
+    height: 36px;
+    border-radius: 18px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header-logo {
+    width: 160px;
+  }
+  .header-btn {
+    width: 125px;
+    font-size: 12px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ГЛАВНАЯ — Hero блок (заголовок + лого)
+   Добавь классы:
+     index.jsx → <div className="flex items-center w-full justify-between">
+                   добавь "hero-row"
+     index.jsx → <img src={logoMain}>
+                   добавь "hero-logo"
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .hero-row {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  .hero-logo {
+    width: 300px;
+  }
+}
+
+@media (max-width: 767px) {
+  .hero-logo {
+    width: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-logo {
+    width: 150px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ГЛАВНАЯ — Блок контактов (4 иконки в ряд)
+   Добавь классы:
+     index.jsx → <div className="flex items-center gap-[25px] justify-around w-full">
+                   добавь "contacts-row"
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .contacts-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   КАРТОЧКИ ГРУПП
+   Уже есть .card-group в styles.css — дополняем его здесь
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .card-group {
+    min-width: 280px;
+    height: auto;
+    padding: 24px;
+  }
+}
+
+@media (max-width: 767px) {
+  .card-group {
+    min-width: 100%;
+    border-radius: 20px;
+    padding: 18px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   КАРТОЧКИ РОДИТЕЛЕЙ (.card-groupParent, .card-groupInfo)
+   Уже есть в styles.css — дополняем
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .card-groupParent {
+    min-width: 100%;
+    border-radius: 20px;
+  }
+  .card-groupInfo {
+    width: 100%;
+    border-radius: 20px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   СТРАНИЦА МЕРОПРИЯТИЙ
+   Классы уже вшиты в events.jsx — здесь только переопределяем сетку
+──────────────────────────────────────────────────────────────── */
+
+/* Планшет → 2 колонки */
+@media (max-width: 1023px) {
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Телефон → 1 колонка */
+@media (max-width: 600px) {
+  .events-grid {
+    grid-template-columns: 1fr;
+    width: 95%;
+  }
+  .events-hero-title {
+    font-size: 26px;
+  }
+  .events-hero-sub {
+    font-size: 15px;
+  }
+  .events-card-img {
+    height: 180px;
+  }
+  .events-modal-img {
+    height: 200px;
+  }
+}
+
+@media (max-width: 480px) {
+  .events-hero {
+    padding: 36px 16px;
+  }
+  .events-filters {
+    gap: 6px;
+  }
+  .events-hero-title {
+    font-size: 22px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   СТРАНИЦА «О НАС»
+   Добавь классы:
+     about.jsx → основная flex-строка с фото + текстом
+                   добавь "about-row"
+     about.jsx → фото команды/здания
+                   добавь "about-img"
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 1023px) {
+  .about-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .about-img {
+    width: 100%;
+    max-width: 480px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   СЛАЙДЕРЫ (SliderNews, SliderTeachers)
+   Добавь классы:
+     sliderRooms.jsx → корневой <div>    добавь "slider-root"
+     sliderTeachers → корневой <div>    добавь "slider-root"
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .slider-root {
+    width: 98%;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   МОДАЛЬНЫЕ ОКНА (index.jsx — модалки групп и педагогов)
+   Классы animate-modal и animate-overlay уже есть в styles.css
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 480px) {
+  .animate-modal {
+    border-radius: 20px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ФУТЕР
+   Добавь классы:
+     footer.jsx → <div className="flex flex-wrap justify-center items-start gap-[80px]">
+                    добавь "footer-row"
+     footer.jsx → <img src={logo}>
+                    добавь "footer-logo"
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  .footer-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    text-align: center;
+  }
+  .footer-logo {
+    width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-logo {
+    width: 140px;
+  }
+}
+
+/* ────────────────────────────────────────────────────────────────
+   ОБЩИЙ ROOT — уменьшаем разрыв между секциями на телефоне
+──────────────────────────────────────────────────────────────── */
+@media (max-width: 767px) {
+  #root {
+    gap: 30px;
+  }
+}
+
+@media (max-width: 480px) {
+  #root {
+    gap: 20px;
+  }
+}

@@ -35,7 +35,7 @@ export default function Parents() {
   return (
     <section className="flex flex-col items-center w-full gap-[40px] bg-gradient-to-b from-slate-50 to-white pb-[60px]">
       {/* Верхний блок с картинкой */}
-      <div className="w-full bg-[linear-gradient(135deg,#d5ffd6,#ffbef9)] flex flex-wrap justify-center items-center gap-[100px] min-h-[450px]">
+      <div className="w-full bg-[linear-gradient(135deg,#d5ffd6,#ffbef9)] flex justify-center items-center gap-[100px] min-h-[450px]">
         <div className="animate-[float_3s_ease-in-out_infinite]">
           <img src={baby} alt="" className="w-[400px]" />
         </div>
@@ -150,7 +150,7 @@ export default function Parents() {
           </form>
 
           {/* Инфо-блок */}
-          <div className="flex items-center justify-center gap-[30px] flex-wrap">
+          <div className="flex items-center justify-center gap-[30px]">
             <div className="flex items-center gap-[8px] text-[13px] text-gray-400">
               <span>🔒</span> Данные защищены
             </div>
@@ -282,7 +282,6 @@ export default function Parents() {
           ))}
         </div>
       </div>
-
       <SliderReviews />
     </section>
   );

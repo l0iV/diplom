@@ -1,20 +1,13 @@
-// Функция для получения даты в формате "DD.MM"
 const getDateOffset = (date) => {
   return `${String(date.getDate()).padStart(2, "0")}.${String(date.getMonth() + 1).padStart(2, "0")}`;
 };
-
-// Функция для получения дня недели (1 = понедельник, 5 = пятница, 6 = суббота, 0 = воскресенье)
 const isWeekend = (date) => {
   const day = date.getDay();
-  return day === 0 || day === 6; // суббота(6) или воскресенье(0)
+  return day === 0 || day === 6;
 };
-
-// Функция для создания массива дней ТОЛЬКО рабочие дни (пн-пт)
 const createWorkDaysArray = (daysCount) => {
   const workDays = [];
   let currentDate = new Date();
-
-  // Сдвигаем на сегодня, если сегодня выходной - идем до понедельника
   while (workDays.length < daysCount) {
     if (!isWeekend(currentDate)) {
       const dayOfWeek = currentDate.getDay(); // 1 = пн, 5 = пт
