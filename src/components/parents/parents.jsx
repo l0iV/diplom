@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import baby from "../../assets/baby.png";
 import menuData from "./groupList/groupList";
 import officialDocuments from "./groupList/infoList";
 import parentsReviews from "../sliderParentsReviews/listSlider/parentsReviewsList";
@@ -36,9 +35,6 @@ export default function Parents() {
     <section className="flex flex-col items-center w-full gap-[40px] bg-gradient-to-b from-slate-50 to-white pb-[60px]">
       {/* Верхний блок с картинкой */}
       <div className="w-full bg-[linear-gradient(135deg,#d5ffd6,#ffbef9)] flex justify-center items-center gap-[100px] min-h-[450px]">
-        <div className="animate-[float_3s_ease-in-out_infinite]">
-          <img src={baby} alt="" className="w-[400px]" />
-        </div>
         <div className="flex flex-col gap-[15px]">
           <h1 className="font-bold bg-gradient-to-r from-amber-700 to-rose-600 bg-clip-text text-transparent text-center text-[60px]">
             Уважаемые родители!

@@ -16,7 +16,7 @@ export default function SliderTeachers() {
 
   return (
     <>
-      <div className="w-[90%] bg-white p-6 rounded-lg shadow-lg">
+      <div className="w-[90%] bg-white p-6 rounded-[40px] shadow-md">
         <h2 className="text-[35px] font-bold text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent ">
           Наша команда
         </h2>

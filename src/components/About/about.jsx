@@ -8,7 +8,8 @@ import {
 } from "./listAbout/listText";
 import { useState } from "react";
 import SliderTeachers from "../sliderTeachers/sliderTeachers";
-
+import baby from "../../assets/baby.png";
+import SliderAwards from "../sliderWins/sliderWins";
 export default function About() {
   const [selectedIntelligence, setSelectedIntelligence] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -24,65 +25,52 @@ export default function About() {
 
   return (
     <section className="w-full flex flex-col items-center gap-[60px] h-full">
-      <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] flex justify-center p-[30px]">
-        <div className="w-[90%] flex flex-col gap-[50px]">
-          <div className="text-center">
-            <p className="text-[30px] font-bold text-gray-700">
-              {kindergartenName.full}
-            </p>
-            <p className="text-[18px] text-gray-500">
-              {kindergartenName.short}
-            </p>
-          </div>
-          <div className="flex items-center w-full justify-center gap-[50px]">
-            <div className="bg-white rounded-[30px] p-[30px] shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 w-full flex flex-col gap-[10px] items-center">
-              <h2 className="text-[28px] font-bold text-green-600">
-                Куда обратиться
-              </h2>
-              <div className="flex flex-col gap-[20px]">
-                <div className="flex gap-[15px] hover:bg-gray-200 rounded-[20px] transition-all p-[7px]">
-                  <div>
-                    <p className="font-bold">Поступление и льготы:</p>
-                    <p className="text-gray-600">{contactsData.address}</p>
+      <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] flex justify-center">
+        <div className="w-[95%] flex flex-col gap-[40px]">
+          <div className="flex flex-col items-center justify-center p-[30px] gap-[10px]">
+            <div>
+              <img
+                src={baby}
+                alt="Child"
+                className="w-[300px] object-contain"
+              />
+            </div>
+            <div className="flex gap-[20px] w-full items-center justify-center">
+              <div className="bg-white/60 backdrop-blur-md rounded-[30px] p-[15px] shadow-sm border border-white min-h-[200px] w-[40%] flex flex-col items-center gap-[15px]">
+                <h3 className="text-[22px] font-bold text-gray-800 flex items-center gap-[8px]">
+                  <span className="w-8 h-8 bg-green-200 rounded-full flex items-center justify-center text-[16px]">
+                    🏠
+                  </span>
+                  Второй дом для вашего малыша
+                </h3>
+                <p className="text-gray-600 text-[16px] text-justify">
+                  В нашем саду мы объединили современные образовательные
+                  программы с домашним уютом. Пока вы заняты делами, мы
+                  развиваем интеллект, творческое мышление и социальные навыки
+                  ребенка в игровой и безопасной форме.
+                </p>
+                <div className="flex gap-4 mt-5">
+                  <div className="flex items-center gap-2 text-[14px] font-medium text-green-800 bg-green-100/50 px-3 py-1 rounded-full">
+                    🍎 Здоровое питание
                   </div>
-                </div>
-                <div className="flex gap-[15px] hover:bg-gray-200  rounded-[20px] transition-all p-[7px]">
-                  <div>
-                    <p className="font-bold">Здоровье и прививки:</p>
-                    <p className="text-gray-600">{contactsData.phone}</p>
-                  </div>
-                </div>
-                <div className="flex gap-[15px] hover:bg-gray-200 rounded-[20px] transition-all p-[7px]">
-                  <div>
-                    <p className="font-bold">Питание:</p>
-                    <p className="text-gray-600">{contactsData.email}</p>
-                  </div>
-                </div>
-                <div className="flex gap-[15px] hover:bg-gray-200 rounded-[20px] transition-all p-[7px]">
-                  <div>
-                    <p className="font-bold">Связь с воспитателем:</p>
-                    <p className="text-gray-600">{contactsData.workHours}</p>
-                  </div>
-                </div>
-                <div className="flex gap-[15px] hover:bg-gray-200 rounded-[20px] transition-all p-[7px]">
-                  <div>
-                    <p className="font-bold">Официальные обращения:</p>
-                    <p className="text-gray-600">{contactsData.weekend}</p>
+                  <div className="flex items-center gap-2 text-[14px] font-medium text-pink-800 bg-pink-100/50 px-3 py-1 rounded-full">
+                    🛡️ Безопасность 24/7
                   </div>
                 </div>
               </div>
-            </div>
-            <div className="bg-white rounded-[30px] p-[30px] shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 w-full">
-              <div className="text-center">
-                <div className="text-[50px] mb-[20px]">💬</div>
-                <p className="text-[18px] text-gray-700 italic leading-relaxed mb-[30px]">
-                  "{quoteData.text}"
-                </p>
-                <div className="border-t border-gray-200 pt-[20px]">
-                  <p className="font-bold text-[18px] text-green-700">
-                    {quoteData.position}
+              <div className="bg-white/60 backdrop-blur-md rounded-[30px] p-[15px] shadow-sm border border-white min-h-[200px] w-[40%]">
+                <div className="text-center">
+                  <p className="text-[17px] text-gray-700 italic leading-relaxed mb-4">
+                    "{quoteData.text}"
                   </p>
-                  <p className="text-[16px] text-gray-600">{quoteData.name}</p>
+                  <div className="border-t border-gray-300">
+                    <p className="font-bold text-green-700 mt-[10px]">
+                      {quoteData.position}
+                    </p>
+                    <p className="text-[14px] text-gray-500">
+                      {quoteData.name}
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -113,6 +101,8 @@ export default function About() {
       </div>
       <SliderTeachers />
       <SliderAbout />
+      <SliderAwards />
+
       <div className="bg-white rounded-[30px] shadow-lg hover:shadow-2xl transition-all duration-300 w-[90%] max-w-[1200px] flex flex-col items-center justify-center gap-[20px] p-[30px]">
         <div className="flex flex-col items-center justify-center gap-[10px]">
           <h2 className="text-[30px] font-bold text-red-600 ">Где нас найти</h2>

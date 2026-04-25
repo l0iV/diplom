@@ -1,117 +1,5 @@
 import { useState, useMemo } from "react";
-
-// ─────────────────────────────────────────────────────────────
-// СТРУКТУРА ДАННЫХ — готова под БД без изменений в JSX
-//
-// SQL таблица:
-//   CREATE TABLE events (
-//     id          INT PRIMARY KEY AUTO_INCREMENT,
-//     title       VARCHAR(255)     NOT NULL,
-//     date_label  VARCHAR(100),
-//     date        DATE             NOT NULL,
-//     category    ENUM('ecology','art','holiday','sport','health','other'),
-//     description TEXT,
-//     image_url   VARCHAR(500),
-//     created_at  TIMESTAMP        DEFAULT NOW()
-//   );
-//
-// Когда подключишь бэкенд — замени EVENTS_DATA на:
-//   const [events, setEvents] = useState([]);
-//   useEffect(() => { fetch('/api/events').then(r=>r.json()).then(setEvents) }, []);
-// ─────────────────────────────────────────────────────────────
-
-import черепашки from "../../assets/events/jerepaxa.jpg";
-import бабочки from "../../assets/events/babojki.jpg";
-import птички from "../../assets/events/bird.jpg";
-import растения from "../../assets/events/flowers.jpg";
-import чай from "../../assets/events/tea.jpg";
-import мукулатура from "../../assets/events/paper.jpg";
-import сова from "../../assets/events/sova.jpg";
-import деньРоссии from "../../assets/events/day_russia.jpg";
-
-const EVENTS_DATA = [
-  {
-    id: 1,
-    title: "Черепашки",
-    date: "2025-06-20",
-    date_label: "20 июня 2025 г.",
-    category: "ecology",
-    image_url: черепашки,
-    description:
-      "Группа Буратино провела время на экологической неделе, изучая черепашек 🐢! Черепахи — удивительные существа, о которых можно узнать множество интересного.",
-  },
-  {
-    id: 2,
-    title: "День бабочек",
-    date: "2025-06-19",
-    date_label: "19 июня 2025 г.",
-    category: "art",
-    image_url: бабочки,
-    description:
-      "🦋 В нашем детском саду прошёл «День бабочек». Ребята сами лепили и украшали бабочек из пластилина и цветной бумаги — каждая получилась уникальной!",
-  },
-  {
-    id: 3,
-    title: "Международный день чая",
-    date: "2025-06-19",
-    date_label: "19 июня 2025 г.",
-    category: "other",
-    image_url: чай,
-    description:
-      "В городском филиале библиотеки №3 прошёл тематический день чая. Дети узнали об истории чайных традиций разных народов мира.",
-  },
-  {
-    id: 4,
-    title: "Акция «Макулатура»",
-    date: "2025-06-18",
-    date_label: "18 июня 2025 г.",
-    category: "ecology",
-    image_url: мукулатура,
-    description:
-      "В рамках экологической недели 🌳 была сдана макулатура — значимый шаг к сохранению природы. Спасибо всем участникам!",
-  },
-  {
-    id: 5,
-    title: "Лекарственные растения",
-    date: "2025-06-17",
-    date_label: "17 июня 2025 г.",
-    category: "ecology",
-    image_url: растения,
-    description:
-      "День лекарственных растений в рамках экологической недели. Цель — расширение представлений детей о целебных свойствах трав.",
-  },
-  {
-    id: 6,
-    title: "Птичка-невеличка",
-    date: "2025-06-16",
-    date_label: "16 июня 2025 г.",
-    category: "art",
-    image_url: птички,
-    description:
-      "Дети подготовительной группы создавали птиц в смешанной технике: восковой мелок + акварель. Результат получился живым и красочным!",
-  },
-  {
-    id: 7,
-    title: "Совушка",
-    date: "2025-06-09",
-    date_label: "9 июня 2025 г.",
-    category: "art",
-    image_url: сова,
-    description:
-      "Нетрадиционная техника рисования «Совушка» — отпечаток марлей и ватной палочкой с элементами аппликации.",
-  },
-  {
-    id: 8,
-    title: "День России в парке «Химик»",
-    date: "2025-06-12",
-    date_label: "12 июня 2025 г.",
-    category: "holiday",
-    image_url: деньРоссии,
-    description:
-      "Педагоги приняли участие в праздновании Дня России. Такие события воспитывают патриотизм и укрепляют связь сада с родителями.",
-  },
-];
-
+import events_data from "./listEvents/listEvents";
 const CATEGORIES = [
   { key: "all", label: "Все события", emoji: "🌟" },
   { key: "ecology", label: "Экология", emoji: "🌿" },
@@ -123,12 +11,12 @@ const CATEGORIES = [
 ];
 
 const CATEGORY_STYLE = {
-  ecology: { badge: "bg-green-100  text-green-700" },
+  ecology: { badge: "bg-green-100 text-green-700" },
   art: { badge: "bg-purple-100 text-purple-700" },
   holiday: { badge: "bg-yellow-100 text-yellow-700" },
-  sport: { badge: "bg-blue-100   text-blue-700" },
-  health: { badge: "bg-red-100    text-red-700" },
-  other: { badge: "bg-gray-100   text-gray-600" },
+  sport: { badge: "bg-blue-100 text-blue-700" },
+  health: { badge: "bg-red-100 text-red-700" },
+  other: { badge: "bg-gray-100 text-gray-600" },
 };
 
 export default function Events() {
@@ -136,9 +24,10 @@ export default function Events() {
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
 
+  // ✅ ИСПРАВЛЕНО: используем events_data
   const filtered = useMemo(
     () =>
-      EVENTS_DATA.filter((e) => {
+      events_data.filter((e) => {
         const matchCat =
           activeCategory === "all" || e.category === activeCategory;
         const matchSearch =
@@ -150,41 +39,33 @@ export default function Events() {
   );
 
   return (
-    <section className="events-section flex flex-col items-center w-full pb-16 gap-10">
-      {/* ── ШАПКА ── */}
-      <div className="events-hero w-full bg-gradient-to-br from-sky-100 to-pink-100 flex flex-col items-center gap-4 py-14 px-5">
+    <section className="events-section flex flex-col items-center w-full gap-10">
+      <div className="events-hero w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] flex flex-col items-center gap-[16px] h-[250px] justify-center">
         <div className="flex items-center gap-3">
-          <span className="text-4xl">🎈</span>
-          <h1 className="events-hero-title text-4xl font-extrabold text-slate-800 text-center leading-tight">
+          <h1 className="events-hero-title font-bold text-[40px] text-green-700">
             Новости и мероприятия
           </h1>
-          <span className="text-4xl">🎈</span>
         </div>
-        <p className="events-hero-sub text-lg text-slate-500 text-center max-w-xl">
+        <p className="events-hero-sub text-[18px] text-slate-500 text-center">
           Всё самое интересное, что происходит в нашем детском саду
         </p>
-        <div className="events-search relative w-full max-w-md">
-          <span className="absolute left-4 top-1/2 -translate-y-1/2 text-lg pointer-events-none">
-            🔍
-          </span>
+        <div className="events-search relative w-full max-w-[550px]">
           <input
             type="text"
             placeholder="Найти мероприятие..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-full border-2 border-slate-200 bg-white py-3 pl-11 pr-4 text-sm shadow-sm outline-none focus:border-blue-400 transition-colors"
+            className="w-full rounded-full border-2 border-slate-200 bg-white p-[15px] text-[14px] shadow-sm outline-none focus:border-blue-400 transition-colors"
           />
         </div>
       </div>
-
-      {/* ── ФИЛЬТРЫ ── */}
       <div className="events-filters flex flex-wrap justify-center gap-2 px-4 w-full">
         {CATEGORIES.map((cat) => {
           const isActive = activeCategory === cat.key;
           const count =
             cat.key === "all"
-              ? EVENTS_DATA.length
-              : EVENTS_DATA.filter((e) => e.category === cat.key).length;
+              ? events_data.length
+              : events_data.filter((e) => e.category === cat.key).length;
           return (
             <button
               key={cat.key}
@@ -207,15 +88,12 @@ export default function Events() {
           );
         })}
       </div>
-
       <p className="text-sm text-slate-400 -mt-4">
         {filtered.length === 0
           ? "Ничего не найдено"
-          : `Показано ${filtered.length} из ${EVENTS_DATA.length} мероприятий`}
+          : `Показано ${filtered.length} из ${events_data.length} мероприятий`}
       </p>
-
-      {/* ── СЕТКА КАРТОЧЕК ── */}
-      <div className="events-grid grid grid-cols-3 gap-6 w-[90%] max-w-6xl">
+      <div className="events-grid grid grid-cols-3 gap-6 max-w-[75%]">
         {filtered.map((event) => {
           const cat = CATEGORIES.find((c) => c.key === event.category);
           const s = CATEGORY_STYLE[event.category] || CATEGORY_STYLE.other;
@@ -255,71 +133,60 @@ export default function Events() {
           );
         })}
       </div>
-
-      {filtered.length === 0 && (
-        <div className="flex flex-col items-center gap-3 py-20 text-slate-400">
-          <span className="text-6xl">🔍</span>
-          <p className="text-lg font-semibold">Ничего не найдено</p>
-          <p className="text-sm">
-            Попробуй другой запрос или выбери другую категорию
-          </p>
+      {selectedEvent && (
+        <div
+          onClick={() => setSelectedEvent(null)}
+          className="animate-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="animate-modal events-modal relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-y-auto rounded-3xl bg-white"
+          >
+            <button
+              onClick={() => setSelectedEvent(null)}
+              className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-lg text-slate-500 hover:bg-slate-200 transition"
+            >
+              ✕
+            </button>
+            <div className="events-modal-img h-64 overflow-hidden rounded-t-3xl shrink-0">
+              <img
+                src={selectedEvent.image_url}
+                alt={selectedEvent.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+            <div className="flex flex-col gap-3 p-8">
+              <span
+                className={`self-start rounded-full px-3 py-1 text-xs font-bold ${CATEGORY_STYLE[selectedEvent.category]?.badge || CATEGORY_STYLE.other.badge}`}
+              >
+                {
+                  CATEGORIES.find((c) => c.key === selectedEvent.category)
+                    ?.emoji
+                }{" "}
+                {
+                  CATEGORIES.find((c) => c.key === selectedEvent.category)
+                    ?.label
+                }
+              </span>
+              <h2 className="text-2xl font-extrabold text-slate-800">
+                {selectedEvent.title}
+              </h2>
+              <p className="text-xs text-slate-400">
+                📅 {selectedEvent.date_label}
+              </p>
+              <p className="text-sm leading-relaxed text-slate-600">
+                {selectedEvent.description}
+              </p>
+              <button
+                onClick={() => setSelectedEvent(null)}
+                className="mt-4 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 text-sm font-bold text-white hover:opacity-90 transition"
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
         </div>
       )}
-
-      {/* ── МОДАЛКА ── */}
-      {selectedEvent &&
-        (() => {
-          const cat = CATEGORIES.find((c) => c.key === selectedEvent.category);
-          const s =
-            CATEGORY_STYLE[selectedEvent.category] || CATEGORY_STYLE.other;
-          return (
-            <div
-              onClick={() => setSelectedEvent(null)}
-              className="animate-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
-            >
-              <div
-                onClick={(e) => e.stopPropagation()}
-                className="animate-modal events-modal relative flex max-h-[90vh] w-full max-w-lg flex-col overflow-y-auto rounded-3xl bg-white"
-              >
-                <button
-                  onClick={() => setSelectedEvent(null)}
-                  className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-slate-100 text-lg text-slate-500 hover:bg-slate-200 transition"
-                >
-                  ✕
-                </button>
-                <div className="events-modal-img h-64 overflow-hidden rounded-t-3xl shrink-0">
-                  <img
-                    src={selectedEvent.image_url}
-                    alt={selectedEvent.title}
-                    className="h-full w-full object-cover"
-                  />
-                </div>
-                <div className="flex flex-col gap-3 p-8">
-                  <span
-                    className={`self-start rounded-full px-3 py-1 text-xs font-bold ${s.badge}`}
-                  >
-                    {cat?.emoji} {cat?.label}
-                  </span>
-                  <h2 className="text-2xl font-extrabold text-slate-800">
-                    {selectedEvent.title}
-                  </h2>
-                  <p className="text-xs text-slate-400">
-                    📅 {selectedEvent.date_label}
-                  </p>
-                  <p className="text-sm leading-relaxed text-slate-600">
-                    {selectedEvent.description}
-                  </p>
-                  <button
-                    onClick={() => setSelectedEvent(null)}
-                    className="mt-4 w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 text-sm font-bold text-white hover:opacity-90 transition"
-                  >
-                    Закрыть
-                  </button>
-                </div>
-              </div>
-            </div>
-          );
-        })()}
     </section>
   );
 }
