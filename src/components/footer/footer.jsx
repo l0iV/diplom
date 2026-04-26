@@ -112,14 +112,26 @@ export default function Footer() {
             <ul className="flex flex-col items-center gap-[12px]">
               <li>
                 <NavLink
-                  to="мероприятия"
+                  to="/"
                   style={navLinkStyle}
                   className="group block relative"
                 >
                   <p className="text-[16px] text-gray-600 group-hover:text-blue-500 transition-all duration-300">
-                    Мероприятия
+                    Главная
                   </p>
                   <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-blue-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  to="мероприятия"
+                  style={navLinkStyle}
+                  className="group block relative"
+                >
+                  <p className="text-[16px] text-gray-600 group-hover:text-amber-500 transition-all duration-300">
+                    Мероприятия
+                  </p>
+                  <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-amber-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </NavLink>
               </li>
               <li>
