@@ -17,10 +17,15 @@ export default function Footer() {
   };
 
   const socials = [
-    { name: "ВКонтакте", url: "/vk", icon: вк, color: "hover:bg-[#0077FF]" },
+    {
+      name: "ВКонтакте",
+      url: "https://vk.com/club204559362",
+      icon: вк,
+      color: "hover:bg-[#0077FF]",
+    },
     {
       name: "Max",
-      url: "/ok",
+      url: "https://max.ru/id7111013424_gos",
       icon: макс,
       color: "hover:bg-[#7a63be]",
     },
@@ -124,6 +129,18 @@ export default function Footer() {
               </li>
               <li>
                 <NavLink
+                  to="оНас"
+                  style={navLinkStyle}
+                  className="group block relative"
+                >
+                  <p className="text-[16px] text-gray-600 group-hover:text-green-500 transition-all duration-300">
+                    О нас
+                  </p>
+                  <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-green-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
                   to="мероприятия"
                   style={navLinkStyle}
                   className="group block relative"
@@ -144,18 +161,6 @@ export default function Footer() {
                     Родителям
                   </p>
                   <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-purple-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="оНас"
-                  style={navLinkStyle}
-                  className="group block relative"
-                >
-                  <p className="text-[16px] text-gray-600 group-hover:text-green-500 transition-all duration-300">
-                    О нас
-                  </p>
-                  <span className="absolute -bottom-[4px] left-0 w-0 h-[2px] bg-green-500 group-hover:w-full transition-all duration-300 rounded-full"></span>
                 </NavLink>
               </li>
             </ul>
