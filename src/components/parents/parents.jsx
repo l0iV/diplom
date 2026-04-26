@@ -47,7 +47,7 @@ const TIPS = [
   {
     icon: "🗣️",
     title: "Говорите позитивно",
-    text: "Рассказывайте о саде как о месте где интересно и весело. Читайте книжки о детском саде.",
+    text: "Рассказывайте о саде как о месте где интересно и весело.",
   },
   {
     icon: "🧸",
@@ -76,31 +76,6 @@ const CHECKLIST = [
   { emoji: "🪥", label: "Зубная щётка и паста" },
   { emoji: "🧴", label: "Крем (в холодное время года)" },
   { emoji: "🎒", label: "Мешок для сменки с подписью" },
-];
-
-/* ─── Контакты ───────────────────────────────── */
-const CONTACTS_INFO = [
-  {
-    role: "Заведующая",
-    name: "Иванова Елена Викторовна",
-    phone: "8 (48753) 2-31-92",
-    hours: "Пн–Пт 08:00–17:00",
-    emoji: "👩‍💼",
-  },
-  {
-    role: "Медсестра",
-    name: "Петрова Светлана Ивановна",
-    phone: "8 (48753) 2-31-93",
-    hours: "Пн–Пт 07:30–14:00",
-    emoji: "🩺",
-  },
-  {
-    role: "Охрана / вахта",
-    name: "Круглосуточно",
-    phone: "8 (48753) 2-31-94",
-    hours: "Ежедневно 24/7",
-    emoji: "🔐",
-  },
 ];
 
 /* ─── Аккордеон (исправлен) ─────────────────── */
@@ -281,7 +256,7 @@ export default function Parents() {
           </div>
         </div>
       </div>
-      <div className="w-full flex justify-center bg-white/90 backdrop-blur-md border-b border-slate-100 shadow-sm">
+      <div className="w-full flex justify-center">
         <div className="flex gap-[4px] w-full items-center justify-center p-[20px]">
           {NAV.map(({ key, label }) => (
             <button
@@ -508,7 +483,7 @@ export default function Parents() {
         id="section-adapt"
         className="w-full bg-white flex flex-col items-center gap-[50px]"
       >
-        <div className="flex flex-col items-center gap-[48px] w-full max-w-[1024px]">
+        <div className="flex flex-col items-center gap-[48px] w-[60%]">
           <div className="flex flex-col items-center gap-[32px] w-full">
             <div className="flex flex-col items-center gap-[12px]">
               <h2 className="text-[28px] font-extrabold">Памятка психолога</h2>
@@ -516,7 +491,7 @@ export default function Parents() {
                 «Как подготовить ребёнка к детскому саду»
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-[16px] sm:grid-cols-2 lg:grid-cols-3 w-full">
+            <div className="grid grid-cols-3 gap-[16px]  w-full">
               {TIPS.map(({ icon, title, text }) => (
                 <div
                   key={title}
@@ -533,23 +508,23 @@ export default function Parents() {
               ))}
             </div>
           </div>
-          <div className="flex flex-col items-center gap-[32px] w-full max-w-[70%]">
+          <div className="flex flex-col items-center gap-[32px] w-full">
             <div className="flex flex-col items-center gap-[8px]">
               <h2 className="text-[28px] font-extrabold">
                 Что должно быть в шкафчике?
               </h2>
-              <p className="text-[14px]">
+              <p className="text-[14px] text-slate-400">
                 Памятка для родителей — проверяйте раз в неделю
               </p>
             </div>
-            <div className="grid grid-cols-1 gap-[12px] sm:grid-cols-2 w-full">
+            <div className="grid grid-cols-3 gap-[20px] items-center w-full">
               {CHECKLIST.map(({ emoji, label }, i) => (
                 <div
                   key={i}
-                  className="flex items-center gap-[12px] rounded-[16px] bg-white px-[16px] py-[12px] shadow-sm"
+                  className="flex items-center gap-[12px] rounded-[16px] border border-purple-100 bg-purple-50 p-[20px] transition hover:-translate-y-1 hover:shadow-lg"
                 >
-                  <span className="text-[24px] shrink-0">{emoji}</span>
-                  <p className="text-[14px] font-medium text-slate-700 flex-1">
+                  <span className="text-[24px]">{emoji}</span>
+                  <p className="text-[14px] font-medium text-slate-700">
                     {label}
                   </p>
                   <span className="text-green-400 font-bold text-[16px]">
@@ -586,6 +561,9 @@ export default function Parents() {
           </div>
         </div>
       </div>
+      <div className="w-full flex justify-center py-[40px]">
+        <SliderReviews />
+      </div>
       <div
         id="section-faq"
         className="w-full flex flex-col items-center py-[56px] px-[16px] bg-white"
@@ -602,9 +580,6 @@ export default function Parents() {
           </div>
           <Accordion items={FAQ} />
         </div>
-      </div>
-      <div className="w-full flex justify-center py-[40px]">
-        <SliderReviews />
       </div>
     </section>
   );

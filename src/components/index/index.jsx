@@ -37,8 +37,6 @@ const GROUP_COLORS = [
   },
 ];
 
-/* ── Статистика (новый раздел) ────────────────── */
-
 export default function Index() {
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -73,7 +71,7 @@ export default function Index() {
         <div className="w-[80%] flex flex-col gap-[40px]">
           <div className="flex items-center gap-8 justify-between">
             <div className="text-start max-w-2xl flex flex-col gap-[10px]">
-              <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 text-xs font-semibold text-green-700 shadow-sm">
+              <div className="inline-flex items-center gap-2 px-4 text-xs font-semibold text-green-700">
                 <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
                 Принимаем заявки на 2025–2026 учебный год
               </div>
@@ -95,7 +93,7 @@ export default function Index() {
               <div className="flex items-center gap-[10px]">
                 <NavLink to="/родителям">
                   <span className="inline-flex items-center gap-2 rounded-full bg-green-500 p-[12px] text-[15px] font-bold text-white shadow-lg shadow-green-200 transition-all hover:-translate-y-0.5 hover:bg-green-600 hover:shadow-xl">
-                    📝 Подать заявку
+                    Подать заявку
                   </span>
                 </NavLink>
                 <NavLink to="/оНас">

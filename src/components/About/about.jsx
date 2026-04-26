@@ -77,8 +77,8 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="w-[90%] bg-white rounded-[30px] p-[40px] shadow-lg intelligence-grid">
-        <div className="text-center mb-[40px]">
+      <div className="w-[90%] bg-white rounded-[30px] p-[40px] shadow-lg intelligence-grid flex flex-col gap-[20px]">
+        <div className="text-center ">
           <h2 className="text-[35px] font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent section-title">
             Развиваем 10 видов интеллекта
           </h2>
