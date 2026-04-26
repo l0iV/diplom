@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { useState, useEffect, useRef } from "react";
+import { NavLink } from "react-router-dom";
 import groupsData from "./listIndex.jsx/listIndex";
 import logoMain from "../../assets/лого без фона.png";
 import SliderNews from "../sliderNews/sliderRooms";
@@ -9,142 +9,232 @@ import listLessons from "./listIndex.jsx/listLessons";
 import listGerb from "./listIndex.jsx/listGerb";
 import teachersList from "../sliderTeachers/list/listTeachers";
 
+/* ── Цвета карточек групп ─────────────────────── */
+const GROUP_COLORS = [
+  {
+    bg: "from-sky-50 to-blue-100",
+    accent: "text-sky-700",
+    border: "border-sky-200",
+    badge: "bg-sky-100 text-sky-700",
+  },
+  {
+    bg: "from-rose-50 to-pink-100",
+    accent: "text-rose-700",
+    border: "border-rose-200",
+    badge: "bg-rose-100 text-rose-700",
+  },
+  {
+    bg: "from-green-50 to-emerald-100",
+    accent: "text-green-700",
+    border: "border-green-200",
+    badge: "bg-green-100 text-green-700",
+  },
+  {
+    bg: "from-amber-50 to-yellow-100",
+    accent: "text-amber-700",
+    border: "border-amber-200",
+    badge: "bg-amber-100 text-amber-700",
+  },
+];
+
+/* ── Статистика (новый раздел) ────────────────── */
+
 export default function Index() {
-  // Состояния для модалки группы
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedTeacher, setSelectedTeacher] = useState(null);
+  const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
 
-  // Состояния для модалки педагога
-
-  // Функция открытия модалки группы
-  const handleGroupClick = (group) => {
-    setSelectedGroup(group);
+  const openGroup = (g) => {
+    setSelectedGroup(g);
     setIsModalOpen(true);
   };
-
-  // Функция закрытия модалки группы
-  const closeModal = () => {
-    setIsModalOpen(false);
+  const closeGroup = () => {
     setSelectedGroup(null);
+    setIsModalOpen(false);
   };
-
-  // Функция поиска фото воспитателя
-  const getTeacherImage = (teacherName) => {
-    const teacher = teachersList.find((t) => t.name === teacherName);
-    return teacher ? teacher.image : null;
+  const openTeacher = (name) => {
+    const t = teachersList.find((t) => t.name === name);
+    if (t) {
+      setSelectedTeacher(t);
+      setIsTeacherModalOpen(true);
+    }
   };
+  const closeTeacher = () => {
+    setSelectedTeacher(null);
+    setIsTeacherModalOpen(false);
+  };
+  const getTeacherImage = (name) =>
+    teachersList.find((t) => t.name === name)?.image ?? null;
 
   return (
-    <section className="flex flex-col w-full h-full items-center gap-[50px]">
-      <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] flex flex-col gap-[50px] items-center justify-center p-[40px]">
-        <div className="w-[90%] flex flex-col items-center gap-[50px]">
-          <div className="flex items-center w-full justify-between">
-            <div className="text-start">
-              <h1 className="text-[45px] font-bold text-green-700">
-                Муниципальное бюджетное дошкольное
-              </h1>
-              <p className="text-[35px] font-bold text-gray-700">
-                образовательное учреждение "Детский сад
-              </p>
-              <p className="text-[35px] font-bold text-gray-700">
-                комбинированного вида №18"
-              </p>
-              <p className="text-[18px] text-gray-500">
-                МБДОУ "ДС комбинированного вида №18"
-              </p>
+    <section className="flex flex-col w-full items-center gap-[30px]">
+      <div className="w-full bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 p-[20px] flex justify-center">
+        <div className="w-[80%] flex flex-col gap-[40px]">
+          <div className="flex items-center gap-8 justify-between">
+            <div className="text-start max-w-2xl flex flex-col gap-[10px]">
+              <div className="inline-flex items-center gap-2 rounded-full bg-white/80 px-4 text-xs font-semibold text-green-700 shadow-sm">
+                <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
+                Принимаем заявки на 2025–2026 учебный год
+              </div>
+              <div className="flex flex-col gap-[10px]">
+                <h1 className="text-[40px] font-bold flex flex-col items-start">
+                  Муниципальное бюджетное
+                  <span className="text-green-600">
+                    дошкольное образовательное
+                  </span>
+                  учреждение
+                </h1>
+                <p className="text-[25px] text-slate-700">
+                  «Детский сад комбинированного вида №18»
+                </p>
+                <p className=" text-slate-400 text-[18px]">
+                  МБДОУ «ДС комбинированного вида №18»
+                </p>
+              </div>
+              <div className="flex items-center gap-[10px]">
+                <NavLink to="/родителям">
+                  <span className="inline-flex items-center gap-2 rounded-full bg-green-500 p-[12px] text-[15px] font-bold text-white shadow-lg shadow-green-200 transition-all hover:-translate-y-0.5 hover:bg-green-600 hover:shadow-xl">
+                    📝 Подать заявку
+                  </span>
+                </NavLink>
+                <NavLink to="/оНас">
+                  <span className="inline-flex items-center gap-2 rounded-full border-2 border-slate-300 bg-white px-6 py-3 text-sm font-bold text-slate-700 transition-all hover:-translate-y-0.5 hover:border-green-400 hover:text-green-700">
+                    О нас →
+                  </span>
+                </NavLink>
+              </div>
             </div>
-            <div>
-              <img src={logoMain} alt="" className="w-[500px]" />
+            <div className="">
+              <img
+                src={logoMain}
+                alt="Логотип ДС №18"
+                className="w-[400px]  drop-shadow-2xl transition-transform hover:scale-105"
+              />
             </div>
           </div>
-          <div className="bg-white rounded-[30px] p-[30px] shadow-lg w-[90%] flex flex-col items-center gap-[30px]">
-            <h2 className="text-[28px] font-bold text-green-600 text-center">
+
+          <div className="rounded-3xl bg-white/80 backdrop-blur-md p-5 shadow-lg">
+            <h2 className="text-center text-lg font-bold text-green-700">
               Наши контакты
             </h2>
-            <div className="flex items-center gap-[25px] justify-around w-full">
-              <div className="flex gap-[15px] items-start">
-                <span className="text-[25px]">🏠</span>
-                <div>
-                  <p className="font-bold text-[16px]">Адрес:</p>
-                  <p className="text-gray-600 text-[14px]">
-                    301364, Тульская область, г. Алексин, ул. Заводская, д. 5-а
-                  </p>
+            <div className="flex items-center justify-between">
+              {[
+                {
+                  icon: "🏠",
+                  label: "Адрес",
+                  value:
+                    "301364, Тульская обл., г. Алексин, ул. Заводская, д. 5-а",
+                },
+                {
+                  icon: "📞",
+                  label: "Контактный телефон",
+                  value: "8 (48753) 2-31-92",
+                },
+                {
+                  icon: "✉️",
+                  label: "Электронная почта",
+                  value: "aleksin.ds18@tularegion.org",
+                },
+                {
+                  icon: "⏰",
+                  label: "Режим работы",
+                  value: "пн — пт: 07:00—19:00",
+                },
+              ].map(({ icon, label, value }) => (
+                <div
+                  key={label}
+                  className="flex items-start gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-white hover:shadow-md"
+                >
+                  <span className="text-xl">{icon}</span>
+                  <div>
+                    <p className="text-xs font-semibold text-slate-500">
+                      {label}
+                    </p>
+                    <p className="text-sm font-medium text-slate-700 leading-snug">
+                      {value}
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <div className="flex gap-[15px] items-start">
-                <span className="text-[25px]">📞</span>
-                <div>
-                  <p className="font-bold text-[16px]">Контактный телефон:</p>
-                  <p className="text-gray-600 text-[14px]">8 (48753) 2-31-92</p>
-                </div>
-              </div>
-              <div className="flex gap-[15px] items-start">
-                <span className="text-[25px]">✉️</span>
-                <div>
-                  <p className="font-bold text-[16px]">Электронная почта:</p>
-                  <p className="text-gray-600 text-[14px]">
-                    aleksin.ds18@tularegion.org
-                  </p>
-                </div>
-              </div>
-              <div className="flex gap-[15px] items-start">
-                <span className="text-[25px]">⏰</span>
-                <div>
-                  <p className="font-bold text-[16px]">Режим работы:</p>
-                  <p className="text-gray-600 text-[14px]">
-                    пн — пт: 07:00—19:00
-                  </p>
-                  <p className="text-gray-500 text-[12px]">
-                    выходные: суббота-воскресенье
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </div>
       </div>
-      <div className="w-[95%] flex flex-col gap-[30px]">
-        <h1 className="font-bold text-center text-[40px] text-blue-800">
-          Группы детского сада
-        </h1>
-        <div className="flex items-center justify-around w-full gap-[20px]">
-          {groupsData.map((group) => (
-            <div
-              key={group.id}
-              onClick={() => handleGroupClick(group)}
-              className="bg-white rounded-[20px] p-[20px] shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-[5px] flex flex-col gap-[30px] min-w-[400px] min-h-[250px] cursor-pointer"
-            >
-              <div className="flex items-center gap-[15px]">
-                <img
-                  src={group.icon}
-                  alt={`Иконка ${group.name}`}
-                  className="w-[50px]"
-                />
-                <div>
-                  <p className="text-xl font-bold">{group.name}</p>
-                  <p className="text-gray-500 text-[14px]">{group.age}</p>
-                </div>
-              </div>
-              <div className="border-t pt-[15px]">
-                <p className="text-xl font-bold text-blue-600 mb-[10px]">
-                  {group.groupName}
-                </p>
-                <p className="text-gray-400 text-[14px] mb-[5px]">
-                  Воспитатели:
-                </p>
-                <ul className="space-y-[5px]">
-                  {group.teachers.map((teacher, index) => (
-                    <li key={index} className="text-gray-600 text-[14px]">
-                      {teacher}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-          ))}
+      {/* ══════════════════════════════════════════
+          ГРУППЫ
+      ══════════════════════════════════════════ */}
+      <div className="w-full bg-white flex items-center h-[500px]">
+        <div className="w-full flex flex-col items-center justify-center gap-[20px]">
+          <div className=" text-center">
+            <h2 className="text-2xl font-extrabold text-blue-800">
+              Группы детского сада
+            </h2>
+            <p className=" text-sm text-slate-400">
+              Нажмите на группу, чтобы узнать подробнее
+            </p>
+          </div>
+          <div className="flex items-center justify-around gap-[50px] h-max">
+            {groupsData.map((group, i) => {
+              const c = GROUP_COLORS[i % GROUP_COLORS.length];
+              return (
+                <button
+                  key={group.id}
+                  onClick={() => openGroup(group)}
+                  className={`group min-h-[300px] min-w-[300px] flex flex-col gap-4 rounded-3xl border-2 bg-gradient-to-br ${c.bg} ${c.border}
+                    p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer`}
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="rounded-2xl bg-white p-2 shadow-sm">
+                      <img
+                        src={group.icon}
+                        alt={group.name}
+                        className="h-10 w-10 object-contain"
+                      />
+                    </div>
+                    <div>
+                      <p className={`text-base font-bold ${c.accent}`}>
+                        {group.name}
+                      </p>
+                      <span
+                        className={`rounded-full px-2 py-0.5 text-xs font-semibold ${c.badge}`}
+                      >
+                        {group.age}
+                      </span>
+                    </div>
+                  </div>
+                  <div className="border-t border-white/60 pt-4">
+                    <p className="text-base font-bold text-blue-700">
+                      {group.groupName}
+                    </p>
+                    <p className="mt-2 text-xs text-slate-400 uppercase tracking-wide">
+                      Воспитатели
+                    </p>
+                    <ul className="mt-1 flex flex-col gap-1">
+                      {group.teachers.map((t, idx) => (
+                        <li
+                          key={idx}
+                          className="text-sm text-slate-600 leading-snug"
+                        >
+                          {t}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div
+                    className={`mt-auto self-end text-xs font-semibold ${c.accent} group-hover:translate-x-1 transition-transform`}
+                  >
+                    Подробнее →
+                  </div>
+                </button>
+              );
+            })}
+          </div>
         </div>
       </div>
-      <SliderNews />
+      <div className="w-[85%] flex justify-center">
+        <SliderNews />
+      </div>
       <div className="w-[90%] flex flex-col items-center gap-[30px] min-h-[550px]">
         <p className="text-center font-bold text-[40px] text-red-600">
           Тренируем навыки будущего
@@ -177,136 +267,149 @@ export default function Index() {
           })}
         </div>
       </div>
-      <ul className="flex flex-col gap-[30px] items-center banners w-[90%]">
-        <li>
-          <img
-            src={god}
-            alt=""
-            className="cursor-pointer w-full max-w-[700px] rounded-[20px] shadow-lg hover:shadow-2xl transition-all"
-          />
-        </li>
-        <li>
-          <img
-            src={banner}
-            alt=""
-            className="cursor-pointer w-full max-w-[700px] rounded-[20px] shadow-lg hover:shadow-2xl transition-all"
-          />
-        </li>
-      </ul>
-      <div className="flex items-center w-[70%] flex-col gap-[20px] border-gray-200 border-t-[1px]">
-        <div className="flex items-center justify-center gap-[40px] w-[90%] py-[10px]">
+      <div className="w-[80%] flex items-center justify-center mih-h-[300px] ">
+        <div className="flex w-[60%] items-center justify-center h-full">
+          <div className="flex items-center w-full gap-[20px] justify-center h-full">
+            {[god, banner].map((src, i) => (
+              <img
+                key={i}
+                src={src}
+                alt=""
+                className="w-[60%] h-full rounded-3xl shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl"
+              />
+            ))}
+          </div>
+        </div>
+      </div>
+      <div className="w-full bg-white py-12 px-4">
+        <div className="mx-auto max-w-4xl flex flex-wrap items-center justify-center gap-8 border-y border-slate-100 py-10">
           {listGerb.map((item) => (
             <a
               key={item.id}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-[15px] w-[200px] hover:scale-105 transition-all duration-300"
+              className="flex flex-col items-center gap-3 w-36 transition-all duration-300 hover:scale-105 group"
             >
               <img
                 src={item.img}
                 alt={item.title}
-                className="h-[70px] w-auto object-contain"
+                className="h-14 w-auto object-contain"
               />
-              <p className="text-center text-gray-500 text-[12px] hover:text-blue-500 transition-colors">
+              <p className="text-center text-xs text-slate-400 leading-snug group-hover:text-blue-500 transition-colors">
                 {item.title}
               </p>
             </a>
           ))}
         </div>
-        <div className="flex flex-col items-center gap-[10px]">
-          <p className="text-center text-gray-700">
+        <div className="text-center">
+          <p className="text-sm text-slate-500">
             Столкнулись с нарушением закона? Сообщите нам
           </p>
-          <NavLink to="https://licey3-kras.gosuslugi.ru/netcat_files/userfiles/2025_AntiKor/Federalnyy_zakon_O_protivodeystvii_korruptsii.pdf">
-            <p className="cursor-pointer underline text-blue-500 hover:text-blue-700 transition-colors text-center">
-              Противодействие коррупции
-            </p>
-          </NavLink>
+          <a
+            href="https://licey3-kras.gosuslugi.ru/netcat_files/userfiles/2025_AntiKor/Federalnyy_zakon_O_protivodeystvii_korruptsii.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm font-semibold text-blue-500 underline underline-offset-2 hover:text-blue-700 transition-colors"
+          >
+            Противодействие коррупции
+          </a>
         </div>
       </div>
-
-      {/* МОДАЛЬНОЕ ОКНО ГРУППЫ */}
-      {isModalOpen && selectedGroup && (
-        <div
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
-          onClick={closeModal}
-        >
-          <div
-            className="bg-white rounded-[30px] max-w-[500px] w-[90%] max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* Кнопка закрытия */}
-            <button
-              onClick={closeModal}
-              className="absolute top-[20px] right-[20px] w-[35px] h-[35px] rounded-full bg-gray-200 hover:bg-gray-300 flex items-center justify-center text-[20px] transition-all"
+      {isModalOpen &&
+        selectedGroup &&
+        (() => {
+          const i = groupsData.findIndex((g) => g.id === selectedGroup.id);
+          const c = GROUP_COLORS[i % GROUP_COLORS.length];
+          return (
+            <div
+              onClick={closeGroup}
+              className="animate-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
             >
-              ✕
-            </button>
-
-            {/* Шапка */}
-            <div className="flex flex-col items-center gap-[15px] p-[30px] border-b">
-              <div className="text-[60px]">
-                <img src={selectedGroup.icon} alt="" className="w-[60px]" />
-              </div>
-              <h2 className="text-[28px] font-bold text-blue-800 text-center">
-                {selectedGroup.name}
-              </h2>
-              <p className="text-[18px] text-gray-500">{selectedGroup.age}</p>
-              <p className="text-[20px] font-bold text-blue-600 text-center">
-                {selectedGroup.groupName}
-              </p>
-            </div>
-
-            {/* Педагоги - теперь кликабельные */}
-            <div className="p-[30px]">
-              <h3 className="text-[18px] font-bold text-gray-700 mb-[15px]">
-                👩‍🏫 Педагоги группы:
-              </h3>
-              <div className="flex flex-col gap-[15px]">
-                {selectedGroup.teachers.map((teacher, index) => {
-                  const teacherImage = getTeacherImage(teacher);
-                  return (
-                    <div
-                      key={index}
-                      onClick={() => handleTeacherClick(teacher)}
-                      className="flex items-center gap-[15px] p-[10px] bg-gray-50 rounded-[15px] cursor-pointer hover:bg-gray-100 transition-all hover:scale-[1.02]"
-                    >
-                      <div className="w-[50px] h-[50px] rounded-full overflow-hidden bg-gradient-to-r from-blue-400 to-purple-400 flex items-center justify-center text-[25px]">
-                        {teacherImage ? (
-                          <img
-                            src={teacherImage}
-                            alt={teacher}
-                            className="w-full h-full object-cover"
-                          />
-                        ) : (
-                          "👩‍🏫"
-                        )}
-                      </div>
-                      <div className="flex-1">
-                        <p className="font-bold text-[16px] text-gray-800">
-                          {teacher}
-                        </p>
-                        <p className="text-[12px] text-gray-500">Воспитатель</p>
-                      </div>
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Кнопка закрытия */}
-            <div className="p-[30px] pt-0">
-              <button
-                onClick={closeModal}
-                className="w-full py-[12px] bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-[20px] font-bold hover:opacity-90 transition-all"
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="animate-modal relative flex max-h-[90vh] w-full max-w-md flex-col overflow-y-auto rounded-3xl bg-white"
               >
-                Закрыть
-              </button>
+                {/* Шапка */}
+                <div
+                  className={`flex flex-col items-center gap-3 rounded-t-3xl bg-gradient-to-br ${c.bg} p-8`}
+                >
+                  <button
+                    onClick={closeGroup}
+                    className="absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full bg-white/70 text-slate-500 transition hover:bg-white"
+                  >
+                    ✕
+                  </button>
+                  <div className="rounded-2xl bg-white p-3 shadow-md">
+                    <img
+                      src={selectedGroup.icon}
+                      alt=""
+                      className="h-12 w-12 object-contain"
+                    />
+                  </div>
+                  <h2
+                    className={`text-xl font-extrabold text-center ${c.accent}`}
+                  >
+                    {selectedGroup.name}
+                  </h2>
+                  <span
+                    className={`rounded-full px-3 py-1 text-xs font-bold ${c.badge}`}
+                  >
+                    {selectedGroup.age}
+                  </span>
+                  <p className="text-base font-bold text-blue-700">
+                    {selectedGroup.groupName}
+                  </p>
+                </div>
+
+                {/* Педагоги */}
+                <div className="flex flex-col gap-3 p-6">
+                  <h3 className="text-sm font-bold uppercase tracking-wide text-slate-400">
+                    👩‍🏫 Педагоги группы
+                  </h3>
+                  {selectedGroup.teachers.map((teacher, idx) => {
+                    const img = getTeacherImage(teacher);
+                    return (
+                      <div
+                        key={idx}
+                        onClick={() => openTeacher(teacher)}
+                        className="flex cursor-pointer items-center gap-3 rounded-2xl bg-slate-50 p-3 transition hover:bg-slate-100 hover:scale-[1.01]"
+                      >
+                        <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-xl">
+                          {img ? (
+                            <img
+                              src={img}
+                              alt={teacher}
+                              className="h-full w-full object-cover"
+                            />
+                          ) : (
+                            "👩‍🏫"
+                          )}
+                        </div>
+                        <div className="flex-1 min-w-0">
+                          <p className="truncate text-sm font-semibold text-slate-800">
+                            {teacher}
+                          </p>
+                          <p className="text-xs text-slate-400">Воспитатель</p>
+                        </div>
+                        <span className="text-blue-400 text-sm">→</span>
+                      </div>
+                    );
+                  })}
+                </div>
+
+                <div className="px-6 pb-6">
+                  <button
+                    onClick={closeGroup}
+                    className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 text-sm font-bold text-white transition hover:opacity-90"
+                  >
+                    Закрыть
+                  </button>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
-      )}
+          );
+        })()}
     </section>
   );
 }

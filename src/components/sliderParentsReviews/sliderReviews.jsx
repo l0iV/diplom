@@ -15,7 +15,7 @@ export default function SliderReviews() {
   }
 
   return (
-    <div className="w-[90%] flex flex-col gap-[40px] text-center min-h-[300px] items-center">
+    <div className="w-[70%] flex flex-col gap-[40px] text-center min-h-[300px] items-center">
       <h2 className="font-bold text-green-800 text-[30px]">Отзывы родителей</h2>
 
       <div className="w-full relative">

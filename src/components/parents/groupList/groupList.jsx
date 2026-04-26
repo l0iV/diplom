@@ -60,7 +60,7 @@ const menuData = [
   },
   {
     key: "mladshaya",
-    name: "Разновозрастная группа (3 - 4 года)",
+    name: "Карлосон (3 - 4 года)",
     days: (() => {
       const workDays = [];
       let currentDate = new Date();
@@ -110,7 +110,7 @@ const menuData = [
   },
   {
     key: "srednyaya",
-    name: "Старшая группа (4 - 5 лет)",
+    name: "Буратино (4 - 5 лет)",
     days: (() => {
       const workDays = [];
       let currentDate = new Date();
@@ -158,7 +158,7 @@ const menuData = [
   },
   {
     key: "starshaya",
-    name: "Подготовительная группа (5 - 6 лет)",
+    name: "Незнайка (5 - 6 лет)",
     days: (() => {
       const workDays = [];
       let currentDate = new Date();

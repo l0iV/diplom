@@ -9,22 +9,18 @@ const CATEGORIES = [
   { key: "health", label: "Здоровье", emoji: "💊" },
   { key: "other", label: "Другое", emoji: "📌" },
 ];
-
 const CATEGORY_STYLE = {
   ecology: { badge: "bg-green-100 text-green-700" },
   art: { badge: "bg-purple-100 text-purple-700" },
-  holiday: { badge: "bg-yellow-100 text-yellow-700" },
+  holiday: { badge: "bg-yellow-100 text-yellow" },
   sport: { badge: "bg-blue-100 text-blue-700" },
   health: { badge: "bg-red-100 text-red-700" },
   other: { badge: "bg-gray-100 text-gray-600" },
 };
-
 export default function Events() {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [searchQuery, setSearchQuery] = useState("");
-
-  // ✅ ИСПРАВЛЕНО: используем events_data
   const filtered = useMemo(
     () =>
       events_data.filter((e) => {
@@ -40,7 +36,7 @@ export default function Events() {
 
   return (
     <section className="events-section flex flex-col items-center w-full gap-10">
-      <div className="events-hero w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] flex flex-col items-center gap-[16px] h-[250px] justify-center">
+      <div className="events-hero w-full  bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 flex flex-col items-center gap-[16px] h-[250px] justify-center">
         <div className="flex items-center gap-3">
           <h1 className="events-hero-title font-bold text-[40px] text-green-700">
             Новости и мероприятия

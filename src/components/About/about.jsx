@@ -25,7 +25,7 @@ export default function About() {
 
   return (
     <section className="w-full flex flex-col items-center gap-[60px] h-full">
-      <div className="w-full bg-[linear-gradient(94.37deg,#d5ffd6,#ffbef9_74.09%)] flex justify-center">
+      <div className="w-full  bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 flex justify-center">
         <div className="w-[95%] flex flex-col gap-[40px]">
           <div className="flex flex-col items-center justify-center p-[30px] gap-[10px]">
             <div>
