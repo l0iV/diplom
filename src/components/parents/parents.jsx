@@ -1,84 +1,12 @@
 import { useState } from "react";
 import baby from "../../assets/baby.png";
-import menuData from "./groupList/groupList";
-import officialDocuments from "./groupList/infoList";
+import menuData from "./List/groupList";
+import officialDocuments from "./List/infoList";
 import SliderReviews from "../sliderParentsReviews/sliderReviews";
+import FAQ from "./List/faqList";
+import TIPS from "./List/listTips";
+import CHECKLIST from "./List/CheckList";
 
-/* ─── FAQ ────────────────────────────────────── */
-const FAQ = [
-  {
-    q: "Во сколько начинается и заканчивается рабочий день?",
-    a: "Детский сад работает с понедельника по пятницу с 07:00 до 19:00. Просим забирать детей не позднее 18:45.",
-  },
-  {
-    q: "Что делать, если ребёнок заболел?",
-    a: "Позвоните в детский сад до 08:00 и предупредите воспитателя группы. После болезни необходима справка от педиатра.",
-  },
-  {
-    q: "Какие документы нужны при поступлении?",
-    a: "Свидетельство о рождении ребёнка, паспорт родителя, медицинская карта (форма 026/у), направление из управления образования.",
-  },
-  {
-    q: "Платное ли питание?",
-    a: "Питание частично оплачивается родителями. Точный размер родительской платы устанавливается ежегодно администрацией учреждения.",
-  },
-  {
-    q: "Можно ли забрать ребёнка в середине дня?",
-    a: "Да. Сообщите воспитателю заранее. Для посторонних лиц необходима доверенность от родителей.",
-  },
-  {
-    q: "Есть ли дополнительные кружки и секции?",
-    a: "Да! Рисование, лепка, музыка, физкультура — всё включено в программу. Следите за расписанием на сайте.",
-  },
-];
-
-/* ─── Советы психолога ───────────────────────── */
-const TIPS = [
-  {
-    icon: "📅",
-    title: "Начинайте заранее",
-    text: "За 2–3 недели подстройте режим дня ребёнка: подъём в 7:00, дневной сон в 13:00.",
-  },
-  {
-    icon: "🕐",
-    title: "Короткие расставания",
-    text: "Первые дни оставляйте на 1–2 часа. Постепенно увеличивайте. Всегда прощайтесь — не исчезайте!",
-  },
-  {
-    icon: "🗣️",
-    title: "Говорите позитивно",
-    text: "Рассказывайте о саде как о месте где интересно и весело.",
-  },
-  {
-    icon: "🧸",
-    title: "Любимая игрушка",
-    text: "Разрешите взять небольшую игрушку — она даёт психологическую опору в новой обстановке.",
-  },
-  {
-    icon: "🤗",
-    title: "Ритуал прощания",
-    text: "Придумайте «секретный» ритуал: особое рукопожатие, поцелуй в нос. Снижает тревогу у обоих.",
-  },
-  {
-    icon: "💬",
-    title: "Расспрашивайте вечером",
-    text: "«Что было вкусно?», «С кем играл?» — конкретные вопросы помогают осмыслить день.",
-  },
-];
-
-/* ─── Шкафчик ────────────────────────────────── */
-const CHECKLIST = [
-  { emoji: "👟", label: "Сменная обувь (чешки или кроссовки)" },
-  { emoji: "👕", label: "Сменная одежда (минимум 2 комплекта)" },
-  { emoji: "🥿", label: "Тапочки для помещения" },
-  { emoji: "🛌", label: "Пижама для дневного сна" },
-  { emoji: "🧴", label: "Влажные салфетки" },
-  { emoji: "🪥", label: "Зубная щётка и паста" },
-  { emoji: "🧴", label: "Крем (в холодное время года)" },
-  { emoji: "🎒", label: "Мешок для сменки с подписью" },
-];
-
-/* ─── Аккордеон (исправлен) ─────────────────── */
 function Accordion({ items }) {
   const [open, setOpen] = useState(null);
   return (
@@ -114,7 +42,6 @@ function Accordion({ items }) {
   );
 }
 
-/* ─── Модалка «Задать вопрос» ────────────────── */
 function QuestionModal({ open, onClose }) {
   const [val, setVal] = useState({ name: "", phone: "", msg: "" });
   const [sent, setSent] = useState(false);
@@ -190,9 +117,6 @@ function QuestionModal({ open, onClose }) {
   );
 }
 
-/* ═══════════════════════════════════════════════
-   ГЛАВНЫЙ КОМПОНЕНТ
-═══════════════════════════════════════════════ */
 export default function Parents() {
   const [formData, setFormData] = useState({
     parentName: "",
@@ -251,7 +175,7 @@ export default function Parents() {
               onClick={() => setQuestionOpen(true)}
               className="flex items-center gap-[8px] rounded-full bg-blue-500 px-[24px] py-[12px] text-[14px] font-bold text-white shadow-lg shadow-blue-200 transition hover:-translate-y-0.5 hover:bg-blue-600"
             >
-              💬 Задать вопрос руководству
+              Задать вопрос руководству
             </button>
           </div>
         </div>
@@ -566,7 +490,7 @@ export default function Parents() {
       </div>
       <div
         id="section-faq"
-        className="w-full flex flex-col items-center py-[56px] px-[16px] bg-white"
+        className="w-full flex flex-col items-center bg-white"
       >
         <div className="flex flex-col items-center gap-[32px] w-full max-w-[1024px]">
           <div className="flex flex-col items-center gap-[12px]">

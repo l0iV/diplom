@@ -8,34 +8,7 @@ import banner from "../../assets/banner_news.png";
 import listLessons from "./listIndex.jsx/listLessons";
 import listGerb from "./listIndex.jsx/listGerb";
 import teachersList from "../sliderTeachers/list/listTeachers";
-
-/* ── Цвета карточек групп ─────────────────────── */
-const GROUP_COLORS = [
-  {
-    bg: "from-sky-50 to-blue-100",
-    accent: "text-sky-700",
-    border: "border-sky-200",
-    badge: "bg-sky-100 text-sky-700",
-  },
-  {
-    bg: "from-rose-50 to-pink-100",
-    accent: "text-rose-700",
-    border: "border-rose-200",
-    badge: "bg-rose-100 text-rose-700",
-  },
-  {
-    bg: "from-green-50 to-emerald-100",
-    accent: "text-green-700",
-    border: "border-green-200",
-    badge: "bg-green-100 text-green-700",
-  },
-  {
-    bg: "from-amber-50 to-yellow-100",
-    accent: "text-amber-700",
-    border: "border-amber-200",
-    badge: "bg-amber-100 text-amber-700",
-  },
-];
+import GROUP_COLORS from "./listIndex.jsx/colorGroupList";
 
 export default function Index() {
   const [selectedGroup, setSelectedGroup] = useState(null);
@@ -68,22 +41,24 @@ export default function Index() {
   return (
     <section className="flex flex-col w-full items-center gap-[30px]">
       <div className="w-full bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 p-[20px] flex justify-center">
-        <div className="w-[80%] flex flex-col gap-[40px]">
-          <div className="flex items-center gap-8 justify-between">
-            <div className="text-start max-w-2xl flex flex-col gap-[10px]">
+        <div className="w-[80%] flex flex-col gap-[40px] items-center full-index-title">
+          <div className="flex items-center gap-[32px] justify-between w-full main-block-title">
+            <div className="text-start flex flex-col gap-[10px] block-title">
               <div className="inline-flex items-center gap-2 px-4 text-xs font-semibold text-green-700">
                 <span className="h-2 w-2 rounded-full bg-green-500 animate-pulse" />
                 Принимаем заявки на 2025–2026 учебный год
               </div>
-              <div className="flex flex-col gap-[10px]">
+              <div className="name-detSad">
                 <h1 className="text-[40px] font-bold flex flex-col items-start">
                   Муниципальное бюджетное
-                  <span className="text-green-600">
-                    дошкольное образовательное
-                  </span>
-                  учреждение
                 </h1>
-                <p className="text-[25px] text-slate-700">
+                <p className="text-green-600 text-[40px] font-bold">
+                  дошкольное образовательное
+                </p>
+                <p className="text-[40px] font-bold">учреждение</p>
+              </div>
+              <div className="flex flex-col items-start gap-[10px] initials">
+                <p className="text-[18px] text-slate-700">
                   «Детский сад комбинированного вида №18»
                 </p>
                 <p className=" text-slate-400 text-[18px]">
@@ -103,7 +78,7 @@ export default function Index() {
                 </NavLink>
               </div>
             </div>
-            <div className="">
+            <div className="logoDetSad">
               <img
                 src={logoMain}
                 alt="Логотип ДС №18"
@@ -112,11 +87,11 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="rounded-3xl bg-white/80 backdrop-blur-md p-5 shadow-lg">
+          <div className="rounded-3xl bg-white/80 backdrop-blur-md p-5 shadow-lg main-contacts flex flex-col justify-center w-full">
             <h2 className="text-center text-lg font-bold text-green-700">
               Наши контакты
             </h2>
-            <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between block-contacts">
               {[
                 {
                   icon: "🏠",
@@ -142,7 +117,7 @@ export default function Index() {
               ].map(({ icon, label, value }) => (
                 <div
                   key={label}
-                  className="flex items-start gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-white hover:shadow-md"
+                  className="flex items-start gap-3 rounded-2xl bg-slate-50 p-4 transition hover:bg-white hover:shadow-md content-contacts"
                 >
                   <span className="text-xl">{icon}</span>
                   <div>
@@ -159,11 +134,9 @@ export default function Index() {
           </div>
         </div>
       </div>
-      {/* ══════════════════════════════════════════
-          ГРУППЫ
-      ══════════════════════════════════════════ */}
-      <div className="w-full bg-white flex items-center h-[500px]">
-        <div className="w-full flex flex-col items-center justify-center gap-[20px]">
+      {/*ГРУППЫ */}
+      <div className="w-full bg-white flex items-center min-h-[500px]">
+        <div className="w-full flex flex-col items-center justify-center gap-[20px] ">
           <div className=" text-center">
             <h2 className="text-2xl font-extrabold text-blue-800">
               Группы детского сада
@@ -172,7 +145,7 @@ export default function Index() {
               Нажмите на группу, чтобы узнать подробнее
             </p>
           </div>
-          <div className="flex items-center justify-around gap-[50px] h-max">
+          <div className="flex items-center justify-around gap-[50px] h-max  main-card-group">
             {groupsData.map((group, i) => {
               const c = GROUP_COLORS[i % GROUP_COLORS.length];
               return (
@@ -180,7 +153,7 @@ export default function Index() {
                   key={group.id}
                   onClick={() => openGroup(group)}
                   className={`group min-h-[300px] min-w-[300px] flex flex-col gap-4 rounded-3xl border-2 bg-gradient-to-br ${c.bg} ${c.border}
-                    p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer`}
+                    p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer border-2 border-black`}
                 >
                   <div className="flex items-center gap-3">
                     <div className="rounded-2xl bg-white p-2 shadow-sm">
@@ -279,20 +252,20 @@ export default function Index() {
           </div>
         </div>
       </div>
-      <div className="w-full bg-white py-12 px-4">
-        <div className="mx-auto max-w-4xl flex flex-wrap items-center justify-center gap-8 border-y border-slate-100 py-10">
+      <div className="w-full bg-white flex flex-col items-center gap-[40px] min-h-[400px] justify-center">
+        <div className="w-full flex items-center justify-center gap-[32px]">
           {listGerb.map((item) => (
             <a
               key={item.id}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 w-36 transition-all duration-300 hover:scale-105 group"
+              className="flex flex-col items-center gap-3 max-w-[200px] transition-all duration-300 hover:scale-105 group"
             >
               <img
                 src={item.img}
                 alt={item.title}
-                className="h-14 w-auto object-contain"
+                className="object-contain w-[80px] h-[80px]"
               />
               <p className="text-center text-xs text-slate-400 leading-snug group-hover:text-blue-500 transition-colors">
                 {item.title}
