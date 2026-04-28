@@ -213,7 +213,7 @@
     grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (min-width: 420px) and (max-width: 719px) {
+@media (min-width: 630px) and (max-width: 719px) {
   .main-card-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -224,5 +224,11 @@
   .group {
     min-width: 200px;
     min-height: 200px;
+  }
+}
+@media (min-width: 320px) and (max-width: 629px) {
+  .main-card-group {
+    display: flex;
+    flex-direction: column;
   }
 }
