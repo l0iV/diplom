@@ -207,9 +207,9 @@ export default function Index() {
         <SliderNews />
       </div>
       <div className="w-[85%] min-h-[700px] main-container flex flex-col gap-[20px] items-center justify-center">
-        <p className="text-center font-bold text-[40px] text-red-600 main-title tracking-wide shadow-text">
+        <h1 className="text-center font-bold text-[40px] text-red-600 main-title tracking-wide shadow-text">
           Тренируем навыки будущего
-        </p>
+        </h1>
         <p className="text-center font-bold text-[25px] text-red-400 main-subtitle tracking-wider">
           Чтобы мечты детей сбывались
         </p>
@@ -244,42 +244,42 @@ export default function Index() {
           })}
         </div>
       </div>
-      <div className="w-[80%] flex items-center justify-center min-h-[300px]">
-        <div className="flex w-[60%] items-center justify-center h-full">
-          <div className="flex items-center w-full gap-[20px] justify-center">
+      <div className="w-[80%] flex items-center justify-center min-h-[300px] main-banner">
+        <div className="flex w-[60%] items-center justify-center h-full main-banner">
+          <div className="flex items-center w-full gap-[20px] justify-center banner">
             {[god, banner].map((src, i) => (
               <img
                 key={i}
                 src={src}
                 alt=""
-                className="w-[60%] h-full rounded-3xl shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl"
+                className="w-[60%] h-full rounded-3xl shadow-lg transition-all hover:-translate-y-1 hover:shadow-2xl img-banner"
               />
             ))}
           </div>
         </div>
       </div>
-      <div className="w-full bg-white flex flex-col items-center gap-[40px] min-h-[400px] justify-center">
-        <div className="w-full flex items-center justify-center gap-[32px]">
+      <div className="gerb-container w-full bg-white flex flex-col items-center gap-[40px] min-h-[400px] justify-center">
+        <div className="gerb-grid  w-full flex items-center justify-center gap-[32px]">
           {listGerb.map((item) => (
             <a
               key={item.id}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 max-w-[200px] transition-all duration-300 hover:scale-105 group"
+              className="gerb-item  flex flex-col items-center gap-3 max-w-[200px] transition-all duration-300 hover:scale-105"
             >
               <img
                 src={item.img}
                 alt={item.title}
-                className="object-contain w-[80px] h-[80px]"
+                className="gerb-image object-contain w-[80px] h-[80px]"
               />
-              <p className="text-center text-xs text-slate-400 leading-snug group-hover:text-blue-500 transition-colors">
+              <p className="gerb-title text-center text-xs text-slate-400 leading-snug group-hover:text-blue-500 transition-colors">
                 {item.title}
               </p>
             </a>
           ))}
         </div>
-        <div className="text-center">
+        <div className="text-center title-corypcia">
           <p className="text-sm text-slate-500">
             Столкнулись с нарушением закона? Сообщите нам
           </p>

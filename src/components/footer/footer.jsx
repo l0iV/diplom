@@ -49,13 +49,13 @@ export default function Footer() {
     <footer className="w-full flex flex-col items-center gap-[20px]">
       <div className="w-[90%] h-[3px] bg-gradient-to-r from-red-500 via-orange-500 via-green-500 to-blue-500 rounded-[200px]"></div>
       <div className="flex flex-col items-center gap-[40px] w-full">
-        <div className="flex justify-center items-start gap-[80px]">
-          <div className="flex flex-col gap-[20px]">
+        <div className="flex justify-center items-start gap-[80px] footer-cols">
+          <div className="flex flex-col gap-[20px] ">
             <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
-            <ul className="flex flex-col gap-[16px]">
+            <ul className="flex flex-col gap-[16px] footer-social">
               <div
                 onClick={() => copyToClipboard("8 (48753) 2-31-92", "phone")}
-                className="flex items-center gap-[12px] group cursor-pointer relative"
+                className="flex items-center gap-[12px] group cursor-pointer relative "
               >
                 <img
                   src={phone}
@@ -110,17 +110,13 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="flex flex-col items-center gap-[20px]">
+          <div className="flex flex-col items-center gap-[20px] footer-nav">
             <h3 className="text-[18px] font-bold text-blue-800">
               Навигация по сайту
             </h3>
             <ul className="flex flex-col items-center gap-[12px]">
               <li>
-                <NavLink
-                  to="/"
-                  style={navLinkStyle}
-                  className="group block relative"
-                >
+                <NavLink to="/" style={navLinkStyle} className="block relative">
                   <p className="text-[16px] text-gray-600 group-hover:text-blue-500 transition-all duration-300">
                     Главная
                   </p>
@@ -131,7 +127,7 @@ export default function Footer() {
                 <NavLink
                   to="оНас"
                   style={navLinkStyle}
-                  className="group block relative"
+                  className="block relative"
                 >
                   <p className="text-[16px] text-gray-600 group-hover:text-green-500 transition-all duration-300">
                     О нас
@@ -143,7 +139,7 @@ export default function Footer() {
                 <NavLink
                   to="мероприятия"
                   style={navLinkStyle}
-                  className="group block relative"
+                  className="block relative"
                 >
                   <p className="text-[16px] text-gray-600 group-hover:text-amber-500 transition-all duration-300">
                     Мероприятия
@@ -155,7 +151,7 @@ export default function Footer() {
                 <NavLink
                   to="родителям"
                   style={navLinkStyle}
-                  className="group block relative"
+                  className="block relative"
                 >
                   <p className="text-[16px] text-gray-600 group-hover:text-purple-500 transition-all duration-300">
                     Родителям
@@ -166,7 +162,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          <div className="flex flex-col gap-[30px] items-center">
+          <div className="flex flex-col gap-[30px] items-center footer-social-networks">
             <div>
               <img src={logo} alt="" className="w-[300px]" />
             </div>

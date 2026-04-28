@@ -1,3 +1,4 @@
+/* АДАПТИВКА СТРАНИЧКИ INDEX */
 /* адаптвика блока контакты */
 @media (min-width: 749px) and (max-width: 1450px) {
   .block-contacts {
@@ -103,7 +104,7 @@
   }
   .initials {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
   }
   .name-detSad p {
@@ -182,14 +183,14 @@
   .name-detSad {
     display: flex;
     flex-direction: column;
-    align-items: start;
+    align-items: flex-start;
     justify-content: center;
     gap: 10px;
     width: 100%;
   }
   .initials {
     display: flex;
-    align-items: start;
+    align-items: flex-start;
     width: 100%;
   }
   .initials p {
@@ -242,43 +243,256 @@
     align-items: center;
     justify-content: center;
   }
-
-  /* Первые 3 блока — по 31% (3 в ряд) */
   .card-kids:nth-child(1),
   .card-kids:nth-child(2),
   .card-kids:nth-child(3) {
     width: calc(26.666% - 1px);
     flex-shrink: 0;
-    min-height: 600px; /* Оставляем высокими */
+    min-height: 600px;
   }
-
-  /* Последние 2 блока — по 48% (2 в ряд, шире, но ниже) */
   .card-kids:nth-child(4),
   .card-kids:nth-child(5) {
     width: calc(40% - 10px);
     flex-shrink: 0;
-    min-height: 400px; /* Делаем ниже */
+    min-height: 400px;
   }
-
-  /* Дополнительно уменьшаем emoji в нижних карточках */
   .card-kids:nth-child(4) .emoji-image,
   .card-kids:nth-child(5) .emoji-image {
     width: 250px !important;
     height: 250px !important;
   }
-
-  /* Уменьшаем отступы в нижних карточках */
   .card-kids:nth-child(4),
   .card-kids:nth-child(5) {
     gap: 15px !important;
     padding: 15px !important;
   }
-
-  /* Уменьшаем текст в нижних карточках */
   .card-kids:nth-child(4) .card-text,
   .card-kids:nth-child(5) .card-text {
     font-size: 14px !important;
   }
 }
-@media (min-width: 950px) and (max-width: 1510px) {
+@media (min-width: 600px) and (max-width: 949px) {
+  .main-card-kids {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Первые 3 блока — 3 в ряд, но меньше */
+  .card-kids:nth-child(1),
+  .card-kids:nth-child(2),
+  .card-kids:nth-child(3) {
+    width: calc(33.333% - 10px);
+    flex-shrink: 0;
+    min-height: 400px;
+    gap: 15px !important;
+    padding: 15px !important;
+  }
+
+  /* Последние 2 блока — шире, но компактнее */
+  .card-kids:nth-child(4),
+  .card-kids:nth-child(5) {
+    width: calc(50% - 8px);
+    flex-shrink: 0;
+    min-height: 280px;
+    gap: 12px !important;
+    padding: 15px !important;
+  }
+
+  /* Уменьшаем emoji для всех */
+  .emoji-image {
+    width: 180px !important;
+    height: 180px !important;
+  }
+
+  /* Для нижних карточек emoji ещё меньше */
+  .card-kids:nth-child(4) .emoji-image,
+  .card-kids:nth-child(5) .emoji-image {
+    width: 120px !important;
+    height: 120px !important;
+  }
+
+  /* Уменьшаем заголовки */
+  .card-kids h3 {
+    font-size: 16px !important;
+  }
+
+  /* Уменьшаем текст цитат */
+  .card-text {
+    font-size: 12px !important;
+    padding: 0 10px;
+  }
+
+  /* Уменьшаем main-title */
+  .main-title {
+    font-size: 28px !important;
+  }
+
+  .main-subtitle {
+    font-size: 18px !important;
+  }
+
+  .main-container {
+    width: 90% !important;
+    gap: 15px !important;
+  }
+}
+@media (min-width: 427px) and (max-width: 599px) {
+  .main-card-kids {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card-kids {
+    width: 90%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  .card-kids .emoji-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+}
+@media (min-width: 320px) and (max-width: 426px) {
+  .main-card-kids {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .card-kids {
+    width: 90%;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+  }
+  .card-kids .emoji-image {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+  }
+  .main-container p {
+    font-size: 20px;
+    font-weight: normal;
+  }
+  .main-container h1 {
+    font-size: 30px;
+  }
+}
+/* БАННЕРЫ - полная адаптация */
+.banner {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.img-banner {
+  width: 60%;
+  height: auto;
+  object-fit: cover;
+  transition: all 0.3s ease;
+}
+@media (min-width: 600px) and (max-width: 949px) {
+  .banner {
+    flex-direction: row;
+    gap: 15px;
+  }
+
+  .img-banner {
+    width: 48%;
+    height: auto;
+  }
+
+  .main-banner {
+    width: 95%;
+    min-height: 400px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 599px) {
+  .banner {
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+  }
+  .img-banner {
+    width: 100%;
+    height: auto;
+    max-height: 250px;
+    object-fit: cover;
+  }
+  .main-banner {
+    width: 90%;
+    min-height: auto;
+    padding: 10px 0;
+  }
+  .main-banner .flex {
+    width: 100%;
+  }
+}
+@media (max-width: 400px) {
+  .img-banner {
+    max-height: 200px;
+  }
+
+  .banner {
+    gap: 10px;
+  }
+}
+/* ГЕРБЫ */
+@media (min-width: 450px) and (max-width: 567px) {
+  .gerb-grid {
+    flex-wrap: wrap;
+  }
+}
+@media (min-width: 320px) and (max-width: 449px) {
+  .gerb-grid {
+    display: flex;
+    flex-direction: column;
+  }
+  .title-corypcia p {
+    font-size: 12px;
+  }
+}
+/* АДАПТИВКА FOOTER */
+@media (max-width: 1023px) {
+  .footer-cols {
+    flex-wrap: wrap !important;
+    gap: 40px !important;
+    justify-content: center !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .footer-cols {
+    flex-direction: column-reverse !important;
+    align-items: center !important;
+    gap: 32px !important;
+    text-align: center;
+  }
+
+  /* Соцсети — центрируем */
+  .footer-cols .flex.justify-center {
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer-cols > div {
+    width: 100%;
+  }
 }
