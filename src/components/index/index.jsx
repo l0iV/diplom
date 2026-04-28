@@ -39,7 +39,7 @@ export default function Index() {
     teachersList.find((t) => t.name === name)?.image ?? null;
 
   return (
-    <section className="flex flex-col w-full items-center gap-[30px]">
+    <section className="flex flex-col w-full items-center">
       <div className="w-full bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 p-[20px] flex justify-center">
         <div className="w-[80%] flex flex-col gap-[40px] items-center full-index-title">
           <div className="flex items-center gap-[32px] justify-between w-full main-block-title">
@@ -152,8 +152,8 @@ export default function Index() {
                 <button
                   key={group.id}
                   onClick={() => openGroup(group)}
-                  className={`group min-h-[300px] min-w-[300px] flex flex-col gap-4 rounded-3xl border-2 bg-gradient-to-br ${c.bg} ${c.border}
-                    p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer border-2 border-black`}
+                  className={`min-h-[300px] min-w-[300px] flex flex-col gap-4 rounded-3xl border-2 bg-gradient-to-br ${c.bg} ${c.border}
+                    p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer`}
                 >
                   <div className="flex items-center gap-3">
                     <div className="rounded-2xl bg-white p-2 shadow-sm">
@@ -206,31 +206,37 @@ export default function Index() {
       <div className="w-[85%] flex justify-center">
         <SliderNews />
       </div>
-      <div className="w-[90%] flex flex-col items-center gap-[30px] min-h-[550px]">
-        <p className="text-center font-bold text-[40px] text-red-600">
+      <div className="w-[85%] min-h-[700px] main-container flex flex-col gap-[20px] items-center justify-center">
+        <p className="text-center font-bold text-[40px] text-red-600 main-title tracking-wide shadow-text">
           Тренируем навыки будущего
         </p>
-        <p className="text-center font-bold text-[25px] text-red-400">
+        <p className="text-center font-bold text-[25px] text-red-400 main-subtitle tracking-wider">
           Чтобы мечты детей сбывались
         </p>
-        <div className="flex items-center gap-[10px] w-full h-full justify-center">
+        <div className="main-card-kids flex items-center h-full gap-[1px]">
           {listLessons.map((item) => {
             return (
               <div
-                className={`flex flex-col items-center border-[2px] rounded-[20px] p-[10px] w-[300px] min-h-[500px] card-${item.color}  `}
+                className={`card-kids card-${item.color} min-h-[600px] flex flex-col items-center justify-center gap-[30px] rounded-[50px] p-[10px] w-[300px] border-2 border-${item.color}-300`}
                 key={item.id}
               >
-                <div className="flex flex-col items-center w-full h-full">
-                  <div>
-                    <h3 className={`font-bold text-[20px] title-${item.color}`}>
+                <div className="card-content w-full">
+                  <div className="card-header">
+                    <h3
+                      className={`font-bold text-[20px] title-${item.color} text-center`}
+                    >
                       {item.name}, {item.age}
                     </h3>
                   </div>
-                  <div className="text-[40px]">
-                    <img src={item.emoji} alt="" className="" />
+                  <div className="card-emoji flex w-full items-center justify-center">
+                    <img
+                      src={item.emoji}
+                      alt={item.name}
+                      className="emoji-image w-[400px] h-[400px] object-cover rounded-[50px]"
+                    />
                   </div>
                 </div>
-                <p className="text-[16px] italic text-gray-700 text-center">
+                <p className="text-[16px] italic text-gray-700 text-center card-text">
                   "{item.text}"
                 </p>
               </div>
@@ -238,9 +244,9 @@ export default function Index() {
           })}
         </div>
       </div>
-      <div className="w-[80%] flex items-center justify-center mih-h-[300px] ">
+      <div className="w-[80%] flex items-center justify-center min-h-[300px]">
         <div className="flex w-[60%] items-center justify-center h-full">
-          <div className="flex items-center w-full gap-[20px] justify-center h-full">
+          <div className="flex items-center w-full gap-[20px] justify-center">
             {[god, banner].map((src, i) => (
               <img
                 key={i}

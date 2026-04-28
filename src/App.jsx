@@ -13,7 +13,7 @@ function App() {
   return (
     <HashRouter>
       <Header />
-      <main className="flex w-full gap-[100px] flex-col h-full">
+      <main className="flex w-full flex-col h-full">
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="оНас" element={<About />} />

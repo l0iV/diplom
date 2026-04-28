@@ -22,8 +22,8 @@ export default function Slider() {
   };
 
   return (
-    <div className="min-h-[350px] mt-[30px] w-[90%] text-[14px] items-center overflow-hidden relative">
-      <h1 className="text-center font-bold text-[40px] mb-[20px] text-green-800">
+    <div className="min-h-[400px] w-[90%] text-[14px] items-center overflow-hidden relative">
+      <h1 className="text-center font-bold text-[30px] text-green-800">
         Наш детский сад!
       </h1>
       <Swiper
@@ -52,9 +52,9 @@ export default function Slider() {
         }}
       >
         {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="flex items-center">
+          <SwiperSlide key={index} className="flex items-center min-h-[350px]">
             <div
-              className="flex max-w-max items-center justify-center flex-col gap-[5px] cursor-pointer"
+              className="flex max-w-max items-center justify-center flex-col gap-[5px] cursor-pointer  "
               onClick={() => openFullscreen(slide.img)}
             >
               <img
@@ -62,7 +62,7 @@ export default function Slider() {
                 alt=""
                 className="object-contain rounded-[20px] max-w-full h-auto"
               />
-              <p className="text-center">{slide.text}</p>
+              <p className="text-justify italic">{slide.text}</p>
             </div>
           </SwiperSlide>
         ))}
