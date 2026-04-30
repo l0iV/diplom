@@ -467,32 +467,91 @@
     font-size: 12px;
   }
 }
+/* INDEX АДАПТИРОВАЛ */
+
 /* АДАПТИВКА FOOTER */
 @media (max-width: 1023px) {
-  .footer-cols {
-    flex-wrap: wrap !important;
-    gap: 40px !important;
-    justify-content: center !important;
-  }
 }
 
-@media (max-width: 767px) {
-  .footer-cols {
-    flex-direction: column-reverse !important;
-    align-items: center !important;
-    gap: 32px !important;
-    text-align: center;
+/* Адаптивка странички About */
+/* адаптивка верхнего блока */
+@media (min-width: 793px) and (max-width: 1099px) {
+  .about-header-block-title {
+    display: flex;
+    width: 90%;
+    flex-direction: column;
   }
-
-  /* Соцсети — центрируем */
-  .footer-cols .flex.justify-center {
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  .footer-cols > div {
+  .first-block {
     width: 100%;
+  }
+  .second-block {
+    width: 100%;
+  }
+  .child-about {
+    width: 200px;
+  }
+}
+@media (min-width: 320px) and (max-width: 792px) {
+  .about-header-block-title {
+    display: flex;
+    width: 95%;
+    flex-direction: column;
+  }
+  .child-about {
+    width: 150px;
+  }
+  .first-block {
+    width: 100%;
+  }
+  .second-block {
+    width: 100%;
+  }
+  .first-block p,
+  .first-block h3 {
+    font-size: 12px;
+  }
+  .first-block div:first-child {
+    font-size: 10px;
+  }
+  .first-block div:last-child {
+    font-size: 10px;
+  }
+  .quote-careva {
+    font-size: 12px;
+  }
+  .ps-quote p {
+    font-size: 10px;
+  }
+}
+@media (min-width: 665px) and (max-width: 1099px) {
+  .card-block-intelligence {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 500px) and (max-width: 664px) {
+  .card-block-intelligence {
+    display: grid;
+    grid-template-columns: repeat(2, 2fr);
+  }
+}
+@media (min-width: 320px) and (max-width: 499px) {
+  .card-block-intelligence {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+  .card-intelligence {
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+  }
+  .card-intelligence div:first-child {
+    font-size: 25px;
   }
 }

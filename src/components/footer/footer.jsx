@@ -116,7 +116,7 @@ export default function Footer() {
             </h3>
             <ul className="flex flex-col items-center gap-[12px]">
               <li>
-                <NavLink to="/" style={navLinkStyle} className="block relative">
+                <NavLink to="/" className="block relative group">
                   <p className="text-[16px] text-gray-600 group-hover:text-blue-500 transition-all duration-300">
                     Главная
                   </p>
@@ -124,11 +124,7 @@ export default function Footer() {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="оНас"
-                  style={navLinkStyle}
-                  className="block relative"
-                >
+                <NavLink to="оНас" className="block relative group">
                   <p className="text-[16px] text-gray-600 group-hover:text-green-500 transition-all duration-300">
                     О нас
                   </p>
@@ -136,11 +132,7 @@ export default function Footer() {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="мероприятия"
-                  style={navLinkStyle}
-                  className="block relative"
-                >
+                <NavLink to="мероприятия" className="block relative group">
                   <p className="text-[16px] text-gray-600 group-hover:text-amber-500 transition-all duration-300">
                     Мероприятия
                   </p>
@@ -148,11 +140,7 @@ export default function Footer() {
                 </NavLink>
               </li>
               <li>
-                <NavLink
-                  to="родителям"
-                  style={navLinkStyle}
-                  className="block relative"
-                >
+                <NavLink to="родителям" className="block relative group">
                   <p className="text-[16px] text-gray-600 group-hover:text-purple-500 transition-all duration-300">
                     Родителям
                   </p>

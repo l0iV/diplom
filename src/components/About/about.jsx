@@ -26,44 +26,41 @@ export default function About() {
   return (
     <section className="w-full flex flex-col items-center gap-[60px] h-full">
       <div className="w-full  bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 flex justify-center">
-        <div className="w-[95%] flex flex-col gap-[40px]">
-          <div className="flex flex-col items-center justify-center p-[30px] gap-[10px]">
-            <div>
+        <div className="w-[95%] flex flex-col">
+          <div className="flex flex-col items-center justify-center p-[30px] gap-[10px] ">
+            <div className="child-about">
               <img
                 src={baby}
                 alt="Child"
                 className="w-[300px] object-contain"
               />
             </div>
-            <div className="flex gap-[20px] w-full items-center justify-center">
-              <div className="bg-white/60 backdrop-blur-md rounded-[30px] p-[15px] shadow-sm border border-white min-h-[200px] w-[40%] flex flex-col items-center gap-[15px]">
+            <div className="flex gap-[20px] w-full items-center justify-center about-header-block-title">
+              <div className="first-block bg-white/60 backdrop-blur-md rounded-[30px] p-[15px] shadow-sm border border-white w-[40%] flex flex-col items-center gap-[10px]">
                 <h3 className="text-[22px] font-bold text-gray-800 flex items-center gap-[8px]">
                   <span className="w-8 h-8 bg-green-200 rounded-full flex items-center justify-center text-[16px]">
                     🏠
                   </span>
-                  Второй дом для вашего малыша
+                  {contactsData.title}
                 </h3>
-                <p className="text-gray-600 text-[16px] text-justify">
-                  В нашем саду мы объединили современные образовательные
-                  программы с домашним уютом. Пока вы заняты делами, мы
-                  развиваем интеллект, творческое мышление и социальные навыки
-                  ребенка в игровой и безопасной форме.
+                <p className="text-gray-600 text-[16px] text-justify italic">
+                  {contactsData.text}
                 </p>
                 <div className="flex gap-4 mt-5">
                   <div className="flex items-center gap-2 text-[14px] font-medium text-green-800 bg-green-100/50 px-3 py-1 rounded-full">
-                    🍎 Здоровое питание
+                    {contactsData.ps}
                   </div>
                   <div className="flex items-center gap-2 text-[14px] font-medium text-pink-800 bg-pink-100/50 px-3 py-1 rounded-full">
-                    🛡️ Безопасность 24/7
+                    {contactsData.ps2}
                   </div>
                 </div>
               </div>
-              <div className="bg-white/60 backdrop-blur-md rounded-[30px] p-[15px] shadow-sm border border-white min-h-[200px] w-[40%]">
-                <div className="text-center">
-                  <p className="text-[17px] text-gray-700 italic leading-relaxed mb-4">
+              <div className="second-block bg-white/60 backdrop-blur-md rounded-[30px] p-[15px] shadow-sm border border-white w-[40%] ">
+                <div className="text-center ">
+                  <p className=" quote-careva text-[17px] text-gray-700 italic leading-relaxed mb-4">
                     "{quoteData.text}"
                   </p>
-                  <div className="border-t border-gray-300">
+                  <div className="border-t border-gray-300 ps-quote">
                     <p className="font-bold text-green-700 mt-[10px]">
                       {quoteData.position}
                     </p>
@@ -77,7 +74,7 @@ export default function About() {
           </div>
         </div>
       </div>
-      <div className="w-[90%] bg-white rounded-[30px] p-[40px] shadow-lg intelligence-grid flex flex-col gap-[20px]">
+      <div className="main-block-intelligence w-[90%] bg-white rounded-[30px] p-[40px] shadow-lg intelligence-grid flex flex-col gap-[20px]">
         <div className="text-center ">
           <h2 className="text-[35px] font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent section-title">
             Развиваем 10 видов интеллекта
@@ -86,12 +83,12 @@ export default function About() {
             Чтобы ваш ребёнок рос счастливым, здоровым и успешным
           </p>
         </div>
-        <div className="grid grid-cols-5 gap-[20px]">
+        <div className="card-block-intelligence grid grid-cols-5 gap-[20px]">
           {intelligenceList.map((item) => (
             <div
               key={item.id}
               onClick={() => handleIntelligenceClick(item)}
-              className="text-center p-[15px] bg-gray-50 rounded-[15px] hover:scale-105 hover:shadow-md transition-all cursor-pointer intelligence-card"
+              className="card-intelligence text-center p-[15px] bg-gray-50 rounded-[15px] hover:scale-105 hover:shadow-md transition-all cursor-pointer intelligence-card"
             >
               <div className="text-[40px] mb-[10px]">{item.icon}</div>
               <p className={`font-bold ${item.color}`}>{item.name}</p>

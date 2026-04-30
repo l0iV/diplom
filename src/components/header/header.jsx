@@ -58,7 +58,7 @@ export default function Header() {
         </NavLink>
 
         {/* Навигация — десктоп */}
-        <nav className="hidden md:flex items-center gap-3 lg:gap-4">
+        <nav className="hidden lg:flex items-center gap-3 lg:gap-4">
           {NAV_LINKS.map(({ to, label, active }) => (
             <NavLink key={to} to={to} end={to === "/"}>
               {({ isActive }) => (
@@ -83,7 +83,7 @@ export default function Header() {
         {/* Бургер — мобильный */}
         <button
           onClick={() => setMenuOpen((v) => !v)}
-          className="flex md:hidden flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-slate-100 transition hover:bg-slate-200"
+          className="flex lg:hidden flex-col justify-center items-center gap-1.5 w-10 h-10 rounded-full bg-slate-100 transition hover:bg-slate-200"
           aria-label="Меню"
         >
           <span

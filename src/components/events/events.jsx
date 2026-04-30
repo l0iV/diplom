@@ -1,39 +1,35 @@
 import { useState, useEffect, useMemo } from "react";
-import axios from "axios";
-
-const BASE_URL = "http://localhost:3000";
+import { getEvents, STATIC_URL } from "../../api/api";
 
 const CATEGORIES = [
-  { key: "all", label: "Все события", emoji: "🌟" },
-  { key: "ecology", label: "Экология", emoji: "🌿" },
-  { key: "art", label: "Творчество", emoji: "🎨" },
-  { key: "holiday", label: "Праздники", emoji: "🎉" },
-  { key: "sport", label: "Спорт", emoji: "⚽" },
-  { key: "health", label: "Здоровье", emoji: "💊" },
-  { key: "other", label: "Другое", emoji: "📌" },
+  { key: "all",     label: "Все события", emoji: "🌟" },
+  { key: "ecology", label: "Экология",    emoji: "🌿" },
+  { key: "art",     label: "Творчество",  emoji: "🎨" },
+  { key: "holiday", label: "Праздники",   emoji: "🎉" },
+  { key: "sport",   label: "Спорт",       emoji: "⚽" },
+  { key: "health",  label: "Здоровье",    emoji: "💊" },
+  { key: "other",   label: "Другое",      emoji: "📌" },
 ];
 
-const CATEGORY_STYLE = {
-  ecology: { badge: "bg-green-100 text-green-700" },
-  art: { badge: "bg-purple-100 text-purple-700" },
-  holiday: { badge: "bg-yellow-100 text-yellow-600" },
-  sport: { badge: "bg-blue-100 text-blue-700" },
-  health: { badge: "bg-red-100 text-red-700" },
-  other: { badge: "bg-gray-100 text-gray-600" },
+const BADGE = {
+  ecology: "bg-green-100 text-green-700",
+  art:     "bg-purple-100 text-purple-700",
+  holiday: "bg-yellow-100 text-yellow-600",
+  sport:   "bg-blue-100 text-blue-700",
+  health:  "bg-red-100 text-red-700",
+  other:   "bg-gray-100 text-gray-600",
 };
 
 export default function Events() {
-  const [events, setEvents] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [events, setEvents]             = useState([]);
+  const [loading, setLoading]           = useState(true);
+  const [error, setError]               = useState(null);
   const [activeCategory, setActiveCategory] = useState("all");
-  const [selectedEvent, setSelectedEvent] = useState(null);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [selectedEvent, setSelectedEvent]   = useState(null);
+  const [searchQuery, setSearchQuery]       = useState("");
 
-  // Загрузка с сервера
   useEffect(() => {
-    axios
-      .get(`${BASE_URL}/api/events`)
+    getEvents()
       .then((res) => setEvents(res.data))
       .catch(() => setError("Не удалось загрузить мероприятия"))
       .finally(() => setLoading(false));
@@ -42,14 +38,13 @@ export default function Events() {
   const filtered = useMemo(
     () =>
       events.filter((e) => {
-        const matchCat =
-          activeCategory === "all" || e.category === activeCategory;
+        const matchCat    = activeCategory === "all" || e.category === activeCategory;
         const matchSearch =
           e.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
           e.description.toLowerCase().includes(searchQuery.toLowerCase());
         return matchCat && matchSearch;
       }),
-    [events, activeCategory, searchQuery],
+    [events, activeCategory, searchQuery]
   );
 
   return (
@@ -62,7 +57,7 @@ export default function Events() {
         <p className="events-hero-sub text-[18px] text-slate-500 text-center">
           Всё самое интересное, что происходит в нашем детском саду
         </p>
-        <div className="events-search relative w-full max-w-[550px]">
+        <div className="events-search relative w-full max-w-[550px] px-4">
           <input
             type="text"
             placeholder="Найти мероприятие..."
@@ -85,17 +80,14 @@ export default function Events() {
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
-              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200
-                ${
-                  isActive
-                    ? "bg-green-500 text-white shadow-md"
-                    : "bg-white text-slate-600 border border-slate-200 hover:border-green-300 hover:text-green-600"
-                }`}
+              className={`flex items-center gap-1 rounded-full px-4 py-2 text-sm font-semibold transition-all duration-200 ${
+                isActive
+                  ? "bg-green-500 text-white shadow-md"
+                  : "bg-white text-slate-600 border border-slate-200 hover:border-green-300 hover:text-green-600"
+              }`}
             >
               {cat.emoji} {cat.label}
-              <span
-                className={`ml-1 rounded-full px-1.5 py-0.5 text-[11px] ${isActive ? "bg-white/30" : "bg-slate-100"}`}
-              >
+              <span className={`ml-1 rounded-full px-1.5 py-0.5 text-[11px] ${isActive ? "bg-white/30" : "bg-slate-100"}`}>
                 {count}
               </span>
             </button>
@@ -106,63 +98,46 @@ export default function Events() {
       {/* Контент */}
       <div className="w-full max-w-[1200px] px-4 pb-10">
         {loading && (
-          <p className="text-center text-slate-400 text-[16px] py-20">
-            Загрузка...
-          </p>
+          <p className="text-center text-slate-400 text-[16px] py-20">Загрузка...</p>
         )}
         {error && (
           <p className="text-center text-red-400 text-[16px] py-20">{error}</p>
         )}
         {!loading && !error && filtered.length === 0 && (
-          <p className="text-center text-slate-400 text-[16px] py-20">
-            Ничего не найдено
-          </p>
+          <p className="text-center text-slate-400 text-[16px] py-20">Ничего не найдено</p>
         )}
-        {!loading && !error && (
+        {!loading && !error && filtered.length > 0 && (
           <div className="events-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filtered.map((event) => {
-              const style =
-                CATEGORY_STYLE[event.category] ?? CATEGORY_STYLE.other;
-              return (
-                <div
-                  key={event.id}
-                  onClick={() => setSelectedEvent(event)}
-                  className="flex flex-col rounded-[24px] bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
-                >
-                  {/* Картинка */}
-                  {event.image_url && (
-                    <div className="h-[200px] overflow-hidden">
-                      <img
-                        src={`${BASE_URL}${event.image_url}`}
-                        alt={event.title}
-                        loading="lazy"
-                        className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                      />
-                    </div>
-                  )}
-                  {/* Текст */}
-                  <div className="flex flex-col gap-2 p-5 flex-1">
-                    <div className="flex items-center justify-between">
-                      <span
-                        className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${style.badge}`}
-                      >
-                        {CATEGORIES.find((c) => c.key === event.category)
-                          ?.label ?? event.category}
-                      </span>
-                      <span className="text-[12px] text-slate-400">
-                        {event.date_label ?? event.date}
-                      </span>
-                    </div>
-                    <h3 className="text-[17px] font-bold text-slate-800">
-                      {event.title}
-                    </h3>
-                    <p className="text-[13px] text-slate-500 line-clamp-3">
-                      {event.description}
-                    </p>
+            {filtered.map((event) => (
+              <div
+                key={event.id}
+                onClick={() => setSelectedEvent(event)}
+                className="flex flex-col rounded-[24px] bg-white border border-slate-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 cursor-pointer overflow-hidden"
+              >
+                {event.image_url && (
+                  <div className="h-[200px] overflow-hidden">
+                    <img
+                      src={`${STATIC_URL}${event.image_url}`}
+                      alt={event.title}
+                      loading="lazy"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
                   </div>
+                )}
+                <div className="flex flex-col gap-2 p-5 flex-1">
+                  <div className="flex items-center justify-between">
+                    <span className={`rounded-full px-2 py-0.5 text-[11px] font-semibold ${BADGE[event.category] ?? BADGE.other}`}>
+                      {CATEGORIES.find((c) => c.key === event.category)?.label ?? event.category}
+                    </span>
+                    <span className="text-[12px] text-slate-400">
+                      {event.date_label ?? event.date}
+                    </span>
+                  </div>
+                  <h3 className="text-[17px] font-bold text-slate-800">{event.title}</h3>
+                  <p className="text-[13px] text-slate-500 line-clamp-3">{event.description}</p>
                 </div>
-              );
-            })}
+              </div>
+            ))}
           </div>
         )}
       </div>
@@ -179,7 +154,7 @@ export default function Events() {
           >
             {selectedEvent.image_url && (
               <img
-                src={`${BASE_URL}${selectedEvent.image_url}`}
+                src={`${STATIC_URL}${selectedEvent.image_url}`}
                 alt={selectedEvent.title}
                 className="w-full h-[260px] object-cover rounded-t-[28px]"
               />
@@ -191,23 +166,12 @@ export default function Events() {
               >
                 ✕
               </button>
-              <span
-                className={`self-start rounded-full px-3 py-1 text-[12px] font-semibold ${(CATEGORY_STYLE[selectedEvent.category] ?? CATEGORY_STYLE.other).badge}`}
-              >
-                {
-                  CATEGORIES.find((c) => c.key === selectedEvent.category)
-                    ?.label
-                }
+              <span className={`self-start rounded-full px-3 py-1 text-[12px] font-semibold ${(BADGE[selectedEvent.category] ?? BADGE.other)}`}>
+                {CATEGORIES.find((c) => c.key === selectedEvent.category)?.label}
               </span>
-              <h2 className="text-[22px] font-extrabold text-slate-800">
-                {selectedEvent.title}
-              </h2>
-              <p className="text-[13px] text-slate-400">
-                {selectedEvent.date_label ?? selectedEvent.date}
-              </p>
-              <p className="text-[15px] text-slate-600 leading-relaxed">
-                {selectedEvent.description}
-              </p>
+              <h2 className="text-[22px] font-extrabold text-slate-800">{selectedEvent.title}</h2>
+              <p className="text-[13px] text-slate-400">{selectedEvent.date_label ?? selectedEvent.date}</p>
+              <p className="text-[15px] text-slate-600 leading-relaxed">{selectedEvent.description}</p>
               <button
                 onClick={() => setSelectedEvent(null)}
                 className="mt-2 w-full rounded-full bg-gradient-to-r from-green-500 to-emerald-500 py-3 text-sm font-bold text-white hover:opacity-90 transition"

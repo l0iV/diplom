@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { sendContact } from "../../api/api";
 import baby from "../../assets/baby.png";
 import menuData from "./List/groupList";
 import officialDocuments from "./List/infoList";
@@ -45,16 +46,33 @@ function Accordion({ items }) {
 function QuestionModal({ open, onClose }) {
   const [val, setVal] = useState({ name: "", phone: "", msg: "" });
   const [sent, setSent] = useState(false);
-  const submit = (e) => {
+
+  const submit = async (e) => {
     e.preventDefault();
-    setSent(true);
-    setTimeout(() => {
-      setSent(false);
-      onClose();
-      setVal({ name: "", phone: "", msg: "" });
-    }, 2500);
+    try {
+      const contactData = {
+        name: val.name,
+        phone: val.phone,
+        message: val.msg,
+      };
+
+      await sendContact(contactData);
+      setSent(true);
+      setTimeout(() => {
+        setSent(false);
+        onClose();
+        setVal({ name: "", phone: "", msg: "" });
+      }, 2500);
+    } catch (error) {
+      console.error("Ошибка отправки:", error);
+      const errorMessage =
+        error.response?.data?.error || "Ошибка отправки. Попробуйте ещё раз.";
+      alert(errorMessage);
+    }
   };
+
   if (!open) return null;
+
   return (
     <div
       onClick={onClose}
@@ -130,15 +148,64 @@ export default function Parents() {
   const [submitted, setSubmitted] = useState(false);
   const [questionOpen, setQuestionOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("form");
-
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const handleInput = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 4000);
-  };
+    if (isSubmitting) return;
 
+    setIsSubmitting(true);
+    try {
+      const contactData = {
+        name: formData.parentName,
+        phone: formData.phone,
+        message:
+          `ЗАЯВКА В ДЕТСКИЙ САД\n\n` +
+          `ФИО родителя: ${formData.parentName}\n` +
+          `Телефон: ${formData.phone}\n` +
+          `Email: ${formData.email || "не указан"}\n` +
+          `ФИО ребёнка: ${formData.childName}\n` +
+          `Дата рождения ребёнка: ${formData.birthDate}\n` +
+          `Желаемая группа: ${
+            formData.group === "yasli"
+              ? "Ясли (1.5–3 года)"
+              : formData.group === "mladshaya"
+                ? "Младшая (3–4 года)"
+                : formData.group === "srednyaya"
+                  ? "Средняя (4–5 лет)"
+                  : formData.group === "starshaya"
+                    ? "Старшая (5–6 лет)"
+                    : formData.group === "podgotovitelnaya"
+                      ? "Подготовительная (6–7 лет)"
+                      : "не выбрана"
+          }`,
+      };
+
+      await sendContact(contactData);
+
+      setSubmitted(true);
+      setTimeout(() => {
+        setSubmitted(false);
+        setFormData({
+          parentName: "",
+          phone: "",
+          email: "",
+          childName: "",
+          birthDate: "",
+          group: "",
+        });
+      }, 4000);
+    } catch (error) {
+      console.error("Ошибка отправки:", error);
+      const errorMessage =
+        error.response?.data?.error ||
+        "Ошибка отправки заявки. Попробуйте ещё раз.";
+      alert(errorMessage);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
   const scrollTo = (key) => {
     setActiveSection(key);
     document
@@ -164,7 +231,7 @@ export default function Parents() {
       <div className="w-full flex flex-col items-center bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 p-[50px]">
         <div className="flex flex-col items-center gap-[32px] w-full">
           <div className="flex flex-col items-center gap-[16px] w-full">
-            <h1 className="text-[45px] text-green-700 font-extrabold  leading-tight text-center">
+            <h1 className="text-[45px] text-green-700 font-extrabold leading-tight text-center">
               Уважаемые родители!
             </h1>
             <p className="text-[16px] text-slate-700">
@@ -180,13 +247,14 @@ export default function Parents() {
           </div>
         </div>
       </div>
+
       <div className="w-full flex justify-center">
         <div className="flex gap-[4px] w-full items-center justify-center p-[20px]">
           {NAV.map(({ key, label }) => (
             <button
               key={key}
               onClick={() => scrollTo(key)}
-              className={` rounded-full text-[15px] font-semibold transition-all p-[12px]
+              className={`rounded-full text-[15px] font-semibold transition-all p-[12px]
                 ${activeSection === key ? "bg-blue-500 text-white shadow-md" : "text-slate-500 hover:bg-slate-100 hover:text-slate-800"}`}
             >
               {label}
@@ -194,6 +262,7 @@ export default function Parents() {
           ))}
         </div>
       </div>
+
       <div
         id="section-form"
         className="w-full flex flex-col items-center py-[56px] px-[16px] sm:px-[24px] bg-white"
@@ -305,6 +374,7 @@ export default function Parents() {
           </div>
         </div>
       </div>
+
       <div id="section-menu" className="w-full flex flex-col items-center">
         <div className="flex flex-col items-center gap-[32px] w-full max-w-[896px]">
           <div className="flex flex-col items-center gap-[8px]">
@@ -403,6 +473,7 @@ export default function Parents() {
           </div>
         </div>
       </div>
+
       <div
         id="section-adapt"
         className="w-full bg-white flex flex-col items-center gap-[50px]"
@@ -415,7 +486,7 @@ export default function Parents() {
                 «Как подготовить ребёнка к детскому саду»
               </p>
             </div>
-            <div className="grid grid-cols-3 gap-[16px]  w-full">
+            <div className="grid grid-cols-3 gap-[16px] w-full">
               {TIPS.map(({ icon, title, text }) => (
                 <div
                   key={title}
@@ -460,6 +531,7 @@ export default function Parents() {
           </div>
         </div>
       </div>
+
       <div id="section-docs" className="w-full flex justify-center">
         <div className="flex flex-col items-center gap-[32px] w-full max-w-[70%]">
           <div className="flex flex-col items-center gap-[8px]">
@@ -485,9 +557,11 @@ export default function Parents() {
           </div>
         </div>
       </div>
+
       <div className="w-full flex justify-center py-[40px]">
         <SliderReviews />
       </div>
+
       <div
         id="section-faq"
         className="w-full flex flex-col items-center bg-white"
@@ -495,7 +569,7 @@ export default function Parents() {
         <div className="flex flex-col items-center gap-[32px] w-full max-w-[1024px]">
           <div className="flex flex-col items-center gap-[12px]">
             <span className="text-[48px]">❓</span>
-            <h2 className="text-[28px] font-extrabold text-blue-800 ">
+            <h2 className="text-[28px] font-extrabold text-blue-800">
               Частые вопросы
             </h2>
             <p className="text-[14px] text-slate-400">
