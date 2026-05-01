@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Pagination, Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -6,10 +6,25 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-import slides from "./listNews/listNews";
+import { getNews } from "../../api/api";
+import { STATIC_URL } from "../../api/api";
 
 export default function Slider() {
+  const [slides, setSlides] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [fullscreenImage, setFullscreenImage] = useState(null);
+
+  useEffect(() => {
+    getNews()
+      .then((res) => {
+        setSlides(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
 
   const openFullscreen = (img) => {
     setFullscreenImage(img);
@@ -20,6 +35,14 @@ export default function Slider() {
     setFullscreenImage(null);
     document.body.style.overflow = "auto";
   };
+
+  if (loading) {
+    return (
+      <div className="min-h-[400px] flex items-center justify-center">
+        Загрузка...
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-[400px] w-[90%] text-[14px] items-center overflow-hidden relative">
@@ -51,14 +74,17 @@ export default function Slider() {
           },
         }}
       >
-        {slides.map((slide, index) => (
-          <SwiperSlide key={index} className="flex items-center min-h-[350px]">
+        {slides.map((slide) => (
+          <SwiperSlide
+            key={slide.id}
+            className="flex items-center min-h-[350px]"
+          >
             <div
               className="flex max-w-max items-center justify-center flex-col gap-[5px] cursor-pointer  "
-              onClick={() => openFullscreen(slide.img)}
+              onClick={() => openFullscreen(slide.image_url)}
             >
               <img
-                src={slide.img}
+                src={`${STATIC_URL}${slide.image_url}`}
                 alt=""
                 className="object-contain rounded-[20px] max-w-full h-auto"
               />
@@ -73,7 +99,7 @@ export default function Slider() {
           onClick={closeFullscreen}
         >
           <img
-            src={fullscreenImage}
+            src={`${STATIC_URL}${fullscreenImage}`}
             alt="Увеличенное изображение"
             className="object-contain min-h-[500px] rounded-[50px]"
             onClick={(e) => e.stopPropagation()}

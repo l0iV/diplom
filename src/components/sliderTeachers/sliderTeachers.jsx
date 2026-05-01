@@ -3,21 +3,41 @@ import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import { useState } from "react";
-import teachersList from "./list/listTeachers";
+import { useState, useEffect } from "react";
+import { getTeachers } from "../../api/api";
+import { STATIC_URL } from "../../api/api";
+
 export default function SliderTeachers() {
+  const [teachers, setTeachers] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedTeacher, setSelectedTeacher] = useState(null);
   const [showModal, setShowModal] = useState(false);
+
+  useEffect(() => {
+    getTeachers()
+      .then((res) => {
+        setTeachers(res.data);
+        setLoading(false);
+      })
+      .catch((err) => {
+        console.error(err);
+        setLoading(false);
+      });
+  }, []);
 
   const handleTeacherClick = (teacher) => {
     setSelectedTeacher(teacher);
     setShowModal(true);
   };
 
+  if (loading) {
+    return <div className="text-center p-10">Загрузка...</div>;
+  }
+
   return (
     <>
       <div className="w-[90%] bg-white p-6 rounded-[40px] shadow-md">
-        <h2 className="text-[35px] font-bold text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent ">
+        <h2 className="text-[35px] font-bold text-center bg-gradient-to-r from-blue-500 to-purple-500 bg-clip-text text-transparent">
           Наша команда
         </h2>
 
@@ -33,43 +53,42 @@ export default function SliderTeachers() {
             1024: { slidesPerView: 4 },
           }}
         >
-          {teachersList &&
-            teachersList.map((teacher) => (
-              <SwiperSlide key={teacher.id}>
-                <div
-                  onClick={() => handleTeacherClick(teacher)}
-                  className="flex flex-col items-center justify-center gap-[15px] cursor-pointer group p-[10px] min-h-[350px]"
-                >
-                  {teacher.image ? (
-                    <img
-                      src={teacher.image}
-                      alt={teacher.name}
-                      className="w-[150px] h-[150px] rounded-full object-cover shadow-md group-hover:scale-110 transition-all duration-300"
-                    />
-                  ) : (
-                    <div className="w-[150px] h-[150px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-[60px] group-hover:scale-110 transition-all duration-300">
-                      👩‍🏫
-                    </div>
-                  )}
-
-                  <div className="flex flex-col items-center justify-center gap-[5px] text-center">
-                    <h3 className="font-bold text-[18px] group-hover:text-blue-600 transition-colors">
-                      {teacher.name}
-                    </h3>
-                    <p className="text-gray-500 text-[14px]">
-                      {teacher.position}
-                    </p>
-                    <p className="text-[12px] text-gray-400">
-                      Стаж: {teacher.experience}
-                    </p>
+          {teachers.map((teacher) => (
+            <SwiperSlide key={teacher.id}>
+              <div
+                onClick={() => handleTeacherClick(teacher)}
+                className="flex flex-col items-center justify-center gap-[15px] cursor-pointer group p-[10px] min-h-[350px]"
+              >
+                {teacher.image_url ? (
+                  <img
+                    src={`${STATIC_URL}${teacher.image_url}`}
+                    alt={teacher.name}
+                    className="w-[150px] h-[150px] rounded-full object-cover shadow-md group-hover:scale-110 transition-all duration-300"
+                  />
+                ) : (
+                  <div className="w-[150px] h-[150px] bg-gradient-to-r from-blue-400 to-purple-400 rounded-full flex items-center justify-center text-[60px] group-hover:scale-110 transition-all duration-300">
+                    👩‍🏫
                   </div>
+                )}
 
-                  <button className="p-[10px] bg-blue-500 text-white rounded-full text-[12px] transition-all hover:bg-blue-600">
-                    Подробнее
-                  </button>
+                <div className="flex flex-col items-center justify-center gap-[5px] text-center">
+                  <h3 className="font-bold text-[18px] group-hover:text-blue-600 transition-colors">
+                    {teacher.name}
+                  </h3>
+                  <p className="text-gray-500 text-[14px]">
+                    {teacher.position}
+                  </p>
+                  <p className="text-[12px] text-gray-400">
+                    Стаж: {teacher.experience}
+                  </p>
                 </div>
-              </SwiperSlide>
-            ))}
+
+                <button className="p-[10px] bg-blue-500 text-white rounded-full text-[12px] transition-all hover:bg-blue-600">
+                  Подробнее
+                </button>
+              </div>
+            </SwiperSlide>
+          ))}
         </Swiper>
       </div>
       {showModal && selectedTeacher && (
@@ -88,9 +107,9 @@ export default function SliderTeachers() {
               ×
             </button>
             <div className="text-center flex flex-col items-center w-full justify-center gap-[10px]">
-              {selectedTeacher.image ? (
+              {selectedTeacher.image_url ? (
                 <img
-                  src={selectedTeacher.image}
+                  src={`${STATIC_URL}${selectedTeacher.image_url}`}
                   alt={selectedTeacher.name}
                   className="w-[120px] h-[120px] rounded-full object-cover border-4 border-blue-400"
                 />
@@ -116,7 +135,7 @@ export default function SliderTeachers() {
                 </p>
                 <p>
                   <span className="font-bold">Группа:</span>{" "}
-                  {selectedTeacher.group}
+                  {selectedTeacher.group_name}
                 </p>
                 <p>
                   <span className="font-bold">Телефон:</span>{" "}

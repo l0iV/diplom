@@ -7,7 +7,6 @@ import god from "../../assets/god.png";
 import banner from "../../assets/banner_news.png";
 import listLessons from "./listIndex.jsx/listLessons";
 import listGerb from "./listIndex.jsx/listGerb";
-import teachersList from "../sliderTeachers/list/listTeachers";
 import GROUP_COLORS from "./listIndex.jsx/colorGroupList";
 
 export default function Index() {
