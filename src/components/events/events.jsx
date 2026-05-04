@@ -69,7 +69,7 @@ export default function Events() {
   return (
     <section className="events-section flex flex-col items-center w-full gap-10">
       {/* Hero */}
-      <div className="events-hero w-full bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 flex flex-col items-center gap-[16px] h-[250px] justify-center">
+      <div className="events-hero w-full bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 flex flex-col items-center gap-[16px] min-h-[250px] justify-center">
         <h1 className="events-hero-title font-bold text-[40px] text-green-700">
           Новости и мероприятия
         </h1>
