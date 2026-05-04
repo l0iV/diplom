@@ -7,6 +7,7 @@ const officialDocuments = [
   { id: 6, title: "Родительский комитет", icon: "👨‍👩‍👧‍👦" },
   { id: 7, title: "Дополнительные услуги", icon: "⭐" },
   { id: 8, title: "Противодействие коррупции", icon: "⚖️" },
-  { id: 9, title: "Полезные ссылки", icon: "🔗" },
+  { id: 9, title: "Информация о питании", icon: "🍽️" },
+  { id: 10, title: "Полезные ссылки", icon: "🔗" },
 ];
 export default officialDocuments;

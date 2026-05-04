@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { sendContact } from "../../api/api";
 import baby from "../../assets/baby.png";
-import menuData from "./List/groupList";
 import officialDocuments from "./List/infoList";
 import SliderReviews from "../sliderParentsReviews/sliderReviews";
 import FAQ from "./List/faqList";
@@ -215,7 +214,6 @@ export default function Parents() {
 
   const NAV = [
     { key: "form", label: "📝 Заявка" },
-    { key: "menu", label: "🍽️ Меню" },
     { key: "adapt", label: "🧸 Адаптация" },
     { key: "docs", label: "📄 Документы" },
     { key: "faq", label: "❓ FAQ" },
@@ -371,105 +369,6 @@ export default function Parents() {
                 Отправить заявку
               </button>
             </form>
-          </div>
-        </div>
-      </div>
-
-      <div id="section-menu" className="w-full flex flex-col items-center">
-        <div className="flex flex-col items-center gap-[32px] w-full max-w-[896px]">
-          <div className="flex flex-col items-center gap-[8px]">
-            <h2 className="text-[28px] font-extrabold text-blue-800 sm:text-[30px]">
-              Примерное 20-дневное меню
-            </h2>
-            <p className="text-[14px] text-blue-400">
-              Нажмите на группу, чтобы посмотреть меню
-            </p>
-          </div>
-          <div className="flex flex-col gap-[12px] w-full">
-            {menuData.map((group) => (
-              <div
-                key={group.key}
-                className="flex flex-col overflow-hidden rounded-[16px] bg-white shadow-md"
-              >
-                <button
-                  onClick={() =>
-                    setOpenMenu(openMenu === group.key ? null : group.key)
-                  }
-                  className="flex w-full items-center justify-between bg-gradient-to-r from-green-50 to-teal-50 px-[20px] py-[16px] transition hover:from-green-100 hover:to-teal-100"
-                >
-                  <span className="text-[16px] font-bold text-slate-800 sm:text-[18px]">
-                    {group.name}
-                  </span>
-                  <span
-                    className="text-slate-400 text-[14px] transition-transform duration-300"
-                    style={{
-                      transform:
-                        openMenu === group.key
-                          ? "rotate(180deg)"
-                          : "rotate(0deg)",
-                    }}
-                  >
-                    ▼
-                  </span>
-                </button>
-                {openMenu === group.key && (
-                  <div className="flex flex-col max-h-[384px] overflow-y-auto border-t border-green-100 p-[16px] gap-[12px]">
-                    {group.days.map((day) => (
-                      <div
-                        key={day.day}
-                        className="flex flex-col gap-[12px] rounded-[16px] bg-slate-50 p-[16px] shadow-sm"
-                      >
-                        <p className="text-[14px] font-bold text-green-600">
-                          📅 День {day.day}
-                        </p>
-                        <div className="grid grid-cols-2 gap-[8px] sm:grid-cols-4">
-                          {[
-                            {
-                              label: "🍳 Завтрак",
-                              value: day.breakfast,
-                              border: "border-amber-400",
-                              text: "text-amber-600",
-                            },
-                            {
-                              label: "🍲 Обед",
-                              value: day.lunch,
-                              border: "border-orange-400",
-                              text: "text-orange-600",
-                            },
-                            {
-                              label: "🥛 Полдник",
-                              value: day.afternoonSnack,
-                              border: "border-pink-400",
-                              text: "text-pink-600",
-                            },
-                            {
-                              label: "🍽️ Ужин",
-                              value: day.dinner,
-                              border: "border-purple-400",
-                              text: "text-purple-600",
-                            },
-                          ].map(({ label, value, border, text }) => (
-                            <div
-                              key={label}
-                              className={`flex flex-col gap-[4px] rounded-[12px] bg-white p-[12px] border-l-4 ${border}`}
-                            >
-                              <p
-                                className={`text-[12px] font-semibold ${text}`}
-                              >
-                                {label}
-                              </p>
-                              <p className="text-[12px] text-slate-600 leading-relaxed">
-                                {value}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            ))}
           </div>
         </div>
       </div>

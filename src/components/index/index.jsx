@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import groupsData from "./listIndex.jsx/listIndex";
 import logoMain from "../../assets/лого без фона.png";
@@ -8,34 +8,62 @@ import banner from "../../assets/banner_news.png";
 import listLessons from "./listIndex.jsx/listLessons";
 import listGerb from "./listIndex.jsx/listGerb";
 import GROUP_COLORS from "./listIndex.jsx/colorGroupList";
+import api, { STATIC_URL } from "../../api/api";
 
 export default function Index() {
   const [selectedGroup, setSelectedGroup] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedTeacher, setSelectedTeacher] = useState(null);
-  const [isTeacherModalOpen, setIsTeacherModalOpen] = useState(false);
+  const [teachersList, setTeachersList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Загрузка учителей с сервера
+  useEffect(() => {
+    const fetchTeachers = async () => {
+      try {
+        const response = await api.get("/teachers");
+        setTeachersList(response.data);
+      } catch (error) {
+        console.error("Ошибка загрузки учителей:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchTeachers();
+  }, []);
 
   const openGroup = (g) => {
     setSelectedGroup(g);
     setIsModalOpen(true);
   };
+
   const closeGroup = () => {
     setSelectedGroup(null);
     setIsModalOpen(false);
   };
-  const openTeacher = (name) => {
-    const t = teachersList.find((t) => t.name === name);
-    if (t) {
-      setSelectedTeacher(t);
-      setIsTeacherModalOpen(true);
+
+  // Получение фото учителя по имени
+  const getTeacherImage = (name) => {
+    if (!teachersList || teachersList.length === 0) return null;
+    const teacher = teachersList.find((t) => t.name === name);
+    if (teacher?.image_url) {
+      return teacher.image_url.startsWith("http")
+        ? teacher.image_url
+        : `${STATIC_URL}${teacher.image_url}`;
     }
+    return null;
   };
-  const closeTeacher = () => {
-    setSelectedTeacher(null);
-    setIsTeacherModalOpen(false);
-  };
-  const getTeacherImage = (name) =>
-    teachersList.find((t) => t.name === name)?.image ?? null;
+
+  // Показываем загрузку
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-green-500 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Загрузка...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <section className="flex flex-col w-full items-center">
@@ -133,7 +161,8 @@ export default function Index() {
           </div>
         </div>
       </div>
-      {/*ГРУППЫ */}
+
+      {/* ГРУППЫ */}
       <div className="w-full bg-white flex items-center min-h-[500px]">
         <div className="w-full flex flex-col items-center justify-center gap-[20px] ">
           <div className=" text-center">
@@ -144,7 +173,7 @@ export default function Index() {
               Нажмите на группу, чтобы узнать подробнее
             </p>
           </div>
-          <div className="flex items-center justify-around gap-[50px] h-max  main-card-group">
+          <div className="flex items-center justify-around gap-[50px] h-max main-card-group flex-wrap">
             {groupsData.map((group, i) => {
               const c = GROUP_COLORS[i % GROUP_COLORS.length];
               return (
@@ -202,9 +231,11 @@ export default function Index() {
           </div>
         </div>
       </div>
+
       <div className="w-[85%] flex justify-center">
         <SliderNews />
       </div>
+
       <div className="w-[85%] min-h-[700px] main-container flex flex-col gap-[20px] items-center justify-center">
         <h1 className="text-center font-bold text-[40px] text-red-600 main-title tracking-wide shadow-text">
           Тренируем навыки будущего
@@ -212,7 +243,7 @@ export default function Index() {
         <p className="text-center font-bold text-[25px] text-red-400 main-subtitle tracking-wider">
           Чтобы мечты детей сбывались
         </p>
-        <div className="main-card-kids flex items-center h-full gap-[1px]">
+        <div className="main-card-kids flex items-center h-full gap-[1px] flex-wrap justify-center">
           {listLessons.map((item) => {
             return (
               <div
@@ -243,6 +274,7 @@ export default function Index() {
           })}
         </div>
       </div>
+
       <div className="w-[80%] flex items-center justify-center min-h-[300px] main-banner">
         <div className="flex w-[60%] items-center justify-center h-full main-banner">
           <div className="flex items-center w-full gap-[20px] justify-center banner">
@@ -257,15 +289,16 @@ export default function Index() {
           </div>
         </div>
       </div>
+
       <div className="gerb-container w-full bg-white flex flex-col items-center gap-[40px] min-h-[400px] justify-center">
-        <div className="gerb-grid  w-full flex items-center justify-center gap-[32px]">
+        <div className="gerb-grid w-full flex items-center justify-center gap-[32px] flex-wrap">
           {listGerb.map((item) => (
             <a
               key={item.id}
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="gerb-item  flex flex-col items-center gap-3 max-w-[200px] transition-all duration-300 hover:scale-105"
+              className="gerb-item flex flex-col items-center gap-3 max-w-[200px] transition-all duration-300 hover:scale-105"
             >
               <img
                 src={item.img}
@@ -292,21 +325,21 @@ export default function Index() {
           </a>
         </div>
       </div>
-      {isModalOpen &&
-        selectedGroup &&
-        (() => {
-          const i = groupsData.findIndex((g) => g.id === selectedGroup.id);
-          const c = GROUP_COLORS[i % GROUP_COLORS.length];
-          return (
-            <div
-              onClick={closeGroup}
-              className="animate-overlay fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
-            >
-              <div
-                onClick={(e) => e.stopPropagation()}
-                className="animate-modal relative flex max-h-[90vh] w-full max-w-md flex-col overflow-y-auto rounded-3xl bg-white"
-              >
-                {/* Шапка */}
+
+      {/* МОДАЛЬНОЕ ОКНО ГРУППЫ */}
+      {isModalOpen && selectedGroup && (
+        <div
+          onClick={closeGroup}
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-4"
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            className="relative flex max-h-[90vh] w-full max-w-md flex-col overflow-y-auto rounded-3xl bg-white"
+          >
+            {(() => {
+              const i = groupsData.findIndex((g) => g.id === selectedGroup.id);
+              const c = GROUP_COLORS[i % GROUP_COLORS.length];
+              return (
                 <div
                   className={`flex flex-col items-center gap-3 rounded-t-3xl bg-gradient-to-br ${c.bg} p-8`}
                 >
@@ -337,55 +370,53 @@ export default function Index() {
                     {selectedGroup.groupName}
                   </p>
                 </div>
+              );
+            })()}
 
-                {/* Педагоги */}
-                <div className="flex flex-col gap-3 p-6">
-                  <h3 className="text-sm font-bold uppercase tracking-wide text-slate-400">
-                    👩‍🏫 Педагоги группы
-                  </h3>
-                  {selectedGroup.teachers.map((teacher, idx) => {
-                    const img = getTeacherImage(teacher);
-                    return (
-                      <div
-                        key={idx}
-                        onClick={() => openTeacher(teacher)}
-                        className="flex cursor-pointer items-center gap-3 rounded-2xl bg-slate-50 p-3 transition hover:bg-slate-100 hover:scale-[1.01]"
-                      >
-                        <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-xl">
-                          {img ? (
-                            <img
-                              src={img}
-                              alt={teacher}
-                              className="h-full w-full object-cover"
-                            />
-                          ) : (
-                            "👩‍🏫"
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="truncate text-sm font-semibold text-slate-800">
-                            {teacher}
-                          </p>
-                          <p className="text-xs text-slate-400">Воспитатель</p>
-                        </div>
-                        <span className="text-blue-400 text-sm">→</span>
-                      </div>
-                    );
-                  })}
-                </div>
-
-                <div className="px-6 pb-6">
-                  <button
-                    onClick={closeGroup}
-                    className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 text-sm font-bold text-white transition hover:opacity-90"
+            <div className="flex flex-col gap-3 p-6">
+              <h3 className="text-sm font-bold uppercase tracking-wide text-slate-400">
+                👩‍🏫 Педагоги группы
+              </h3>
+              {selectedGroup.teachers.map((teacher, idx) => {
+                const img = getTeacherImage(teacher);
+                return (
+                  <div
+                    key={idx}
+                    className="flex items-center gap-3 rounded-2xl bg-slate-50 p-3"
                   >
-                    Закрыть
-                  </button>
-                </div>
-              </div>
+                    <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full bg-gradient-to-br from-blue-400 to-purple-400 flex items-center justify-center text-xl">
+                      {img ? (
+                        <img
+                          src={img}
+                          alt={teacher}
+                          className="h-full w-full object-cover"
+                        />
+                      ) : (
+                        "👩‍🏫"
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="truncate text-sm font-semibold text-slate-800">
+                        {teacher}
+                      </p>
+                      <p className="text-xs text-slate-400">Воспитатель</p>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
-          );
-        })()}
+
+            <div className="px-6 pb-6">
+              <button
+                onClick={closeGroup}
+                className="w-full rounded-full bg-gradient-to-r from-blue-500 to-purple-500 py-3 text-sm font-bold text-white transition hover:opacity-90"
+              >
+                Закрыть
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
