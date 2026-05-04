@@ -535,7 +535,79 @@
 /* INDEX АДАПТИРОВАЛ */
 
 /* АДАПТИВКА FOOTER */
-@media (max-width: 1023px) {
+/* 749px–1023px — колонка: контакты + навигация, логотип снизу */
+@media (min-width: 749px) and (max-width: 1023px) {
+  .footer-cols {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+    width: 90%;
+  }
+  .footer-social-networks {
+    width: 100%;
+    align-items: center;
+  }
+  .footer-social-networks img {
+    width: 200px !important;
+  }
+  .footer-nav {
+    width: 100%;
+    align-items: center;
+  }
+}
+/* 490px–748px — всё стопкой */
+@media (min-width: 490px) and (max-width: 748px) {
+  .footer-cols {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+    width: 95%;
+  }
+  .footer-social-networks {
+    width: 100%;
+    align-items: center;
+  }
+  .footer-social-networks img {
+    width: 160px !important;
+  }
+  .footer-nav {
+    width: 100%;
+    align-items: center;
+  }
+  .footer-social {
+    width: 100%;
+  }
+}
+/* 320px–489px — компактный мобильный */
+@media (min-width: 320px) and (max-width: 489px) {
+  .footer-cols {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    padding: 0 10px;
+  }
+  .footer-social-networks {
+    width: 100%;
+    align-items: center;
+    gap: 16px !important;
+  }
+  .footer-social-networks img {
+    width: 130px !important;
+  }
+  .footer-nav {
+    width: 100%;
+    align-items: center;
+  }
+  .footer-social {
+    width: 100%;
+  }
+  .footer-social li p:last-child {
+    font-size: 12px;
+  }
 }
 
 /* Адаптивка странички About */
@@ -667,3 +739,67 @@
 }
 
 /* АДАПТИВКА PARENTS */
+/* Мобильные 320–599px */
+@media (min-width: 320px) and (max-width: 599px) {
+  /* Шапка */
+  #section-form ~ div h1,
+  section > div:first-child h1 {
+    font-size: 26px !important;
+  }
+  /* Секция адаптации + FAQ — убираем жёсткий 60% */
+  #section-adapt > div,
+  #section-faq > div {
+    width: 95% !important;
+  }
+  /* Памятка психолога: grid-cols-3 → 1 колонка */
+  #section-adapt .grid {
+    grid-template-columns: 1fr !important;
+  }
+  /* Документы: max-w-[70%] → 95%, сетка 3 → 2 колонки */
+  #section-docs > div {
+    max-width: 95% !important;
+    width: 95% !important;
+  }
+  #section-docs .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 10px !important;
+  }
+  #section-docs .grid > div {
+    height: 90px !important;
+  }
+  /* Навигация по разделам — мельче кнопки */
+  .w-full.flex.justify-center > div button {
+    font-size: 12px !important;
+    padding: 8px 8px !important;
+  }
+}
+/* Планшет 600–900px */
+@media (min-width: 600px) and (max-width: 900px) {
+  #section-adapt > div,
+  #section-faq > div {
+    width: 90% !important;
+  }
+  /* Памятка: 3 → 2 колонки */
+  #section-adapt .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Документы */
+  #section-docs > div {
+    max-width: 92% !important;
+    width: 92% !important;
+  }
+  #section-docs .grid {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+/* Небольшой десктоп 901–1200px */
+@media (min-width: 901px) and (max-width: 1200px) {
+  #section-adapt > div,
+  #section-faq > div {
+    width: 80% !important;
+  }
+  #section-docs > div {
+    max-width: 85% !important;
+    width: 85% !important;
+  }
+}
