@@ -28,11 +28,15 @@ export const addEvent = (data) => api.post("/events", data);
 export const getTeachers = () => api.get("/teachers");
 export const addTeacher = (data) => api.post("/teachers", data);
 
-// ── Отзывы ────────────────────────────────────────────────
+// ── Награды ────────────────────────────────────────────────
 export const getWins = () => api.get("/wins");
-export const getNews = () => api.get("/news");
+
+// ── Кабинеты (бывшие новости) ─────────────────────────────
+export const getRooms = () => api.get("/rooms"); // ЗАМЕНИЛИ getNews на getRooms
+
+// ── Отзывы ────────────────────────────────────────────────
 export const getReviews = (params) => api.get("/reviews", { params });
-export const addReview = (data) => api.post("/reviews", data);
+export const postReview = (data) => api.post("/reviews", data);
 
 // ── Контакт ───────────────────────────────────────────────
 export const sendContact = (data) => api.post("/contact", data);

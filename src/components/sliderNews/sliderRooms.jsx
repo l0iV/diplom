@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-import { getNews } from "../../api/api";
+import { getRooms } from "../../api/api"; // ИЗМЕНЕНО: getNews -> getRooms
 import { STATIC_URL } from "../../api/api";
 
 export default function Slider() {
@@ -15,7 +15,7 @@ export default function Slider() {
   const [fullscreenImage, setFullscreenImage] = useState(null);
 
   useEffect(() => {
-    getNews()
+    getRooms() // ИЗМЕНЕНО: getNews -> getRooms
       .then((res) => {
         setSlides(res.data);
         setLoading(false);
@@ -83,13 +83,17 @@ export default function Slider() {
             className="flex items-center min-h-[350px]"
           >
             <div
-              className="flex max-w-max items-center justify-center flex-col gap-[5px] cursor-pointer  "
+              className="flex max-w-max items-center justify-center flex-col gap-[5px] cursor-pointer"
               onClick={() => openFullscreen(slide.image_url)}
             >
               <img
                 src={`${STATIC_URL}${slide.image_url}`}
                 alt=""
                 className="object-contain rounded-[20px] max-w-full h-auto"
+                onError={(e) => {
+                  e.target.src =
+                    "https://via.placeholder.com/400x300?text=Нет+изображения";
+                }}
               />
               <p className="text-justify italic">{slide.text}</p>
             </div>
@@ -104,7 +108,7 @@ export default function Slider() {
           <img
             src={`${STATIC_URL}${fullscreenImage}`}
             alt="Увеличенное изображение"
-            className="object-contain min-h-[500px] rounded-[50px]"
+            className="object-contain max-h-[90vh] max-w-[90vw] rounded-[20px]"
             onClick={(e) => e.stopPropagation()}
           />
           <button

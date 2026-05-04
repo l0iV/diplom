@@ -213,6 +213,7 @@ main {
 .title-yellow {
   color: #b91c1c;
 }
+
 @keyframes modalFadeIn {
   from {
     opacity: 0;
