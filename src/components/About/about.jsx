@@ -75,7 +75,7 @@ export default function About() {
         </div>
       </div>
       <div className="main-block-intelligence w-[90%] bg-white rounded-[30px] p-[40px] shadow-lg intelligence-grid flex flex-col gap-[20px]">
-        <div className="text-center ">
+        <div className="text-center title-intelegente">
           <h2 className="text-[35px] font-bold bg-gradient-to-r from-green-600 to-purple-600 bg-clip-text text-transparent section-title">
             Развиваем 10 видов интеллекта
           </h2>
@@ -90,7 +90,7 @@ export default function About() {
               onClick={() => handleIntelligenceClick(item)}
               className="card-intelligence text-center p-[15px] bg-gray-50 rounded-[15px] hover:scale-105 hover:shadow-md transition-all cursor-pointer intelligence-card"
             >
-              <div className="text-[40px] mb-[10px]">{item.icon}</div>
+              <div className="text-[40px]">{item.icon}</div>
               <p className={`font-bold ${item.color}`}>{item.name}</p>
             </div>
           ))}

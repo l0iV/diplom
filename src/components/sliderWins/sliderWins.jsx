@@ -42,7 +42,7 @@ export default function SliderAwards() {
   return (
     <>
       <div className="w-[90%] shadow-lg rounded-[40px]">
-        <h2 className="text-[35px] font-bold text-center mb-[10px] text-red-600">
+        <h2 className="text-[20px] sm:text-[25px] md:text-[30px] lg:text-[35px] font-bold text-center text-red-600">
           Наши достижения и победы
         </h2>
 

@@ -588,6 +588,7 @@
     font-size: 10px;
   }
 }
+/* развиваем 10 навыков */
 @media (min-width: 665px) and (max-width: 1099px) {
   .card-block-intelligence {
     display: grid;
@@ -598,6 +599,15 @@
   .card-block-intelligence {
     display: grid;
     grid-template-columns: repeat(2, 2fr);
+  }
+  .title-intelegente h2 {
+    font-size: 18px !important;
+  }
+  .title-intelegente p {
+    font-size: 12px !important;
+  }
+  .card-intelligence p {
+    font-size: 12px;
   }
 }
 @media (min-width: 320px) and (max-width: 499px) {
@@ -618,6 +628,12 @@
   }
   .card-intelligence div:first-child {
     font-size: 25px;
+  }
+  .title-intelegente h2 {
+    font-size: 18px !important;
+  }
+  .title-intelegente p {
+    font-size: 12px !important;
   }
 }
 /* АДАПТИВКА МЕРОПРИЯТИЯ  */
