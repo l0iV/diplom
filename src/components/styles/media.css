@@ -415,9 +415,15 @@
     gap: 15px;
   }
   .card-kids .emoji-image {
-    width: 120px;
-    height: 120px;
+    width: 100px;
+    height: 100px;
     object-fit: cover;
+  }
+  .main-container h1 {
+    font-size: 20px;
+  }
+  .main-container p {
+    font-size: 15px;
   }
 }
 @media (min-width: 320px) and (max-width: 426px) {
