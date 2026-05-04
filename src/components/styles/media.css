@@ -209,13 +209,15 @@
   }
 }
 /* группы детсада */
-@media (min-width: 720px) and (max-width: 1378px) {
+@media (min-width: 912px) and (max-width: 1513px) {
   .main-card-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    max-width: 70%;
   }
 }
-@media (min-width: 630px) and (max-width: 719px) {
+@media (min-width: 630px) and (max-width: 911px) {
   .main-card-group {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -223,7 +225,7 @@
     align-items: stretch;
     justify-items: center;
   }
-  .group {
+  .card-group {
     min-width: 200px;
     min-height: 200px;
   }
@@ -232,6 +234,54 @@
   .main-card-group {
     display: flex;
     flex-direction: column;
+  }
+  .card-group {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100%;
+    gap: 15px;
+    height: 200px;
+  }
+  .group-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .group-header div:last-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80px;
+    text-align: start;
+    gap: 10px;
+  }
+  .group-header div:last-child p,
+  .group-header div:last-child span {
+    font-size: 12px;
+  }
+  .ico-group-card {
+    width: 25px;
+    height: 25px;
+  }
+  .group-footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 0px !important;
+    gap: 5px;
+  }
+  .group-footer p {
+    font-size: 12px;
+  }
+  .group-card-teacher li {
+    font-size: 12px;
+    text-align: start;
   }
 }
 /* блок трениируем навыки будующего */

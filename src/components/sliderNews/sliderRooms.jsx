@@ -38,7 +38,7 @@ export default function Slider() {
 
   if (loading) {
     return (
-      <div className="min-h-[400px] flex flex-col items-center justify-center gap-4">
+      <div className="min-h-[250px] flex flex-col items-center justify-center gap-4">
         <div className="w-12 h-12 border-4 border-green-200 border-t-green-500 rounded-full animate-spin"></div>
         <p className="text-gray-500 animate-pulse">
           Загрузка информации о саде...
@@ -48,7 +48,7 @@ export default function Slider() {
   }
 
   return (
-    <div className="min-h-[400px] w-[90%] text-[14px] items-center overflow-hidden relative">
+    <div className="min-h-[250px] w-[90%] text-[14px] items-center overflow-hidden relative">
       <h1 className="text-center font-bold text-[30px] text-green-800">
         Наш детский сад!
       </h1>
@@ -80,7 +80,7 @@ export default function Slider() {
         {slides.map((slide) => (
           <SwiperSlide
             key={slide.id}
-            className="flex items-center min-h-[350px]"
+            className="flex items-center min-h-[300px]"
           >
             <div
               className="flex max-w-max items-center justify-center flex-col gap-[5px] cursor-pointer"

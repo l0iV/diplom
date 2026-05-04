@@ -66,7 +66,7 @@ export default function Index() {
   }
 
   return (
-    <section className="flex flex-col w-full items-center">
+    <section className="flex flex-col w-full items-center gap-[30px]">
       <div className="w-full bg-gradient-to-br from-green-100 via-emerald-50 to-fuchsia-100 p-[20px] flex justify-center">
         <div className="w-[80%] flex flex-col gap-[40px] items-center full-index-title">
           <div className="flex items-center gap-[32px] justify-between w-full main-block-title">
@@ -173,25 +173,25 @@ export default function Index() {
               Нажмите на группу, чтобы узнать подробнее
             </p>
           </div>
-          <div className="flex items-center justify-around gap-[50px] h-max main-card-group flex-wrap">
+          <div className="w-[95%] flex items-center justify-evenly gap-[50px] h-max main-card-group flex-wrap">
             {groupsData.map((group, i) => {
               const c = GROUP_COLORS[i % GROUP_COLORS.length];
               return (
                 <button
                   key={group.id}
                   onClick={() => openGroup(group)}
-                  className={`min-h-[300px] min-w-[300px] flex flex-col gap-4 rounded-3xl border-2 bg-gradient-to-br ${c.bg} ${c.border}
-                    p-6 text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer`}
+                  className={`card-group h-[300px] min-w-[300px] flex flex-col gap-4 rounded-3xl border-2 bg-gradient-to-br ${c.bg} ${c.border}
+                    p-[15px] text-left shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl cursor-pointer`}
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="group-header flex items-center gap-3">
                     <div className="rounded-2xl bg-white p-2 shadow-sm">
                       <img
                         src={group.icon}
                         alt={group.name}
-                        className="h-10 w-10 object-contain"
+                        className="h-10 w-10 object-contain ico-group-card"
                       />
                     </div>
-                    <div>
+                    <div className="">
                       <p className={`text-base font-bold ${c.accent}`}>
                         {group.name}
                       </p>
@@ -202,14 +202,14 @@ export default function Index() {
                       </span>
                     </div>
                   </div>
-                  <div className="border-t border-white/60 pt-4">
+                  <div className="group-footer border-t border-white/60">
                     <p className="text-base font-bold text-blue-700">
                       {group.groupName}
                     </p>
                     <p className="mt-2 text-xs text-slate-400 uppercase tracking-wide">
                       Воспитатели
                     </p>
-                    <ul className="mt-1 flex flex-col gap-1">
+                    <ul className="group-card-teacher flex flex-col gap-1">
                       {group.teachers.map((t, idx) => (
                         <li
                           key={idx}
