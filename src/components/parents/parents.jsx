@@ -465,7 +465,7 @@ export default function Parents() {
         id="section-faq"
         className="w-full flex flex-col items-center bg-white"
       >
-        <div className="flex flex-col items-center gap-[32px] w-full max-w-[1024px]">
+        <div className="flex flex-col items-center gap-[32px] w-[60%]">
           <div className="flex flex-col items-center gap-[12px]">
             <span className="text-[48px]">❓</span>
             <h2 className="text-[28px] font-extrabold text-blue-800">
