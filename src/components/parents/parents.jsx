@@ -445,7 +445,7 @@ export default function Parents() {
             {officialDocuments.map((doc) => (
               <div
                 key={doc.id}
-                className="flex h-[112px] cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[16px] border border-slate-200 bg-white p-[16px] text-center shadow-sm transition-all hover:scale-105 hover:shadow-xl sm:h-[128px]"
+                className="card-doc flex min-h-[112px] cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[16px] border border-slate-200 bg-white p-[16px] text-center shadow-sm transition-all hover:scale-105 hover:shadow-xl sm:h-[128px]"
               >
                 <span className="text-[24px] sm:text-[32px]">{doc.icon}</span>
                 <span className="text-[15px] font-semibold leading-tight text-slate-700">
