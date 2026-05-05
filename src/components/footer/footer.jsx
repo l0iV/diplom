@@ -49,8 +49,8 @@ export default function Footer() {
     <footer className="w-full flex flex-col items-center gap-[20px]">
       <div className="w-[90%] h-[3px] bg-gradient-to-r from-red-500 via-orange-500 via-green-500 to-blue-500 rounded-[200px]"></div>
       <div className="flex flex-col items-center gap-[40px] w-full">
-        <div className="flex justify-center items-start gap-[80px] footer-cols">
-          <div className="flex flex-col gap-[20px] ">
+        <div className="w-full flex justify-center items-start gap-[80px] footer-cols">
+          <div className="flex flex-col gap-[20px] footer-contacts">
             <h3 className="text-[18px] font-bold text-orange">Контакты</h3>
             <ul className="flex flex-col gap-[16px] footer-social">
               <div
