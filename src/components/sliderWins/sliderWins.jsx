@@ -4,8 +4,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useState, useEffect } from "react";
-import { getWins } from "../../api/api";
-import { STATIC_URL } from "../../api/api";
+import { getWins } from "../../api_backup/api";
+import { STATIC_URL } from "../../api_backup/api";
 
 export default function SliderAwards() {
   const [awards, setAwards] = useState([]);

@@ -7,7 +7,7 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
 import { getRooms } from "../../api/api"; // ИЗМЕНЕНО: getNews -> getRooms
-import { STATIC_URL } from "../../api/api";
+import { STATIC_URL } from "../../api_backup/api";
 
 export default function Slider() {
   const [slides, setSlides] = useState([]);

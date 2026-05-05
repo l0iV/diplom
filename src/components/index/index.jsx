@@ -8,7 +8,7 @@ import banner from "../../assets/banner_news.png";
 import listLessons from "./listIndex.jsx/listLessons";
 import listGerb from "./listIndex.jsx/listGerb";
 import GROUP_COLORS from "./listIndex.jsx/colorGroupList";
-import api, { STATIC_URL } from "../../api/api";
+import api, { STATIC_URL } from "../../api_backup/api";
 
 export default function Index() {
   const [selectedGroup, setSelectedGroup] = useState(null);

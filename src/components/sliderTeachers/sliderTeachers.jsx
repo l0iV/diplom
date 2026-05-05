@@ -4,8 +4,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { useState, useEffect } from "react";
-import { getTeachers } from "../../api/api";
-import { STATIC_URL } from "../../api/api";
+import { getTeachers } from "../../api_backup/api";
+import { STATIC_URL } from "../../api_backup/api";
 
 export default function SliderTeachers() {
   const [teachers, setTeachers] = useState([]);

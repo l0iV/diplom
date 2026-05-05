@@ -1,5 +1,5 @@
 import { useState, useEffect, useMemo } from "react";
-import { getEvents, STATIC_URL } from "../../api/api";
+import { getEvents, STATIC_URL } from "../../api_backup/api";
 
 const CATEGORIES = [
   { key: "all", label: "Все события", emoji: "🌟" },

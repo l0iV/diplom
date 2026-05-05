@@ -4,7 +4,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Autoplay, Navigation } from "swiper/modules";
 import { useState, useEffect } from "react";
-import { getReviews, postReview } from "../../api/api";
+import { getReviews, postReview } from "../../api_backup/api";
 import user from "../../assets/user-otzivy.png";
 export default function SliderReviews() {
   const [reviews, setReviews] = useState([]);
