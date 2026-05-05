@@ -1,8 +1,11 @@
 import axios from "axios";
 
-// В продакшене берём URL из переменной окружения Vite
+// Определяем, в продакшене мы или в разработке
+const isProduction = import.meta.env.PROD;
+
+// В продакшене используем относительный путь /api
 // В разработке — localhost
-const BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3000/api";
+const BASE_URL = isProduction ? "/api" : "http://localhost:3000/api";
 
 const api = axios.create({
   baseURL: BASE_URL,
@@ -32,7 +35,7 @@ export const addTeacher = (data) => api.post("/teachers", data);
 export const getWins = () => api.get("/wins");
 
 // ── Кабинеты (бывшие новости) ─────────────────────────────
-export const getRooms = () => api.get("/rooms"); // ЗАМЕНИЛИ getNews на getRooms
+export const getRooms = () => api.get("/rooms");
 
 // ── Отзывы ────────────────────────────────────────────────
 export const getReviews = (params) => api.get("/reviews", { params });
@@ -42,7 +45,6 @@ export const postReview = (data) => api.post("/reviews", data);
 export const sendContact = (data) => api.post("/contact", data);
 
 // URL для картинок (без /api)
-export const STATIC_URL =
-  import.meta.env.VITE_STATIC_URL || "http://localhost:3000";
+export const STATIC_URL = isProduction ? "" : "http://localhost:3000";
 
 export default api;
