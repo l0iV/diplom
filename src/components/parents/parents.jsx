@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { sendContact } from "../../api_backup/api";
+import { useState, useEffect } from "react";
+import { sendContact, getDocuments } from "../../api_backup/api";
 import baby from "../../assets/baby.png";
-import officialDocuments from "./List/infoList";
 import SliderReviews from "../sliderParentsReviews/sliderReviews";
 import FAQ from "./List/faqList";
 import TIPS from "./List/listTips";
@@ -134,6 +133,106 @@ function QuestionModal({ open, onClose }) {
   );
 }
 
+// Модальное окно для просмотра документа
+function DocumentModal({ doc, onClose }) {
+  if (!doc) return null;
+
+  const STATIC_URL = import.meta.env.PROD ? "" : "http://localhost:3000";
+  const fileExtension = doc.file_url?.split(".").pop()?.toLowerCase();
+  const isPdf = fileExtension === "pdf";
+  const isWord = fileExtension === "doc" || fileExtension === "docx";
+
+  return (
+    <div
+      onClick={onClose}
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/55 p-[16px]"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="relative w-full max-w-[900px] max-h-[90vh] overflow-y-auto rounded-[24px] bg-white p-[32px]"
+      >
+        <button
+          onClick={onClose}
+          className="absolute right-[16px] top-[16px] flex h-[32px] w-[32px] items-center justify-center rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition"
+        >
+          ✕
+        </button>
+
+        <div className="flex items-center gap-[12px] mb-[20px]">
+          <span className="text-[48px]">{doc.icon}</span>
+          <h3 className="text-[24px] font-extrabold text-slate-800">
+            {doc.title}
+          </h3>
+        </div>
+
+        {doc.file_url ? (
+          <div className="flex flex-col gap-[20px]">
+            {isPdf && (
+              <div className="rounded-[12px] border border-slate-200 overflow-hidden bg-slate-50">
+                <iframe
+                  src={`${STATIC_URL}${doc.file_url}`}
+                  className="w-full h-[600px]"
+                  title={doc.title}
+                />
+              </div>
+            )}
+
+            {isWord && (
+              <div className="rounded-[12px] bg-blue-50 p-[20px] text-center">
+                <p className="text-slate-700 mb-[16px]">
+                  📄 Файл документа Word готов к скачиванию
+                </p>
+                <a
+                  href={`${STATIC_URL}${doc.file_url}`}
+                  download
+                  className="inline-flex items-center gap-[8px] rounded-full bg-blue-500 px-[24px] py-[12px] text-[14px] font-bold text-white hover:bg-blue-600 transition"
+                >
+                  ⬇️ Скачать файл
+                </a>
+              </div>
+            )}
+
+            {!isPdf && !isWord && doc.file_url && (
+              <div className="rounded-[12px] bg-blue-50 p-[20px] text-center">
+                <p className="text-slate-700 mb-[16px]">
+                  📄 Файл готов к скачиванию
+                </p>
+                <a
+                  href={`${STATIC_URL}${doc.file_url}`}
+                  download
+                  className="inline-flex items-center gap-[8px] rounded-full bg-blue-500 px-[24px] py-[12px] text-[14px] font-bold text-white hover:bg-blue-600 transition"
+                >
+                  ⬇️ Скачать файл
+                </a>
+              </div>
+            )}
+
+            <div className="border-t border-slate-100 pt-[16px] mt-[8px]">
+              <button
+                onClick={() =>
+                  window.open(`${STATIC_URL}${doc.file_url}`, "_blank")
+                }
+                className="w-full rounded-[12px] border border-blue-200 bg-white px-[16px] py-[10px] text-blue-600 hover:bg-blue-50 transition"
+              >
+                🔗 Открыть в новой вкладке
+              </button>
+            </div>
+          </div>
+        ) : doc.content ? (
+          <div
+            className="prose prose-sm max-w-none text-slate-600"
+            dangerouslySetInnerHTML={{ __html: doc.content }}
+          />
+        ) : (
+          <p className="text-slate-500 text-center py-[40px]">
+            Нет содержимого для отображения
+          </p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function Parents() {
   const [formData, setFormData] = useState({
     parentName: "",
@@ -143,13 +242,37 @@ export default function Parents() {
     birthDate: "",
     group: "",
   });
-  const [openMenu, setOpenMenu] = useState(null);
   const [submitted, setSubmitted] = useState(false);
   const [questionOpen, setQuestionOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("form");
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Состояния для документов
+  const [documents, setDocuments] = useState([]);
+  const [loadingDocs, setLoadingDocs] = useState(true);
+  const [selectedDoc, setSelectedDoc] = useState(null);
+
+  // Загрузка документов из БД
+  useEffect(() => {
+    loadDocuments();
+  }, []);
+
+  const loadDocuments = async () => {
+    try {
+      setLoadingDocs(true);
+      const response = await getDocuments();
+      setDocuments(response.data);
+    } catch (error) {
+      console.error("Ошибка загрузки документов:", error);
+      setDocuments([]);
+    } finally {
+      setLoadingDocs(false);
+    }
+  };
+
   const handleInput = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSubmitting) return;
@@ -205,6 +328,7 @@ export default function Parents() {
       setIsSubmitting(false);
     }
   };
+
   const scrollTo = (key) => {
     setActiveSection(key);
     document
@@ -219,8 +343,14 @@ export default function Parents() {
     { key: "faq", label: "❓ FAQ" },
   ];
 
+  const handleDocumentClick = (doc) => {
+    setSelectedDoc(doc);
+  };
+
   return (
     <section className="flex flex-col w-full items-center gap-[30px] bg-white">
+      <DocumentModal doc={selectedDoc} onClose={() => setSelectedDoc(null)} />
+
       <QuestionModal
         open={questionOpen}
         onClose={() => setQuestionOpen(false)}
@@ -438,22 +568,38 @@ export default function Parents() {
               Документы
             </h2>
             <p className="text-[14px] text-slate-400">
-              Нажмите на документ для подробной информации
+              Нажмите на документ для просмотра или скачивания
             </p>
           </div>
-          <div className="grid grid-cols-3 gap-[20px] w-full">
-            {officialDocuments.map((doc) => (
-              <div
-                key={doc.id}
-                className="card-doc flex min-h-[112px] cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[16px] border border-slate-200 bg-white p-[16px] text-center shadow-sm transition-all hover:scale-105 hover:shadow-xl sm:h-[128px]"
-              >
-                <span className="text-[24px] sm:text-[32px]">{doc.icon}</span>
-                <span className="text-[15px] font-semibold leading-tight text-slate-700">
-                  {doc.title}
-                </span>
-              </div>
-            ))}
-          </div>
+          {loadingDocs ? (
+            <div className="text-center py-8 text-slate-500">
+              Загрузка документов...
+            </div>
+          ) : documents.length === 0 ? (
+            <div className="text-center py-8 text-slate-500">
+              Документы временно недоступны
+            </div>
+          ) : (
+            <div className="grid grid-cols-3 gap-[20px] w-full">
+              {documents.map((doc) => (
+                <div
+                  key={doc.id}
+                  onClick={() => handleDocumentClick(doc)}
+                  className="card-doc flex min-h-[112px] cursor-pointer flex-col items-center justify-center gap-[8px] rounded-[16px] border border-slate-200 bg-white p-[16px] text-center shadow-sm transition-all hover:scale-105 hover:shadow-xl sm:h-[128px]"
+                >
+                  <span className="text-[24px] sm:text-[32px]">{doc.icon}</span>
+                  <span className="text-[15px] font-semibold leading-tight text-slate-700">
+                    {doc.title}
+                  </span>
+                  {doc.file_url && (
+                    <span className="text-[10px] text-blue-500 mt-1">
+                      📎 файл
+                    </span>
+                  )}
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </div>
 

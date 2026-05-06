@@ -6,7 +6,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/autoplay";
-import { getRooms } from "../../api/api"; // ИЗМЕНЕНО: getNews -> getRooms
+import { getRooms } from "../../api_backup/api"; // ИЗМЕНЕНО: getNews -> getRooms
 import { STATIC_URL } from "../../api_backup/api";
 
 export default function Slider() {

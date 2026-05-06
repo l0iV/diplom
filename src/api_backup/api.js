@@ -44,6 +44,13 @@ export const postReview = (data) => api.post("/reviews", data);
 // ── Контакт ───────────────────────────────────────────────
 export const sendContact = (data) => api.post("/contact", data);
 
+// ── Документы ─────────────────────────────────────────────
+export const getDocuments = () => api.get("/documents");
+export const getDocument = (id) => api.get(`/documents/${id}`);
+export const createDocument = (data) => api.post("/documents", data);
+export const updateDocument = (id, data) => api.put(`/documents/${id}`, data);
+export const deleteDocument = (id) => api.delete(`/documents/${id}`);
+
 // URL для картинок (без /api)
 export const STATIC_URL = isProduction ? "" : "http://localhost:3000";
 
